@@ -103,24 +103,24 @@ public class ShipFactory {
 		Ship ship;
 		switch (shipName){
 		case "DefaultShip":
-			ship = new DefaultShip("DefaultShip",body,health,move,new ShootDown());
+			ship = new Ship("DefaultShip",body,health,move,new ShootDown());
 			ship.getCurrentWeapon().setInfinityQty();
 			ship.getCurrentWeapon().setGhostShoot(ghostShoot);
 			ghostShoot=(ghostShoot+1)%7;
 			DisplayableMonitor.addShip(ship);
 			break;
 		case "DefaultShipPlayer":
-			ship=  new DefaultShip("DefaultShipPlayer",body,health,move,new ShootDown());
+			ship=  new Ship("DefaultShipPlayer",body,health,move,new ShootDown());
 			ship.getListWeapon().setCurrentWeapon("MissileLauncher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			break;
 		case "KamikazeShip":
-			ship = new KamikazeShip(body,health,move,new DoNotShoot());
+			ship = new Ship("KamikazeShip",body,health,move,new DoNotShoot());
 			ship.getCurrentWeapon().addQte(Integer.MIN_VALUE);
 			DisplayableMonitor.addShip(ship);
 			break;
 		case "BatShip":
-			ship = new BatShip(body,health,move,new BatShipShoot());
+			ship = new Ship("BatShip",body,health,move,new BatShipShoot());
 			ship.getListWeapon().addWeapon("FlameThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("FlameThrower");
 			DisplayableMonitor.addShip(ship);

@@ -13,7 +13,7 @@ import fr.umlv.escape.world.EscapeWorld;
 /**
  * Abstract class that represent a ship in the Escape Game
  */
-public abstract class Ship {
+public class Ship {
 	private final Body body;
 	private Movable moveBehaviour;
 	private Shootable shootBehaviour;

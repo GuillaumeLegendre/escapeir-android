@@ -50,6 +50,8 @@ public class WaveFactory {
 			catch(NumberFormatException e){
 				throw new IllegalFormatContentFile("the file "+parseWave.getFileName()+" is corrupted");
 			}
+			// Call the shipFactory to create the ship that was described in the file and then add it
+			// To the wave to create.
 			newWave.getShipList().add(ShipFactory.getTheShipFactory().createShip(shipName,posX,posY,health,trajectory));
 		}
 		return newWave;
