@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;EscapeIR&apos;" deleteContents="true" description="Delete resource &apos;EscapeIR&apos;" element1="/EscapeIR" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1364485063483"/>&#x0A;<refactoring comment="Delete resource &apos;EscapeIR&apos;" deleteContents="false" description="Delete resource &apos;EscapeIR&apos;" element1="/EscapeIR" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1364486617108"/>
-</session>
