@@ -21,7 +21,7 @@ import fr.umlv.escape.weapon.Bullet;
 import fr.umlv.escape.weapon.ListWeapon;
 
 /**
- * This class manage what should happen when body collisions. It is a contact listener of the {@link EscapeWorld}
+ * This class manage what should happen when body collide. It is a contact listener of the {@link EscapeWorld}
  * @implements Conctlistener
  */
 public class CollisionMonitor implements ContactListener{
@@ -68,13 +68,16 @@ public class CollisionMonitor implements ContactListener{
 		Bullet bullet;
 		Bonus bonus;
 		
+		//if one of the two body that collided is the body of the player's ship
 		if((arg0.getFixtureA().getBody()==shipPlayer.getBody())||
 		   (arg0.getFixtureB().getBody()==shipPlayer.getBody())){
+			//get the other body that collided
 			if(arg0.getFixtureA().getBody()==shipPlayer.getBody()){
 				body=arg0.getFixtureB().getBody();
 			} else {
 				body=arg0.getFixtureA().getBody();
 			}
+			//if the second body that collided is an enemy
 			if((enemy=DisplayableMonitor.getShip(body))!=null){
 				shipPlayer.takeDamage(10);
 				enemy.takeDamage(20);
@@ -82,10 +85,12 @@ public class CollisionMonitor implements ContactListener{
 					impactEnemyDead(enemy,player);
 					elemToDelete.add(body);
 				}
-			} else if((bullet=DisplayableMonitor.getBullet(body))!=null){
+			} //else if the second body that collided is a bullet 
+			else if((bullet=DisplayableMonitor.getBullet(body))!=null){
 				shipPlayer.takeDamage(bullet.getDamage());
 				elemToDelete.add(body);
-			} else if((bonus=DisplayableMonitor.getBonus(body))!=null){
+			} //else if the second body that collided is a bonus 
+			else if((bonus=DisplayableMonitor.getBonus(body))!=null){
 				ListWeapon playerWeapons = shipPlayer.getListWeapon();
 				playerWeapons.addWeapon(bonus.getType(), bonus.getQuantity());
 				elemToDelete.add(body);
