@@ -1,8 +1,6 @@
 package fr.umlv.escape;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +10,7 @@ import android.widget.ProgressBar;
 
 public class MainActivity extends Activity {
 	ProgressBar loadingBar;
+	
 	Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg){
