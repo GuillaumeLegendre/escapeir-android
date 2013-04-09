@@ -19,14 +19,4 @@ public interface Drawable {
 	 * @return The {@link Bitmap} to draw.
 	 */
 	public Bitmap getImage();
-	
-	/**
-	 * @return The center position X of the {@link Drawable}.
-	 */
-	public float getPosX();
-
-	/**
-	 * @return The center position Y of the {@link Drawable}.
-	 */
-	public float getPosY();
 }

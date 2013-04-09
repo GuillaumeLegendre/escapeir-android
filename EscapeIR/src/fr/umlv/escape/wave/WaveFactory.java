@@ -6,7 +6,6 @@ import java.util.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.file.ParseFile;
-import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
 
 /**This class supplies methods to create properly a {@link Wave}.

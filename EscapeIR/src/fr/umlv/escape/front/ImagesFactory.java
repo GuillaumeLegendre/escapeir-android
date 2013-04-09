@@ -6,8 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import fr.umlv.escape.bonus.Bonus;
-import fr.umlv.escape.bonus.BonusFactory;
 
 /**This class supplies methods to create properly a {@link Image}.
  */
