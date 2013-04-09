@@ -1,12 +1,12 @@
 package fr.umlv.escape.front;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
+import fr.umlv.escape.R;
 
 /** This class manage if a {@link Drawable} object should still be drawn at the screen or not.
  * {@link Drawable} are not directly drawn by the the DrawableMonitor but through the {@link DrawThread}.
@@ -17,7 +17,7 @@ public class FrontApplication extends SurfaceView{
 
 	public FrontApplication(Context context) {
 		super(context);
-		this.battleField = new BattleField();
+		this.battleField = new BattleField(BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 		callback(battleField);
 	}
 

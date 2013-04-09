@@ -1,8 +1,6 @@
 package fr.umlv.escape.front;
 
 import android.R;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
