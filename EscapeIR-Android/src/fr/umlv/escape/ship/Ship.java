@@ -3,22 +3,22 @@ package fr.umlv.escape.ship;
 import org.jbox2d.dynamics.Body;
 
 import fr.umlv.escape.front.Sprite;
-import fr.umlv.escape.move.Movable;
+/*import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.ListWeapon;
 import fr.umlv.escape.weapon.Shootable;
 import fr.umlv.escape.weapon.Weapon;
-import fr.umlv.escape.world.EscapeWorld;
+import fr.umlv.escape.world.EscapeWorld;*/
 
 /**
  * Abstract class that represent a ship in the Escape Game
  */
 public class Ship {
 	private final Sprite sprite;
-	private Movable moveBehaviour;
-	private Shootable shootBehaviour;
+//	private Movable moveBehaviour;
+//	private Shootable shootBehaviour;
 	private final String name;
 	private int health;
-	private final ListWeapon weapons;
+//	private final ListWeapon weapons;
 	private boolean isAlive;
 
 	/**

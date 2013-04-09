@@ -1,5 +1,7 @@
 package fr.umlv.escape.front;
 
+import org.jbox2d.dynamics.Body;
+
 import android.graphics.Bitmap;
 
 public abstract class Sprite {

@@ -11,12 +11,10 @@ import android.view.SurfaceHolder;
 public class DrawThread extends Thread{
 	private SurfaceHolder holder;
 	private final BattleField battleField;
-	private final Bitmap Background; // TODO change with BackgroundScroller
-	
-	public DrawThread(SurfaceHolder holder, Bitmap background, BattleField battleField) {
+
+	public DrawThread(SurfaceHolder holder, BattleField battleField) {
 		this.battleField = battleField;
 		this.holder = holder;
-		this.Background = background;
 	}
 	
 	@Override
@@ -26,6 +24,7 @@ public class DrawThread extends Thread{
 			if(canvas == null){
 				// TODO Gerer exception
 			}
+			canvas.drawBitmap(battleField.Backgound, 0, 0, null);
 			//TODO appeler onDraw de tous les objet de battlefield
 			holder.unlockCanvasAndPost(canvas);
 		}
