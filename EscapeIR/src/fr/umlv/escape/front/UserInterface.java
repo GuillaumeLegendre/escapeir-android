@@ -11,26 +11,31 @@ import fr.umlv.escape.weapon.Weapon;
  * Contains tools functions who help to print the User Interface in game
  */
 public class UserInterface {
+	private static final String HEALTH = "Health";
+	private static final String HEARTH = "Hearth";
+	private static final String JUPITER = "Jupiter";
+	private static final String MOON = "Moon";
+	private static final String EARTH = "Earth";
 	
 	private UserInterface(){}
 	
 	private static void initLife(){
-		Image img=ImagesFactory.getTheImagesFactory().createUIImage("Health");//CONSTANT
-		FrontImages.addImages("Health", img);
+		Image img=ImagesFactory.getTheImagesFactory().createUIImage(HEALTH);
+		FrontImages.addImages(HEALTH, img);
 		
-		img=ImagesFactory.getTheImagesFactory().createUIImage("Hearth");//CONSTANT
-		FrontImages.addImages("Hearth", img);
+		img=ImagesFactory.getTheImagesFactory().createUIImage(HEARTH);
+		FrontImages.addImages(HEARTH, img);
 	}
 	
 	private static void initMenu(){
-		Image img=ImagesFactory.getTheImagesFactory().createUIImage("Jupiter");//CONSTANT
-		FrontImages.addImages("Jupiter", img);
+		Image img=ImagesFactory.getTheImagesFactory().createUIImage(JUPITER);
+		FrontImages.addImages(JUPITER, img);
 		
-		img=ImagesFactory.getTheImagesFactory().createUIImage("Moon");//CONSTANT
-		FrontImages.addImages("Moon", img);
+		img=ImagesFactory.getTheImagesFactory().createUIImage(MOON);
+		FrontImages.addImages(MOON, img);
 		
-		img=ImagesFactory.getTheImagesFactory().createUIImage("Earth");//CONSTANT
-		FrontImages.addImages("Earth", img);
+		img=ImagesFactory.getTheImagesFactory().createUIImage(EARTH);
+		FrontImages.addImages(EARTH, img);
 	}
 	
 	private static void initWeapons(){
@@ -66,10 +71,10 @@ public class UserInterface {
 			if(
 					highLeft != null &&
 					downRight != null &&
-					p.y > highLeft.y && //haut
-					p.x < downRight.x &&//droite
-					p.y < downRight.y &&//bas
-					p.x > highLeft.x //gauche
+					p.y > highLeft.y && //up
+					p.x < downRight.x &&//right
+					p.y < downRight.y &&//bottom
+					p.x > highLeft.x //left
 					){
 				return w;
 			}

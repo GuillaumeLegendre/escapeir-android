@@ -2,8 +2,6 @@ package fr.umlv.escape.front;
 
 import java.awt.Image;
 
-import fr.umlv.escape.weapon.Bullet;
-
 /**
  * Class that an explosion sprite
  */

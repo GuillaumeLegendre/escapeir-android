@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import org.jbox2d.dynamics.Filter;
 import fr.umlv.escape.gesture.Gesture;
-import fr.umlv.escape.ship.Ship;
 
 /**
  * Class that represent the shoot behavior of the {@link Player}.
