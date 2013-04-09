@@ -1,5 +1,8 @@
 package fr.umlv.escape.front;
 
+import android.R;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
@@ -8,10 +11,12 @@ import android.view.SurfaceHolder;
 public class DrawThread extends Thread{
 	private SurfaceHolder holder;
 	private final BattleField battleField;
+	private final Bitmap Background; // TODO change with BackgroundScroller
 	
-	public DrawThread(SurfaceHolder holder, BattleField battleField) {
+	public DrawThread(SurfaceHolder holder, Bitmap background, BattleField battleField) {
 		this.battleField = battleField;
 		this.holder = holder;
+		this.Background = background;
 	}
 	
 	@Override
