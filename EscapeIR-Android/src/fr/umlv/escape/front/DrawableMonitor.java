@@ -12,5 +12,4 @@ public class DrawableMonitor extends SurfaceView{
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
-
 }

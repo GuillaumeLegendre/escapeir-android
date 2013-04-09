@@ -9,17 +9,17 @@ public interface Drawable {
 	 * @return True if the {@link Drawable} should be drawn else false.
 	 */
 	public boolean isStillDrawable();
-	
+
 	/**
 	 * Specify that the {@link Drawable} should not be drawn anymore.
 	 */
 	public void doNotDrawAnymore(); // trouver un meilleur nom ^^
-	
+
 	/**
 	 * @return The {@link Bitmap} to draw.
 	 */
 	public Bitmap getImage();
-	
+
 	/**
 	 * @return The center position X of the {@link Drawable}.
 	 */
