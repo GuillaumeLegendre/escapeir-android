@@ -1,23 +1,48 @@
 package fr.umlv.escape;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import fr.umlv.escape.front.FrontApplication;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.os.Looper;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ProgressBar;
 
 public class MainActivity extends Activity {
 	ProgressBar loadingBar;
+	FrontApplication frontApplication;
 	
-	Handler handler = new Handler() {
+	//ON CONSTRUCTION
+	private class LaunchApplication extends AsyncTask<Void, Integer, Void>{
 		@Override
-		public void handleMessage(Message msg){
-			loadingBar.incrementProgressBy(5);
+		protected Void doInBackground(Void... params) {
+			//Initialize here the game
+			for(int i=0; i<20; ++i){
+				try {
+					Thread.sleep(500); // SImule traitement
+					publishProgress(i*5);
+				} catch (InterruptedException e) {
+					break;
+				}
+			}
+			
+			return null;
 		}
-	};
-	AtomicBoolean isRunning = new AtomicBoolean(false);
+		
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+			loadingBar.setProgress(values[0]);
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			setContentView(frontApplication);
+		}
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,33 +55,15 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStart(){
 		super.onStart();
-		
-		loadingBar.setProgress(0);
-		Thread background = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				try{
 
-					//Initialize here the game
-					for(int i=0; i<20 && isRunning.get(); ++i){
-						Thread.sleep(1000);
-						handler.sendMessage(handler.obtainMessage());
-					}
-				} catch (Throwable t) {
-					// end of the background thread
-				}
-			}
-		});
-		
-		isRunning.set(true);
-		background.start();
+		loadingBar.setProgress(0);
+		frontApplication = new FrontApplication(this);
+		new LaunchApplication().execute(); // Asynchrony initialization of the game
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		isRunning.set(false);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

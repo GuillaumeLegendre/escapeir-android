@@ -18,22 +18,13 @@ public class FrontApplication extends SurfaceView{
 	public FrontApplication(Context context) {
 		super(context);
 		this.battleField = new BattleField(BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+		this.holder = getHolder();
 		callback(battleField);
 	}
 
 	private void callback(final BattleField battleField){    	  
 		getHolder().addCallback(new Callback() {
 			private Thread drawThread;
-
-			private void backgroundDrawing(){
-
-				Canvas canvas = holder.lockCanvas(null);
-				if(canvas == null){
-					// TODO Gerer exception
-				}
-				//canvas.drawColor(Color.BLACK); TODO Draw background
-				holder.unlockCanvasAndPost(canvas);
-			}
 
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
@@ -42,8 +33,7 @@ public class FrontApplication extends SurfaceView{
 			
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
-				backgroundDrawing(); //TODO voir pour enlever
-				drawThread = new DrawThread(getHolder(), battleField);
+				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
 			}
 
