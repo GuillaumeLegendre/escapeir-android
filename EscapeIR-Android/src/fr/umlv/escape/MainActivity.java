@@ -1,6 +1,10 @@
 package fr.umlv.escape;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
+
 import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.world.EscapeWorld;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -21,13 +25,15 @@ public class MainActivity extends Activity {
 			//Initialize here the game
 			for(int i=0; i<20; ++i){
 				try {
-					Thread.sleep(500); // SImule traitement
+					Thread.sleep(100); // SImule traitement
 					publishProgress(i*5);
 				} catch (InterruptedException e) {
 					break;
 				}
 			}
-			
+			Vec2  gravity = new Vec2(0,0f); // No gravity in space
+			boolean doSleep = true;		// Should be set to true for better performance
+			World world = new World(gravity,doSleep);
 			return null;
 		}
 		

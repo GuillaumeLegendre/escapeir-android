@@ -1,5 +1,10 @@
 package fr.umlv.escape.front;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.umlv.escape.ship.Ship;
+
 import android.R;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -24,7 +29,10 @@ public class DrawThread extends Thread{
 				// TODO Gerer exception
 			}
 			canvas.drawBitmap(battleField.Backgound, 0, 0, null);
-			//TODO appeler onDraw de tous les objet de battlefield
+			ArrayList<Ship> listShip = battleField.shipList;
+			for(int i = 0; i < listShip.size(); i++){
+				listShip.get(i).onDrawSprite(canvas);
+			}
 			holder.unlockCanvasAndPost(canvas);
 		}
 	}
