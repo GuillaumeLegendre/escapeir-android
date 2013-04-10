@@ -3,18 +3,18 @@ package fr.umlv.escape;
 import fr.umlv.escape.front.FrontApplication;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.app.Activity;
-import android.content.Context;
 import android.view.Menu;
-import android.view.View;
 import android.widget.ProgressBar;
 
 public class MainActivity extends Activity {
 	ProgressBar loadingBar;
 	FrontApplication frontApplication;
 	
-	//ON CONSTRUCTION
+	/**
+	 * Asynchronous task that initialize the application at the launching
+	 * and set the content view with the main menu
+	 */
 	private class LaunchApplication extends AsyncTask<Void, Integer, Void>{
 		@Override
 		protected Void doInBackground(Void... params) {
