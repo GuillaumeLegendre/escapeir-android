@@ -2,6 +2,7 @@ package fr.umlv.escape.front;
 
 import android.R;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.SurfaceHolder;
 
 /** Draw a list of {@link Drawable} at a fixed period.

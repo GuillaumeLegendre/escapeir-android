@@ -40,7 +40,8 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			setContentView(frontApplication);
+			//setContentView(frontApplication);
+			setContentView(R.layout.main_menu);
 		}
 	}
 	
@@ -71,5 +72,15 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		//TODO sauver initialisation
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		//TODO charger initialisation
+	}
 }
