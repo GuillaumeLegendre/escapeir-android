@@ -4,13 +4,13 @@ import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
 
-public abstract class Sprite {
-	final Body body;
+public class Sprite {
+	public final Body body; //FIXME que faire du public car utilisÃ© dans tous les packages public ou getter?
+	public Bitmap image;
 	
-	/* ou passer parametre directement pour créer le body ici*/
-	public Sprite(Body body){
+	/* ou passer parametre directement pour crï¿½er le body ici*/
+	public Sprite(Body body, Bitmap image){
 		this.body = body;
+		this.image = image;
 	}
-	
-	abstract Bitmap getNextImage();
 }
