@@ -3,5 +3,8 @@
 
     <string name="app_name">EscapeIR-Android</string>
     <string name="action_settings">Settings</string>
-
+    <string name="playButton">Button that launch the Game</string>
+	<string name="editorButton">Button that launch the Editor</string>
+	<string name="loading">Loading . . .</string>
+	
 </resources>
