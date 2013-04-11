@@ -27,7 +27,7 @@ public class EscapeWorld {
 	private EscapeWorld(){
 		 Vec2  gravity = new Vec2(0,0f); // No gravity in space
 		 boolean doSleep = true;		// Should be set to true for better performance
-		 this.world = new World(gravity,doSleep);
+		 this.world = new World(gravity);
 		 this.timeStep = 1.0f/60.0f;
 		 this.velocityIterations = 6;
 		 this.positionIterations = 3;

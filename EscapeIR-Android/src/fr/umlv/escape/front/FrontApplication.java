@@ -24,9 +24,6 @@ public class FrontApplication extends SurfaceView{
 
 	public FrontApplication(Context context) {
 		super(context);
-//		Body body = Bodys.createBasicRectangle(200, 200, 200, 200, 1);
-//		Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
-//		battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
 		this.holder = getHolder();
 		callback();
 	}
@@ -49,6 +46,11 @@ public class FrontApplication extends SurfaceView{
 				this.HEIGHT = getHeight();
 				battleField = new BattleField(WIDTH,HEIGHT,BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 
+				Body body = Bodys.createBasicRectangle(200, 200, 200, 200, 1);
+				Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
+				battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
+				
+				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
 			}
