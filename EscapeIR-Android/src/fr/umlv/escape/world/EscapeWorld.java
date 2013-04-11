@@ -7,6 +7,8 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import fr.umlv.escape.Objects;
+
 /**
  * This class represent the world simulation of the Escape game. It is the link with the Jbox2d lib.
  * All uses of the jbox2d should be done using this class. This class is thread safe so that many thread can
@@ -26,7 +28,6 @@ public class EscapeWorld {
 
 	private EscapeWorld(){
 		 Vec2  gravity = new Vec2(0,0f); // No gravity in space
-		 boolean doSleep = true;		// Should be set to true for better performance
 		 this.world = new World(gravity);
 		 this.timeStep = 1.0f/60.0f;
 		 this.velocityIterations = 6;
@@ -56,7 +57,7 @@ public class EscapeWorld {
 	 * @return The body created.
 	 */
 	public Body createBody(BodyDef def){
-		if(def == null) throw new NullPointerException("BodyDef can't be null");
+		Objects.requireNonNull(def);
 		
 		synchronized(lock){
 			return this.world.createBody(def);
@@ -75,7 +76,7 @@ public class EscapeWorld {
 	 * @param body Body to destroy.
 	 */
 	public void destroyBody(Body body){
-		if(body == null) throw new NullPointerException("Body can't be null");
+		Objects.requireNonNull(body);
 		
 		synchronized(lock){
 			world.destroyBody(body);
@@ -88,8 +89,8 @@ public class EscapeWorld {
 	 * @param fd fixture definition for the new fixture
 	 */
 	public void createFixture(Body body, FixtureDef fd) {
-		if(body == null) throw new NullPointerException("Body can't be null");
-		if(fd == null) throw new NullPointerException("FixtureDef can't be null");
+		Objects.requireNonNull(body);
+		Objects.requireNonNull(fd);
 		
 		synchronized(lock){
 			body.createFixture(fd);
@@ -102,7 +103,7 @@ public class EscapeWorld {
 	 * @param state The new state of the body.
 	 */
 	public void setActive(Body body, boolean state){
-		if(body == null) throw new NullPointerException("Body can't be null");
+		Objects.requireNonNull(body);
 		
 		synchronized(lock){
 			body.setActive(state);

@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/main_menu"
     android:orientation="vertical" >
     
-    <ImageButton
+    <Button
         android:id="@+id/PlayButton"
         android:contentDescription="@string/playButton"
 	    android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:src="@drawable/play_button"
-		android:background="@null"
+		android:layout_marginLeft="50dp"
+		android:layout_marginRight="50dp"
+		android:text="Play"
 		android:onClick="launchGame"
 	/>
     <ImageButton
