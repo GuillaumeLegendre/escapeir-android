@@ -28,12 +28,18 @@ public class DrawThread extends Thread{
 			if(canvas == null){
 				// TODO Gerer exception
 			}
-			canvas.drawBitmap(battleField.Backgound, 0, 0, null);
+			battleField.backgoundScroller.onDrawBackground(canvas);
 			ArrayList<Ship> listShip = battleField.shipList;
 			for(int i = 0; i < listShip.size(); i++){
 				listShip.get(i).onDrawSprite(canvas);
 			}
 			holder.unlockCanvasAndPost(canvas);
+			battleField.backgoundScroller.verticalScroll();
+			try {
+				Thread.sleep(50); //TODO Déduire le temps passé dans la boucle;
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
 		}
 	}
 }

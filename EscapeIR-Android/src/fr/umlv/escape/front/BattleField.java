@@ -6,11 +6,11 @@ import fr.umlv.escape.ship.Ship;
 import android.graphics.Bitmap;
 
 public class BattleField {
-	Bitmap Backgound; //TODO Change to backgroundScroller
+	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
 	
-	public BattleField(Bitmap background) {
-		this.Backgound = background;
+	public BattleField(int width, int height, Bitmap background) {
+		this.backgoundScroller = new BackGroundScroller(width,height,background);
 		this.shipList = new ArrayList<Ship>();
 	}
 }

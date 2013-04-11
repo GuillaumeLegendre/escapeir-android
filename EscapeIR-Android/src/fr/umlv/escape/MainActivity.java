@@ -8,12 +8,15 @@ import fr.umlv.escape.world.EscapeWorld;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	ProgressBar loadingBar;
-	FrontApplication frontApplication;
 	
 	/**
 	 * Asynchronous task that initialize the application at the launching
@@ -25,15 +28,15 @@ public class MainActivity extends Activity {
 			//Initialize here the game
 			for(int i=0; i<20; ++i){
 				try {
-					Thread.sleep(100); // SImule traitement
+					Thread.sleep(200); // SImule traitement
 					publishProgress(i*5);
 				} catch (InterruptedException e) {
 					break;
 				}
 			}
-			Vec2  gravity = new Vec2(0,0f); // No gravity in space
+			/*Vec2  gravity = new Vec2(0,0f); // No gravity in space
 			boolean doSleep = true;		// Should be set to true for better performance
-			World world = new World(gravity,doSleep);
+			World world = new World(gravity,doSleep);*/
 			return null;
 		}
 		
@@ -48,13 +51,15 @@ public class MainActivity extends Activity {
 			super.onPostExecute(result);
 			//setContentView(frontApplication);
 			setContentView(R.layout.main_menu);
+			//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 		}
 	}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+	//	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setContentView(R.layout.activity_main);
 		loadingBar = (ProgressBar) findViewById(R.id.LoadingProgress);
 	}
@@ -64,7 +69,6 @@ public class MainActivity extends Activity {
 		super.onStart();
 
 		loadingBar.setProgress(0);
-		frontApplication = new FrontApplication(this);
 		new LaunchApplication().execute(); // Asynchrony initialization of the game
 	}
 
@@ -78,15 +82,13 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		//TODO sauver initialisation
+
+	public void launchEditor(View view){
+		Toast.makeText(getApplicationContext(), "CLICK", Toast.LENGTH_SHORT).show();
 	}
 	
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		//TODO charger initialisation
+	public void launchGame(View view){
+		Intent intent = new Intent(this,GameActivity.class);
+		startActivity(intent);
 	}
 }

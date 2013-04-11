@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -20,21 +21,22 @@ import fr.umlv.escape.world.EscapeWorld;
  */
 public class FrontApplication extends SurfaceView{
 	private SurfaceHolder holder;
-	BattleField battleField;
 
 	public FrontApplication(Context context) {
 		super(context);
-		this.battleField = new BattleField(BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 //		Body body = Bodys.createBasicRectangle(200, 200, 200, 200, 1);
 //		Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
 //		battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
 		this.holder = getHolder();
-		callback(battleField);
+		callback();
 	}
 
-	private void callback(final BattleField battleField){    	  
+	private void callback(){    	  
 		getHolder().addCallback(new Callback() {
 			private Thread drawThread;
+			BattleField battleField;
+			int WIDTH;
+			int HEIGHT;
 
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
@@ -43,6 +45,10 @@ public class FrontApplication extends SurfaceView{
 			
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
+				this.WIDTH = getWidth();
+				this.HEIGHT = getHeight();
+				battleField = new BattleField(WIDTH,HEIGHT,BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
 			}
