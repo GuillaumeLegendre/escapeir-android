@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import fr.umlv.escape.front.Sprite;
+import fr.umlv.escape.world.EscapeWorld;
 
 /**
  * Abstract class that represent a ship in the Escape Game
@@ -103,7 +104,7 @@ public class Ship extends Sprite{
 	 * @return The x position of the center of the ship.
 	 */
 	public int getPosXCenter() {
-		return (int)(body.getPosition().x*50);
+		return (int)(body.getPosition().x*EscapeWorld.SCALE);
 	}
 
 	/**
@@ -111,7 +112,7 @@ public class Ship extends Sprite{
 	 * @return The y position of the center of the ship.
 	 */
 	public int getPosYCenter() {
-		return (int)(body.getPosition().y*50);
+		return (int)(body.getPosition().y*EscapeWorld.SCALE);
 	}
 	
 	

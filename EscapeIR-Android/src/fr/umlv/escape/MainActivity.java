@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void launchEditor(View view){
-		Toast.makeText(getApplicationContext(), "CLICK", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Editor on construction", Toast.LENGTH_SHORT).show();
 	}
 	
 	public void launchGame(View view){

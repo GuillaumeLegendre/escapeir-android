@@ -2,16 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="bottom"
     android:background="@drawable/main_menu"
     android:orientation="vertical" >
     
+  
     <ImageButton
         android:id="@+id/PlayButton"
         android:contentDescription="@string/playButton"
 	    android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="left"
+		android:layout_gravity="center"
 		android:src="@drawable/play_button"
 		android:background="@null"
 		android:onClick="launchGame"
@@ -25,6 +26,5 @@
 		android:src="@drawable/editor_button"
 		android:background="@null"
 		android:onClick="launchEditor"
-	/>
-
+	/>    
 </LinearLayout>
