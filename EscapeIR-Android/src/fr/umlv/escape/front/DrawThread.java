@@ -3,7 +3,7 @@ package fr.umlv.escape.front;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.Ship;
 
 import android.R;
 import android.graphics.Canvas;

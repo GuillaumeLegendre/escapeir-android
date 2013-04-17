@@ -9,7 +9,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import fr.umlv.escape.R;
-import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.Ship;
 import fr.umlv.escape.world.Bodys;
 
 /** This class manage if a {@link Drawable} object should still be drawn at the screen or not.
@@ -28,8 +28,6 @@ public class FrontApplication extends SurfaceView{
 		getHolder().addCallback(new Callback() {
 			private Thread drawThread;
 			BattleField battleField;
-			int WIDTH;
-			int HEIGHT;
 
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
@@ -38,9 +36,7 @@ public class FrontApplication extends SurfaceView{
 			
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
-				this.WIDTH = getWidth();
-				this.HEIGHT = getHeight();
-				battleField = new BattleField(WIDTH,HEIGHT,BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+				battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 
 				Body body = Bodys.createBasicRectangle(200, 200, 200, 200, 1);
 				Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
