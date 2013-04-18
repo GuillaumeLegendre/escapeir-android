@@ -12,9 +12,9 @@ import fr.umlv.escape.world.EscapeWorld;
  * Abstract class that represent a ship in the Escape Game
  */
 public class Ship extends Sprite{
-	final String name;
-	int health;
-	boolean isAlive;
+	private final String name;
+	public int health;
+	private boolean isAlive;
 
 	/**
 	 * Constructor.

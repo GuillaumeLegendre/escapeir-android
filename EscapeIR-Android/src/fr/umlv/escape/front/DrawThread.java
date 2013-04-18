@@ -1,13 +1,8 @@
 package fr.umlv.escape.front;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import fr.umlv.escape.ship.Ship;
-
-import android.R;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.view.SurfaceHolder;
 
 /** Draw a list of {@link Drawable} at a fixed period.
@@ -36,7 +31,7 @@ public class DrawThread extends Thread{
 			holder.unlockCanvasAndPost(canvas);
 			battleField.backgoundScroller.verticalScroll();
 			try {
-				Thread.sleep(50); //TODO Déduire le temps passé dans la boucle;
+				Thread.sleep(50); //TODO Dï¿½duire le temps passï¿½ dans la boucle;
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}

@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 			//Initialize here the game
 			for(int i=0; i<20; ++i){
 				try {
-					Thread.sleep(200); // SImule traitement
+					Thread.sleep(5); // SImule traitement
 					publishProgress(i*5);
 				} catch (InterruptedException e) {
 					break;

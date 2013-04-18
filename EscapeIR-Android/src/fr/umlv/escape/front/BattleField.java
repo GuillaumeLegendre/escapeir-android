@@ -25,7 +25,7 @@ public class BattleField {
 				// Treating ships
 				for(int i = 0; i < shipList.size(); i++){
 					Ship tmp = shipList.get(i);
-					//TODO delete all element mort et tuer les element en dehors de l'écran
+					//TODO delete all element mort et tuer les element en dehors de l'ï¿½cran
 				}
 				
 				// Treating bullets
