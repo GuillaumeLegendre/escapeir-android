@@ -13,7 +13,7 @@ import fr.umlv.escape.world.EscapeWorld;
  */
 public class Ship extends Sprite{
 	private final String name;
-	private int health;
+	public int health;
 	private boolean isAlive;
 
 	/**

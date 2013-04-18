@@ -3,13 +3,11 @@ package fr.umlv.escape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import fr.umlv.escape.front.FrontApplication;
-import fr.umlv.escape.world.EscapeWorld;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -35,7 +33,6 @@ public class MainActivity extends Activity {
 				}
 			}
 			Vec2  gravity = new Vec2(0,0f); // No gravity in space
-			boolean doSleep = true;		// Should be set to true for better performance
 			World world = new World(gravity);
 			return null;
 		}

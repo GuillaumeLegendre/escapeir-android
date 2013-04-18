@@ -34,8 +34,6 @@ public class FrontApplication extends SurfaceView{
 		getHolder().addCallback(new Callback() {
 			private Thread drawThread;
 			BattleField battleField;
-			int WIDTH;
-			int HEIGHT;
 
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
@@ -44,15 +42,13 @@ public class FrontApplication extends SurfaceView{
 
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
-				this.WIDTH = getWidth();
-				this.HEIGHT = getHeight();
-				battleField = new BattleField(WIDTH,HEIGHT,BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+				battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 
 				Body body = Bodys.createBasicRectangle(200, 200, 200, 200, 1);
 				Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
 				battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
 
-				gesture = new Gesture(WIDTH, HEIGHT);
+				gesture = new Gesture(getWidth(), getHeight());
 
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();

@@ -96,7 +96,6 @@ public class Gesture {
 		this.pointList=new ArrayList<Point>();
 		this.width = width;
 		this.height = height;
-		System.out.println("WAZZZZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	}
 	
 	/** Detect if it is a left circle gesture. It uses the firsts points to determinate the
