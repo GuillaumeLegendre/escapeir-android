@@ -13,6 +13,7 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.widget.Toast;
 import fr.umlv.escape.R;
+import fr.umlv.escape.gesture.GestureDetector;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.world.Bodys;
 
@@ -21,7 +22,7 @@ import fr.umlv.escape.world.Bodys;
  */
 public class FrontApplication extends SurfaceView{
 	private SurfaceHolder holder;
-	private Gesture gesture;
+	private GestureDetector gestureDetector;
 
 	public FrontApplication(Context context) {
 		super(context);
@@ -47,7 +48,7 @@ public class FrontApplication extends SurfaceView{
 				Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
 				battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
 
-				gesture = new Gesture(getWidth(), getHeight());
+				gestureDetector = new GestureDetector(getWidth(), getHeight());
 
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
@@ -65,19 +66,17 @@ public class FrontApplication extends SurfaceView{
 	public boolean onTouchEvent(MotionEvent arg1) {
 		switch (arg1.getAction()) {
 		case MotionEvent.ACTION_DOWN:
-			gesture.clear();
+			gestureDetector.clear();
 			Point p = new Point((int)arg1.getX(), (int)arg1.getY());
-			Log.wtf(VIEW_LOG_TAG, "Point:"+p.x+":"+p.y);
-			gesture.addPoint(p);
+			gestureDetector.addPoint(p);
 			break;
 		case MotionEvent.ACTION_MOVE:
 			Point p2 = new Point((int)arg1.getX(), (int)arg1.getY());
-			Log.wtf(VIEW_LOG_TAG, "Point:"+p2.x+":"+p2.y);
-			gesture.addPoint(p2);
+			gestureDetector.addPoint(p2);
 			break;
 		case MotionEvent.ACTION_UP:
-			gesture.detectGesture();
-			switch (gesture.getLastGestureDetected()) {
+			gestureDetector.detectGesture();
+			switch (gestureDetector.getLastGestureDetected()) {
 			case BACK_OFF:
 				Toast.makeText(getContext(), "BACK_OFF", Toast.LENGTH_SHORT).show();
 				break;
@@ -101,7 +100,6 @@ public class FrontApplication extends SurfaceView{
 		default:
 			break;
 		}
-		Log.wtf(VIEW_LOG_TAG, "touch");
 		return true;
 	}
 }

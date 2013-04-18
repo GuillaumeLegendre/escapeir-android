@@ -1,30 +1,19 @@
-package fr.umlv.escape.front;
+package fr.umlv.escape.gesture;
 
 import android.graphics.Point;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.jbox2d.common.Vec2;
-
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.world.EscapeWorld;
 
 /** Static class that allow to detect gestures and calculate forces that they represent
  */
-public class Gesture {
-	private final int minNumOfPoint;		// minimum point that it is necessary to detect a gesture
-	private final int marginErrorDiag;		// margin error for the diagonal gesture
-	private final int marginErrorBack;		// margin error for the back off gesture
-	private final int marginErrorCircle;	// margin error for the circle gesture
-	private GestureType lastDetected;
-	private Vec2 lastForce;
-	private List<Point> pointList;
-	private int width;
-	private int height;
+public class GestureDetector {
+	private final ArrayList<Point> pointList;
+	private final ArrayList<Gesture> gestureList;
 	
 	/**
 	 * Enum that represent a gesture.
@@ -66,36 +55,11 @@ public class Gesture {
 	}
 	
 	/**
-	 * Constructor. Create a gesture with defaults parameters.
-	 */
-	public Gesture(int width, int height){
-		this(5,40,30,40,width,height);
-	}
-	
-	/**
 	 * Constructor.
-	 *
-	 * @param minNumOfPoint Minimum number of point needed to validate a gesture
-	 * @param marginErrorDiag Margin error for diagonals gestures
-	 * @param marginErrorBack Margin error for the back off gesture
-	 * @param marginErrorCircle Margin error for circles gestures
 	 */
-	public Gesture(int minNumOfPoint,int marginErrorDiag,int marginErrorBack,int marginErrorCircle, int width, int height){
-		if((minNumOfPoint<0)   ||
-		   (marginErrorDiag<0) ||
-		   (marginErrorBack<0) ||
-		   (marginErrorCircle<0)){
-			throw new IllegalArgumentException();
-		}
-		this.minNumOfPoint=minNumOfPoint;
-		this.marginErrorBack=marginErrorBack;
-		this.marginErrorDiag=marginErrorDiag;
-		this.marginErrorCircle=marginErrorCircle;
-		this.lastDetected=GestureType.NOT_DETECTED;
-		this.lastForce=new Vec2(0f,0f);
+	public GestureDetector(){
 		this.pointList=new ArrayList<Point>();
-		this.width = width;
-		this.height = height;
+		this.gestureList=new ArrayList<Gesture>();
 	}
 	
 	/** Detect if it is a left circle gesture. It uses the firsts points to determinate the
@@ -124,7 +88,7 @@ public class Gesture {
 			return false;
 		}
 		if(isCircle()){
-			lastDetected=Gesture.GestureType.LEFT_CIRCLE;
+			lastDetected=GestureDetector.GestureType.LEFT_CIRCLE;
 			return true;
 		}
 		return false;
@@ -156,7 +120,7 @@ public class Gesture {
 			return false;
 		}
 		if(isCircle()){
-			lastDetected=Gesture.GestureType.RIGHT_CIRCLE;
+			lastDetected=GestureDetector.GestureType.RIGHT_CIRCLE;
 			return true;
 		}
 		return false;
@@ -278,7 +242,7 @@ public class Gesture {
 			return false;
 		}
 		
-		lastDetected=Gesture.GestureType.LEFT_DIAG;
+		lastDetected=GestureDetector.GestureType.LEFT_DIAG;
 		setLastForce(force.x,force.y);
 		return true;
 	}
@@ -333,41 +297,6 @@ public class Gesture {
 		return true;
 	}
 	
-	/** Detect if a point list represent a back off.
-	 *  
-	 * @param pointList the list of point used to detect the gesture.
-	 * @return True if the gesture is recognized else false.
-	 */
-	private boolean isBackOff(){
-		Iterator<Point> iterPoint=pointList.iterator();
-		Point firstPoint;
-		Point previous;
-		
-		if(!iterPoint.hasNext()){
-			return false;
-		}
-		previous=iterPoint.next();
-		firstPoint=previous;
-		int numOfPoint=1;
-		Point tmp;
-		while(iterPoint.hasNext()){
-			tmp=iterPoint.next();
-
-			if(previous.y > tmp.y 				        	||
-			   tmp.x<(firstPoint.x-(marginErrorBack))	||
-			   tmp.x>(firstPoint.x+marginErrorBack)){
-				return false;
-			}
-			previous=tmp;
-			numOfPoint++;
-		}
-		if(numOfPoint>minNumOfPoint){
-			lastDetected=GestureType.BACK_OFF;
-			setLastForce(0f,(float)previous.y-firstPoint.y);
-			return true;
-		}
-		return false;
-	}
 	
 	/** Detect if a point list represent a horizontal line left or right.
 	 *  
@@ -568,58 +497,17 @@ public class Gesture {
 	}
 	
 	/**
-	 * Return the last gesture detected.
-	 * @return The last gesture detected.
-	 */
-	public GestureType getLastGestureDetected(){
-		GestureType gesture = lastDetected;
-		return gesture;
-	}
-	
-	/**
-	 * Return the last force calculated.
-	 * @return The last force calculated.
-	 */
-	public Vec2 getLastForce(){
-		return lastForce;
-	}
-	
-	/**
 	 * Try to detect a gesture. You can get the gesture detected by calling {@link #getLastGestureDetected()}.
 	 * @return true a gesture has been detected else false.
 	 */
-	public boolean detectGesture(){
-		if(isLeftCircle()	  		||
-		   isRightCircle() 			||
-		   isRightStrictDiagonal()  ||
-		   isLeftStrictDiagonal()	||
-		   isBackOff()				||
-		   isHorizontalLine()		||
-		   isCheatCode()			||
-		   isStats()
-		   ){
-			return true;
-		}
-		this.lastDetected=Gesture.GestureType.NOT_GESTURE;
-		return false;
-	}
-	
-	private void setLastForce(float x, float y){
-		lastForce.set(x/EscapeWorld.SCALE,y/EscapeWorld.SCALE);
-	}
-	
-	/**
-	 * Try to calculate a force given a gesture detected. You can get the gesture detected by calling {@link #getLastForce()}.
-	 * @return true a force has been calculated else false.
-	 */
-	public boolean calculForceFromLine(){
-		if(isRightDiagonal() || isLeftDiagonal()){
-			Point firstPoint=pointList.get(0);
-			Point lastPoint=pointList.get(pointList.size()-1);
-
-			Vec2 force=new Vec2(lastPoint.x-firstPoint.x,lastPoint.y-firstPoint.y);
-			setLastForce(force.x,force.y);
-			return true;
+	public boolean detect(){
+		int size = gestureList.size();
+		for(int i = 0; i < size; i++){
+			Gesture g = gestureList.get(i);
+			if(g.isRecognized(pointList)){
+				g.apply();
+				return true;
+			}
 		}
 		return false;
 	}
@@ -636,6 +524,11 @@ public class Gesture {
 		return this.pointList.add(point);
 	}
 	
+	public boolean addGesture(Gesture gesture){
+		Objects.requireNonNull(gesture);
+		return this.gestureList.add(gesture);
+	}
+	
 	/**
 	 * Get the list of point added to the gesture detector.
 	 * @return The list of point added to the gesture detector.
@@ -648,8 +541,6 @@ public class Gesture {
 	 * Clear the gesture detector to an empty state with no point added and nothing detected.
 	 */
 	public void clear(){
-		lastForce.set(0f,0f);
-		this.lastDetected=Gesture.GestureType.NOT_DETECTED;
 		this.pointList.clear();
 	}
 }
