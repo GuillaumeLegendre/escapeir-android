@@ -339,13 +339,11 @@ public class Gesture {
 	 * @return True if the gesture is recognized else false.
 	 */
 	private boolean isBackOff(){
-		System.out.println("isBackoff");
 		Iterator<Point> iterPoint=pointList.iterator();
 		Point firstPoint;
 		Point previous;
 		
 		if(!iterPoint.hasNext()){
-			System.out.println("is backoff3 false");
 			return false;
 		}
 		previous=iterPoint.next();
@@ -354,10 +352,18 @@ public class Gesture {
 		Point tmp;
 		while(iterPoint.hasNext()){
 			tmp=iterPoint.next();
-			if(tmp.y<previous.y 				        ||
-			   tmp.x<(firstPoint.x-(marginErrorBack+50))		||
-			   tmp.x>(firstPoint.x+marginErrorBack+50)){
-				System.out.println("is backoff2 false");
+			if(previous.y > tmp.y){
+				System.out.println("is backoff2 false 1");
+				System.out.println(previous.y);
+				System.out.println(tmp.y);
+				return false;
+			}
+			if(tmp.x<(firstPoint.x-(marginErrorBack+150))){
+				System.out.println("is backoff2 false 2");
+				return false;
+			}
+			if(tmp.x>(firstPoint.x+marginErrorBack+150)){
+				System.out.println("is backoff2 false 3");
 				return false;
 			}
 			previous=tmp;
@@ -366,9 +372,9 @@ public class Gesture {
 		if(numOfPoint>minNumOfPoint){
 			lastDetected=GestureType.BACK_OFF;
 			setLastForce(0f,(float)previous.y-firstPoint.y);
+			System.out.println("BACK OFF !!!!!");
 			return true;
 		}
-		System.out.println("is backoff false");
 		return false;
 	}
 	
