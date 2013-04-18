@@ -1,5 +1,7 @@
 package fr.umlv.escape;
 
+import fr.umlv.escape.ship.Ship;
+
 
 /**Class that represent the player
  */

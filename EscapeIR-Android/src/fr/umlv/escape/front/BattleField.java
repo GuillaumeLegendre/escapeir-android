@@ -2,7 +2,7 @@ package fr.umlv.escape.front;
 
 import java.util.ArrayList;
 
-import fr.umlv.escape.Ship;
+import fr.umlv.escape.ship.Ship;
 import android.graphics.Bitmap;
 
 public class BattleField {

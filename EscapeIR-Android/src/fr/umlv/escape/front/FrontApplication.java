@@ -9,7 +9,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import fr.umlv.escape.R;
-import fr.umlv.escape.Ship;
+import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.world.Bodys;
 
 /** This class manage if a {@link Drawable} object should still be drawn at the screen or not.
