@@ -65,6 +65,7 @@ public class FrontApplication extends SurfaceView{
 	public boolean onTouchEvent(MotionEvent arg1) {
 		switch (arg1.getAction()) {
 		case MotionEvent.ACTION_DOWN:
+			gesture.clear();
 			Point p = new Point((int)arg1.getX(), (int)arg1.getY());
 			Log.wtf(VIEW_LOG_TAG, "Point:"+p.x+":"+p.y);
 			gesture.addPoint(p);
