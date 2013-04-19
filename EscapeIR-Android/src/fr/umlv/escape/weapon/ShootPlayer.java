@@ -1,9 +1,10 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Point;
-import java.util.Objects;
-
 import org.jbox2d.dynamics.Filter;
+
+import android.graphics.Point;
+
+import fr.umlv.escape.Objects;
 import fr.umlv.escape.gesture.Gesture;
 
 /**

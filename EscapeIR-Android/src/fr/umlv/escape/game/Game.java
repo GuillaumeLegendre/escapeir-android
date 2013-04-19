@@ -26,9 +26,6 @@ public class Game {
 	private static Game TheGame;
 	final Player player1;
 	private final CollisionMonitor collisionMonitor;
-	private State currentState;
-	private Object lock=new Object();
-	private boolean isValideLevelState;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier

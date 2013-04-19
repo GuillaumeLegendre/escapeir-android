@@ -1,9 +1,10 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Point;
-import java.util.Objects;
-
 import org.jbox2d.common.Vec2;
+
+import android.graphics.Point;
+
+import fr.umlv.escape.Objects;
 
 /**
  * Class that represent a down shoot.

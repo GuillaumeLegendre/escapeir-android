@@ -1,11 +1,8 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Image;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
-import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.front.ImagesFactory;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.world.EscapeWorld;
