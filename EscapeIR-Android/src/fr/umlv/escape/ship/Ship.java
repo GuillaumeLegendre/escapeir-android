@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import fr.umlv.escape.front.Sprite;
+import fr.umlv.escape.move.Movable;
+import fr.umlv.escape.weapon.Shootable;
 import fr.umlv.escape.world.EscapeWorld;
 
 /**
@@ -15,6 +17,9 @@ public class Ship extends Sprite{
 	private final String name;
 	public int health;
 	private boolean isAlive;
+	private Movable moveBehaviour;
+	private Shootable shootBehaviour;
+	
 
 	/**
 	 * Constructor.
@@ -118,5 +123,12 @@ public class Ship extends Sprite{
 	
 	public void onDrawSprite(Canvas canvas){
 		canvas.drawBitmap(image, getPosXCenter() - image.getWidth()/2 , getPosYCenter() - image.getHeight()/2, new Paint());
+	}
+	
+	/**
+	 * Method that move the ship depending the last {@link Movable} set.
+	 */
+	public void move() {
+		this.moveBehaviour.move(this.body);
 	}
 }

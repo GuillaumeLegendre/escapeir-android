@@ -49,7 +49,7 @@ public class FrontApplication extends SurfaceView{
 				battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
 
 				gestureDetector = new GestureDetector(getWidth(), getHeight());
-
+				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
 			}
