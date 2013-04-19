@@ -1,9 +1,8 @@
 package fr.umlv.escape.move;
 
-import java.util.Objects;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
+import fr.umlv.escape.Objects;
 
 /**
  * This class represent a left move which is slowed until reaching a null velocity.

@@ -1,13 +1,12 @@
 package fr.umlv.escape.bonus;
 
 import java.awt.Image;
-import java.util.Objects;
 
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import fr.umlv.escape.Objects;
 import fr.umlv.escape.front.DisplayableMonitor;
-import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.front.ImagesFactory;
 import fr.umlv.escape.world.Bodys;
 

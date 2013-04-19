@@ -40,7 +40,7 @@ public class Wave {
 	 * Get the list of {@link Ship} that compose the wave.
 	 * @return The
 	 */
-	public List<Ship> getShipList() {
+	public ArrayList<Ship> getShipList() {
 		return shipList;
 	}
 	
