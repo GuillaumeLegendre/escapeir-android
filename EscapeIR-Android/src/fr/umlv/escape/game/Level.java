@@ -1,9 +1,9 @@
 package fr.umlv.escape.game;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import fr.umlv.escape.wave.Wave;
+import fr.umlv.escape.Objects;
+import fr.umlv.escape.ship.Wave;
 
 /**
  * Class that represent a Level.
@@ -22,8 +22,8 @@ public class Level {
 		Objects.requireNonNull(levelName);
 		
 		this.name=levelName;
-		this.waveList=new ArrayList<>();
-		this.delayWaveList=new ArrayList<>();
+		this.waveList=new ArrayList<Wave>();
+		this.delayWaveList=new ArrayList<Long>();
 		this.currentWave=0;
 	}
 
