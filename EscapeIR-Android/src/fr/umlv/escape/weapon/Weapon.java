@@ -1,9 +1,6 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Image;
-import java.awt.Point;
-
-import fr.umlv.escape.front.FrontImages;
+import android.graphics.Point;
 import fr.umlv.escape.front.ImagesFactory;
 import fr.umlv.escape.game.Game;
 

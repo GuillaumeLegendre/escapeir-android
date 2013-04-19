@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.file.ParseFile;
-import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.front.ImagesFactory;
-import fr.umlv.escape.wave.WaveFactory;
+import fr.umlv.escape.ship.WaveFactory;
+import fr.umlv.escape.ship.Wave;
 
 /**This class supplies methods to create properly a {@link Level}.
  */

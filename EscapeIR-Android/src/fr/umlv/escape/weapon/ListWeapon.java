@@ -9,8 +9,8 @@ import java.util.Map;
  * Represent all the {@link Ship}'s {@link Weapon}s and his current {@link Weapon}
  */
 public class ListWeapon {
-	private final Map<String, Weapon> weapons;
-	private final List<Weapon> weaponsList;
+	private final Hashtable<String, Weapon> weapons;
+	private final ArrayList<Weapon> weaponsList;
 	private Weapon current;
 	/**Constant that represent the basic quantity of bullet.
 	 */
@@ -23,8 +23,8 @@ public class ListWeapon {
 	 * Constructor of listWeapon
 	 */
 	public ListWeapon(){
-		weapons = new Hashtable<>();
-		weaponsList = new ArrayList<>();
+		weapons = new Hashtable<String, Weapon>();
+		weaponsList = new ArrayList<Weapon>();
 		current = addWeapon(BASIC_WEAPON, 0);
 		addWeapon("FlameThrower", 0);
 		addWeapon("ShiboleetThrower", 0);

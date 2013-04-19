@@ -1,10 +1,10 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Point;
-import java.util.Objects;
-
 import org.jbox2d.common.Vec2;
 
+import android.graphics.Point;
+
+import fr.umlv.escape.Objects;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.move.DownUpMove;
 import fr.umlv.escape.move.LeftRightMove;

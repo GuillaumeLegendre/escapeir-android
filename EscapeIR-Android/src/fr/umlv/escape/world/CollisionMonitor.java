@@ -13,7 +13,6 @@ import org.jbox2d.dynamics.contacts.Contact;
 
 import fr.umlv.escape.bonus.Bonus;
 import fr.umlv.escape.bonus.BonusFactory;
-import fr.umlv.escape.front.DisplayableMonitor;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.game.Player;
 import fr.umlv.escape.ship.Ship;

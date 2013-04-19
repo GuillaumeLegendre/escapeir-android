@@ -1,16 +1,13 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Image;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 
-import fr.umlv.escape.front.FrontImages;
+import fr.umlv.escape.Objects;
 import fr.umlv.escape.front.ImagesFactory;
 import fr.umlv.escape.ship.FirstBoss;
 import fr.umlv.escape.ship.Ship;
@@ -25,7 +22,7 @@ public class FirstBossShoot implements Shootable{
 	private long lastShoot=0;
 	private FirstBoss shipBoss;
 	private int lastState;
-	private List<Ship> shipCreated;
+	private ArrayList<Ship> shipCreated;
 	
 	/**
 	 * Constructor
@@ -36,7 +33,7 @@ public class FirstBossShoot implements Shootable{
 		
 		this.shipBoss=shipBoss;
 		this.lastState=1;
-		this.shipCreated=new ArrayList<>();
+		this.shipCreated=new ArrayList<Ship>();
 	}
 	
 	/**

@@ -1,10 +1,10 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Point;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
+
+import android.graphics.Point;
 
 import fr.umlv.escape.move.StraightLine;
 

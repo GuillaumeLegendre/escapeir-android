@@ -1,13 +1,10 @@
 package fr.umlv.escape.weapon;
 
-import java.awt.Image;
-import java.awt.Point;
-
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
-import fr.umlv.escape.front.DisplayableMonitor;
-import fr.umlv.escape.front.FrontImages;
+import android.graphics.Point;
+
 import fr.umlv.escape.front.ImagesFactory;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.world.Bodys;
