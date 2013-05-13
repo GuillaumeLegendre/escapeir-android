@@ -1,7 +1,6 @@
 package fr.umlv.escape.world;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -24,7 +23,7 @@ import fr.umlv.escape.weapon.ListWeapon;
  * @implements Conctlistener
  */
 public class CollisionMonitor implements ContactListener{
-	private final List<Body> elemToDelete;
+	private final ArrayList<Body> elemToDelete;
 	private boolean createBonus;
 	private final Random random = new Random(0);
 	private final static int PROBABILITY_NEW_BONUS = 20;
@@ -34,16 +33,14 @@ public class CollisionMonitor implements ContactListener{
 	 */
 	public CollisionMonitor(){
 		EscapeWorld.getTheWorld().setContactListener(this);
-		this.elemToDelete=new ArrayList<>();
+		this.elemToDelete=new ArrayList<Body>();
 	}
 	
 	/**
 	 * As no operations can be done on bodies while there are colliding some operations are postponed
 	 * and are done in this method which have to be called just after a step.
 	 */
-	public void performPostStepCollision(){
-		Iterator<Body> iterDeadBody=this.elemToDelete.iterator();
-		
+	public void performPostStepCollision(){		
 		while(iterDeadBody.hasNext()){
 			Body body=iterDeadBody.next();
 			EscapeWorld.getTheWorld().setActive(body, false);

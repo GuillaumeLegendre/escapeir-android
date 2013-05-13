@@ -17,12 +17,12 @@ import fr.umlv.escape.gesture.GestureDetector;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.world.Bodys;
 
-/** This class manage if a {@link Drawable} object should still be drawn at the screen or not.
- * {@link Drawable} are not directly drawn by the the DrawableMonitor but through the {@link DrawThread}.
- */
-public class FrontApplication extends SurfaceView{
+ public class FrontApplication extends SurfaceView{
 	private SurfaceHolder holder;
 	private GestureDetector gestureDetector;
+	FrontImages frontImage;
+	public static int HEIGHT; 
+	public static int WIDTH; 
 
 	public FrontApplication(Context context) {
 		super(context);
@@ -42,13 +42,11 @@ public class FrontApplication extends SurfaceView{
 
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
+				//HEIGHT = 
+				//frontImage = new FrontImages(getResources()); TODO delete
+				
 				battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
-
-				Body body = Bodys.createBasicRectangle(200, 200, 200, 200, 1);
-				Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.default_ship_player); 
-				battleField.shipList.add(new Ship("default_ship_player", 100, body, image));
-
-				gestureDetector = new GestureDetector(getWidth(), getHeight());
+				gestureDetector = new GestureDetector();
 				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
@@ -75,28 +73,9 @@ public class FrontApplication extends SurfaceView{
 			gestureDetector.addPoint(p2);
 			break;
 		case MotionEvent.ACTION_UP:
-			gestureDetector.detectGesture();
-			switch (gestureDetector.getLastGestureDetected()) {
-			case BACK_OFF:
-				Toast.makeText(getContext(), "BACK_OFF", Toast.LENGTH_SHORT).show();
-				break;
-			case NOT_GESTURE:
-				Toast.makeText(getContext(), "NOT_GESTURE", Toast.LENGTH_SHORT).show();
-				break;
-			case NOT_DETECTED:
-				Toast.makeText(getContext(), "NOT_DETECTED", Toast.LENGTH_SHORT).show();
-				break;
-			case LEFT_DIAG:
-				Toast.makeText(getContext(), "LEFT_DIAG", Toast.LENGTH_SHORT).show();
-				break;
-			case RIGHT_CIRCLE:
-				Toast.makeText(getContext(), "RIGHT_CIRCLE", Toast.LENGTH_SHORT).show();
-				break;
-			default:
-				Toast.makeText(getContext(), "default :(", Toast.LENGTH_SHORT).show();
-				break;
+			if(gestureDetector.detect()){
+	//			gestureDetector.
 			}
-
 		default:
 			break;
 		}

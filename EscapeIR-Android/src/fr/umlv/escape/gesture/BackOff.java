@@ -36,7 +36,7 @@ public class BackOff implements Gesture {
 		while(iterPoint.hasNext()){
 			tmp=iterPoint.next();
 
-			if(previous.y > tmp.y 				        	||
+			if(previous.y > tmp.y 				    ||
 			   tmp.x<(firstPoint.x-(MARGIN_ERROR))	||
 			   tmp.x>(firstPoint.x+MARGIN_ERROR)){
 				return false;

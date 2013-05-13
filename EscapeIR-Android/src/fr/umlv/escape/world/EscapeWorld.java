@@ -24,6 +24,13 @@ public class EscapeWorld {
     /**Constant that represent the scale between the world simulation and the world draw in the screen.
      */
     public final static float SCALE=50;
+    
+    //Categories for collisions
+    public final static int CATEGORY_DECOR=1;
+    public final static int CATEGORY_PLAYER=2;
+    public final static int CATEGORY_ENNEMY=4;
+    public final static int CATEGORY_BONUS=8;
+    
     private final Object lock = new Object();
 
 	private EscapeWorld(){

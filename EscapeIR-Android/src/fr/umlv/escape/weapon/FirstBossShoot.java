@@ -8,7 +8,7 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 
 import fr.umlv.escape.Objects;
-import fr.umlv.escape.front.ImagesFactory;
+import fr.umlv.escape.front.BitmapFactory;
 import fr.umlv.escape.ship.FirstBoss;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
@@ -86,9 +86,9 @@ public class FirstBossShoot implements Shootable{
 			PolygonShape dynamicBox=new PolygonShape();
 			switch (lastState){
 			case 1:
-				FrontImages.addImages("DefaultShip", ImagesFactory.getTheImagesFactory().createShipImage("DefaultShip"));
-				FrontImages.addImages("BatShip", ImagesFactory.getTheImagesFactory().createShipImage("BatShip"));
-				FrontImages.addImages("KamikazeShip", ImagesFactory.getTheImagesFactory().createShipImage("KamikazeShip"));
+				FrontImages.addImages("DefaultShip", BitmapFactory.getTheImagesFactory().createShipImage("DefaultShip"));
+				FrontImages.addImages("BatShip", BitmapFactory.getTheImagesFactory().createShipImage("BatShip"));
+				FrontImages.addImages("KamikazeShip", BitmapFactory.getTheImagesFactory().createShipImage("KamikazeShip"));
 				
 				newShipImage=FrontImages.getImage("DefaultShip");
 				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()+newShipImage.getWidth(null), shipBoss.getPosYCenter(), 50, "SquareRight");

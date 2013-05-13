@@ -3,16 +3,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.umlv.escape.Objects;
-import fr.umlv.escape.ship.Wave;
 
 /**
  * Class that represent a Level.
  */
 public class Level {
 	private final String name;
-	private final List<Wave> waveList;
-	private final List<Long> delayWaveList;
-	private int currentWave;
+	final List<Wave> waveList;
+	final List<Long> delayWaveList;
+	int currentWave;
 	
 	/**
 	 * Constructor
@@ -71,23 +70,7 @@ public class Level {
 		}
 		return this.delayWaveList.add(delay);
 	}
-	
-	/**
-	 * Get all the {@link Wave} of the level.
-	 * @return The list of {@link Wave} of the level.
-	 */
-	public List<Wave> getWaveList(){
-		return this.waveList;
-	}
-	
-	/**
-	 * Get the current {@link Wave} of the level.
-	 * @return The current {@link Wave} of the level.
-	 */
-	public int getCurrentWave(){
-		return this.currentWave;
-	}
-	
+
 	/**
 	 * Get the current delay to wait to launch the next {@link Wave}.
 	 * @return The current delay to wait to launch the next {@link Wave}.

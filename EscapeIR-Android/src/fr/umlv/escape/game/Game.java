@@ -1,11 +1,13 @@
 package fr.umlv.escape.game;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.gesture.Gesture;
 import fr.umlv.escape.move.PlayerMove;
@@ -24,15 +26,15 @@ public class Game {
 	private int currentNbLv;
 	private final int nbLevel;
 	private static Game TheGame;
-	final Player player1;
+	Player player1;
 	private final CollisionMonitor collisionMonitor;
+	private final EscapeWorld escapeWorld;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", height/3, width/2, 99, "StraightLine");
-		this.player1=new Player("Marc",playerShip,3);
 		this.collisionMonitor=new CollisionMonitor();
 		this.currentNbLv=1;
+		this.escapeWorld = EscapeWorld.getTheWorld();
 	}
 
 	/**
@@ -43,16 +45,18 @@ public class Game {
 	public void initializeGame() throws IOException, IllegalFormatContentFile{	
 		currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
 		
-		//Initialize the player
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", height/3, width/2, 99, "StraightLine");
+		player1=new Player("Marc",playerShip,3);
+		/*		//Initialize the player
 		filter.categoryBits=2;
 		filter.maskBits=53;
-		this.player1.getShip().setMoveBehaviour(new PlayerMove(gesture));
-		this.player1.getShip().setShootBehaviour(new ShootPlayer(gesture));
+		this.player1.getShip().setMoveBehaviour(new PlayerMove());
+		this.player1.getShip().setShootBehaviour(new ShootPlayer());
 		this.player1.getShip().getBody().setActive(true);
 		this.player1.getShip().getBody().getFixtureList().setSensor(false);
 		this.player1.getShip().getBody().getFixtureList().setFilterData(filter);
 		this.player1.getShip().getBody().setLinearDamping(3);
-		isValideLevelState=true;
+		isValideLevelState=true;*/
 	}
 
 
@@ -73,7 +77,7 @@ public class Game {
 		LoadLevel:while(currentNbLv<=nbLevel){
 			currentLevel=LevelFactory.getTheLevelFactory().createLevel("level"+currentNbLv);
 			while(currentLevel.launchNextWave()){
-				Iterator<Ship> iterShip;
+				ArrayList<Ship> shipList;
 				begin=System.currentTimeMillis();
 				elapsedWave=0;
 				
@@ -81,19 +85,25 @@ public class Game {
 				while(!isWaveFinished){
 					//world step every 15ms
 					elapsedStep=System.currentTimeMillis();
-					EscapeWorld.getTheWorld().step();
+					elapsedWave=elapsedStep-begin;
+					
+					escapeWorld.step();
 					collisionMonitor.performPostStepCollision(); // Process post collision treatment
 	
-					iterShip=currentLevel.getWaveList().get(currentLevel.getCurrentWave()).getShipList().iterator();
-					while(iterShip.hasNext()){
-						Ship ship=iterShip.next();
-						ship.move();			// Move all ship of the wave
-						if(ship.shoot(ship.getPosXCenter(),ship.getPosYCenter())){
-							ship.fire();		// Make all ship shooting
-						}
+					isWaveFinished = true;
+					shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
+					for(int i=0; i<shipList.size();++i){
+						Ship ship=shipList.get(i);
 						if(ship.isAlive()){
+							ship.move();			// Move all ship of the wave
+							if(ship.shoot(ship.getPosXCenter(),ship.getPosYCenter())){
+								ship.fire();		// Make all ship shooting
+							}
 							isWaveFinished=false; // If their still are ship the wave is not finished
 						}
+					}
+					if((currentLevel.getCurrentDelay()!=0) && (elapsedWave>currentLevel.getCurrentDelay())){
+						isWaveFinished=true;
 					}
 					
 					try{
@@ -108,17 +118,8 @@ public class Game {
 				}
 				currentLevel.changeWave();
 			}
-			setCurrentNbLv(currentNbLv+1);
+			currentNbLv+=1;
 		}
-		setCurrentState(State.Ended);
-	}
-	
-	/**
-	 * Get the current level of the game.
-	 * @return The current level of the game.
-	 */
-	public Level getCurrentLevel(){
-		return this.currentLevel;
 	}
 
 	/** Get the unique instance of {@link Game}.
@@ -129,44 +130,5 @@ public class Game {
 			Game.TheGame = new Game();
 		}
 		return Game.TheGame;
-	}
-
-	/**
-	 * Get the current state of the game.
-	 * @return The current state of the game.
-	 */
-	public State getCurrentState() {
-		return currentState;
-	}
-
-	/**
-	 * Set the current state of the game.
-	 * @param currentState The new state of the game.
-	 */
-	public void setCurrentState(State currentState) {
-		synchronized(lock){
-			this.currentState = currentState;
-			if(currentState==State.Playing){
-				lock.notify();
-			}
-		}
-	}
-	
-	/**Set the current level number. If this method is called while a level is running, the current level will
-	 * be cleared and the new one will begin.
-	 * @param currentNbLv the new level number.
-	 */
-	public void setCurrentNbLv(int currentNbLv) {
-		this.currentNbLv = currentNbLv;
-		DisplayableMonitor.deleteAllBullet();
-		DisplayableMonitor.deleteAllShipEnemy();
-		DisplayableMonitor.deleteAllBonus();
-		if(currentNbLv>3){
-			isValideLevelState=false;
-			return;
-		}
-		frontApplication.setBackGround("level"+currentNbLv);
-		this.isValideLevelState=true;
-		this.setCurrentState(Game.State.Playing);
 	}
 }

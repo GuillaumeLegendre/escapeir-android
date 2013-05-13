@@ -1,21 +1,25 @@
 package fr.umlv.escape.bonus;
 
-import java.awt.Image;
-
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import android.graphics.Bitmap;
+
 import fr.umlv.escape.Objects;
-import fr.umlv.escape.front.DisplayableMonitor;
-import fr.umlv.escape.front.ImagesFactory;
+import fr.umlv.escape.front.BattleField;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.world.Bodys;
+import fr.umlv.escape.world.EscapeWorld;
 
 /**This class supplies methods to create properly a {@link Bonus}.
  */
 public class BonusFactory {
-	private static BonusFactory theBonusFactory;
-
-	private BonusFactory(){
+	private final FrontImages frontImages;
+	private final BattleField battleField;
+	
+	public BonusFactory(FrontImages frontImages, BattleField battleField){
+		this.frontImages = frontImages;
+		this.battleField = battleField;
 	}
 
 	 /** Create a {@link Bonus}.
@@ -32,59 +36,51 @@ public class BonusFactory {
 		Bonus bonus;
 		String stringType;
 		Body body;
-		Image img;
+		Bitmap img;
 		
-		switch(bonusName){
-		case "WeaponReloader" :
+		if(bonusName.equals("WeaponReloader")){
 			switch(type){
 			case 1:
 				stringType="MissileLauncher";
-				img=ImagesFactory.getTheImagesFactory().createBonusImage(bonusName+stringType);
-				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(null), img.getHeight(null), 0);
+				frontImages.addImages(bonusName+stringType);
+				img=frontImages.getImage(bonusName+stringType);
+				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new WeaponReloader(50, body,stringType);
 				break;
 			case 2:
 				stringType="FlameThrower";
-				img=ImagesFactory.getTheImagesFactory().createBonusImage(bonusName+stringType);
-				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(null), img.getHeight(null), 0);
+				frontImages.addImages(bonusName+stringType);
+				img=frontImages.getImage(bonusName+stringType);
+				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new WeaponReloader(25, body,stringType);
 				break;
 			case 3:
 				stringType="ShiboleetThrower";
-				img=ImagesFactory.getTheImagesFactory().createBonusImage(bonusName+stringType);
-				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(null), img.getHeight(null), 0);
+				frontImages.addImages(bonusName+stringType);
+				img=frontImages.getImage(bonusName+stringType);
+				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new WeaponReloader(10, body,stringType);
 				break;
 			case 4:
 				stringType="LaserBeam";
-				img=ImagesFactory.getTheImagesFactory().createBonusImage(bonusName+stringType);
-				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(null), img.getHeight(null), 0);
+				frontImages.addImages(bonusName+stringType);
+				img=frontImages.getImage(bonusName+stringType);
+				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new WeaponReloader(10, body,stringType);
 				break;
 			default : throw new IllegalArgumentException(type+" isn't a legal type");
 			}
-			break;
-		default : throw new IllegalArgumentException(bonusName+" isn't a legal bonus");
+		} else{
+			throw new IllegalArgumentException(bonusName+" isn't a legal bonus");
 		}
 		
-		FrontImages.addImages(bonusName+stringType, img);
 		Filter filter=new Filter();
-		filter.categoryBits=16;
-		filter.maskBits=2;
+		filter.categoryBits=EscapeWorld.CATEGORY_BONUS;
+		filter.maskBits=EscapeWorld.CATEGORY_PLAYER;
 		body.getFixtureList().setFilterData(filter);
 		body.setActive(true);
 
-		DisplayableMonitor.addBonus(bonus);
+		battleField.addBonus(bonus);
 		return bonus;
-	}
-
-	/** Get the unique instance of {@link BonusFactory}.
-	 * @return The unique instance of {@link BonusFactory}
-	 */
-	public static BonusFactory getTheBonusFactory(){
-		if(BonusFactory.theBonusFactory==null){
-			BonusFactory.theBonusFactory = new BonusFactory();
-		}
-		return BonusFactory.theBonusFactory;
 	}
 }

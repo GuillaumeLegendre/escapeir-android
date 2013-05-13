@@ -1,13 +1,10 @@
 package fr.umlv.escape.ship;
 
-import java.awt.Image;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
-import fr.umlv.escape.front.DisplayableMonitor;
-import fr.umlv.escape.front.ImagesFactory;
 import fr.umlv.escape.move.DownMove;
 import fr.umlv.escape.move.KamikazeMove;
 import fr.umlv.escape.move.LeftDampedMove;
@@ -89,8 +86,7 @@ public class ShipFactory {
 			default:
 				throw new IllegalArgumentException(trajectory+"not accepted");
 		}
-		Image img=ImagesFactory.getTheImagesFactory().createShipImage(shipName);
-		FrontImages.addImages(shipName,img);
+		Image img=BitmapFactory.getTheImagesFactory().createShipImage(shipName);
 
 		Body body=Bodys.createBasicRectangle((posX+((float)img.getWidth(null)/2)), (posY+((float)img.getHeight(null)/2)), img.getWidth(null), img.getHeight(null), 0);
 		Filter filter=new Filter();
@@ -130,7 +126,7 @@ public class ShipFactory {
 			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
 			DisplayableMonitor.addShip(ship);
 			for(int i=2;i<=7;++i){
-				img=ImagesFactory.getTheImagesFactory().createShipImage(shipName+i);
+				img=BitmapFactory.getTheImagesFactory().createShipImage(shipName+i);
 				FrontImages.addImages(shipName+i,img);
 			}
 			break;
@@ -141,7 +137,7 @@ public class ShipFactory {
 			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
 			DisplayableMonitor.addShip(ship);
 			for(int i=2;i<=7;++i){
-				img=ImagesFactory.getTheImagesFactory().createShipImage(shipName+i);
+				img=BitmapFactory.getTheImagesFactory().createShipImage(shipName+i);
 				FrontImages.addImages(shipName+i,img);
 			}
 			break;
@@ -154,7 +150,7 @@ public class ShipFactory {
 			ship.getListWeapon().setCurrentWeapon("BasicMissile");
 			DisplayableMonitor.addShip(ship);
 			for(int i=2;i<=5;++i){
-				img=ImagesFactory.getTheImagesFactory().createShipImage(shipName+i);
+				img=BitmapFactory.getTheImagesFactory().createShipImage(shipName+i);
 				FrontImages.addImages(shipName+i,img);
 			}
 			break;

@@ -1,9 +1,8 @@
 package fr.umlv.escape.bonus;
 
-import java.util.Objects;
-
 import org.jbox2d.dynamics.Body;
 
+import fr.umlv.escape.Objects;
 import fr.umlv.escape.move.DownMove;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.Weapon;

@@ -1,7 +1,7 @@
 package fr.umlv.escape.weapon;
 
 import android.graphics.Point;
-import fr.umlv.escape.front.ImagesFactory;
+import fr.umlv.escape.front.BitmapFactory;
 import fr.umlv.escape.game.Game;
 
 /**
@@ -24,7 +24,7 @@ public class ShiboleetThrower extends Weapon {
 	@Override
 	public Bullet fire(Point startPosition){
 		String missile = getMissile();
-		Image img=ImagesFactory.getTheImagesFactory().createBulletImage(missile);
+		Image img=BitmapFactory.getTheImagesFactory().createBulletImage(missile);
 		FrontImages.addImages(missile, img);
 		BulletsFactory bf = BulletsFactory.getTheBulletsFactory();
 		boolean playerBullet = false;

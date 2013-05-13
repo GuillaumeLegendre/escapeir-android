@@ -1,6 +1,5 @@
 package fr.umlv.escape.front;
 
-import java.awt.Image;
 import java.util.List;
 
 import android.graphics.Point;
@@ -21,21 +20,21 @@ public class UserInterface {
 	private UserInterface(){}
 	
 	private static void initLife(){
-		Image img=ImagesFactory.getTheImagesFactory().createUIImage(HEALTH);
+		Image img=BitmapFactory.getTheImagesFactory().createUIImage(HEALTH);
 		FrontImages.addImages(HEALTH, img);
 		
-		img=ImagesFactory.getTheImagesFactory().createUIImage(HEARTH);
+		img=BitmapFactory.getTheImagesFactory().createUIImage(HEARTH);
 		FrontImages.addImages(HEARTH, img);
 	}
 	
 	private static void initMenu(){
-		Image img=ImagesFactory.getTheImagesFactory().createUIImage(JUPITER);
+		Image img=BitmapFactory.getTheImagesFactory().createUIImage(JUPITER);
 		FrontImages.addImages(JUPITER, img);
 		
-		img=ImagesFactory.getTheImagesFactory().createUIImage(MOON);
+		img=BitmapFactory.getTheImagesFactory().createUIImage(MOON);
 		FrontImages.addImages(MOON, img);
 		
-		img=ImagesFactory.getTheImagesFactory().createUIImage(EARTH);
+		img=BitmapFactory.getTheImagesFactory().createUIImage(EARTH);
 		FrontImages.addImages(EARTH, img);
 	}
 	
@@ -44,7 +43,7 @@ public class UserInterface {
 		Image img;
 		for(Weapon w:listWeapon){
 			String name = w.getName();
-			img=ImagesFactory.getTheImagesFactory().createWeaponImage(name);
+			img=BitmapFactory.getTheImagesFactory().createWeaponImage(name);
 			FrontImages.addImages(name, img);
 		}
 	}

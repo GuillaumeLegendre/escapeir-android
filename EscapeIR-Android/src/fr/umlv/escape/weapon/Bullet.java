@@ -3,7 +3,7 @@ package fr.umlv.escape.weapon;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
-import fr.umlv.escape.front.ImagesFactory;
+import fr.umlv.escape.front.BitmapFactory;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.world.EscapeWorld;
 
@@ -142,7 +142,7 @@ public abstract class Bullet {
 		if(currentLoad < maxLoad && timeNow - lastTimeLoad > 2000){
 			lastTimeLoad = timeNow;
 			currentLoad = currentLoad + 1;
-			Image img=ImagesFactory.getTheImagesFactory().createBulletImage(getNameLvl());
+			Image img=BitmapFactory.getTheImagesFactory().createBulletImage(getNameLvl());
 			FrontImages.addImages(getNameLvl(),img);
 			return true;
 		}

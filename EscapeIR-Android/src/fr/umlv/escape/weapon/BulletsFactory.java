@@ -5,7 +5,7 @@ import org.jbox2d.dynamics.Filter;
 
 import android.graphics.Point;
 
-import fr.umlv.escape.front.ImagesFactory;
+import fr.umlv.escape.front.BitmapFactory;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.world.Bodys;
 
@@ -28,7 +28,7 @@ public class BulletsFactory {
 
 		Image img = FrontImages.getImage(bulletName);
 		if( img == null){
-			img=ImagesFactory.getTheImagesFactory().createBulletImage(bulletName);
+			img=BitmapFactory.getTheImagesFactory().createBulletImage(bulletName);
 			FrontImages.addImages(bulletName, img);
 		}
 		

@@ -1,9 +1,5 @@
 package fr.umlv.escape;
 
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
-
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,8 +28,6 @@ public class MainActivity extends Activity {
 					break;
 				}
 			}
-			Vec2  gravity = new Vec2(0,0f); // No gravity in space
-			World world = new World(gravity);
 			return null;
 		}
 		

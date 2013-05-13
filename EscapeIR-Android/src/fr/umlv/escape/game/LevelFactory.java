@@ -2,11 +2,12 @@ package fr.umlv.escape.game;
 
 import java.io.IOException;
 
+import android.R;
+import android.graphics.BitmapFactory;
+
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.file.ParseFile;
-import fr.umlv.escape.front.ImagesFactory;
-import fr.umlv.escape.ship.WaveFactory;
-import fr.umlv.escape.ship.Wave;
+import fr.umlv.escape.front.FrontImages;
 
 /**This class supplies methods to create properly a {@link Level}.
  */
@@ -49,7 +50,9 @@ public class LevelFactory {
 			}
 			waveName=parseLevel.getNextLine();
 		}
-		FrontImages.addImages(levelName,ImagesFactory.getTheImagesFactory().createBackGroundImage(levelName));
+
+		FrontImages.addImages(levelName, BitmapFactory.
+				ImagesFactory.getTheImagesFactory().createBackGroundImage(levelName));
 		return newLevel;
 	}
 	

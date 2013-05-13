@@ -1,8 +1,5 @@
 package fr.umlv.escape;
 
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.World;
-
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import android.app.Activity;
@@ -17,7 +14,7 @@ public class GameActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		this.game = new Game(
+		this.game = Game.getTheGame();
 		frontApplication = new FrontApplication(this);
 		setContentView(frontApplication);
 	}
@@ -38,23 +35,17 @@ public class GameActivity extends Activity{
 					break;
 				}
 			}
-			Vec2  gravity = new Vec2(0,0f); // No gravity in space
-			World world = new World(gravity);
 			return null;
 		}
 		
 		@Override
 		protected void onProgressUpdate(Integer... values) {
 			super.onProgressUpdate(values);
-			loadingBar.setProgress(values[0]);
 		}
 		
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			//setContentView(frontApplication);
-			setContentView(R.layout.main_menu);
-			//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 		}
 	}
 
