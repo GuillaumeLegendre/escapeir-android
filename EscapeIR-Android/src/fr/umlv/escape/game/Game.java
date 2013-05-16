@@ -27,6 +27,7 @@ public class Game {
 	private final int nbLevel;
 	private static Game TheGame;
 	Player player1;
+
 	private final CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
 	
@@ -71,10 +72,10 @@ public class Game {
 		long elapsedWave;
 		long elapsedStep;
 		boolean isWaveFinished;
-		long lastDeath=0;
+		long lastDeath=0; //TODO gerer mort du joueur
 		
 		//Process all levels
-		LoadLevel:while(currentNbLv<=nbLevel){
+		while(currentNbLv<=nbLevel){
 			currentLevel=LevelFactory.getTheLevelFactory().createLevel("level"+currentNbLv);
 			while(currentLevel.launchNextWave()){
 				ArrayList<Ship> shipList;
@@ -121,6 +122,10 @@ public class Game {
 			}
 			currentNbLv+=1;
 		}
+	}
+	
+	public Player getPlayer1() {
+		return player1;
 	}
 
 	/** Get the unique instance of {@link Game}.
