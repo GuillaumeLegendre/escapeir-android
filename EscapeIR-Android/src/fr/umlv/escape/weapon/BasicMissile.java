@@ -3,6 +3,7 @@ package fr.umlv.escape.weapon;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.move.StraightLine;
 
 /**

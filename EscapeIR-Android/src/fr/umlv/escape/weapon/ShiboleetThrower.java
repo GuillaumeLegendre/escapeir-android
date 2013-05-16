@@ -24,7 +24,6 @@ public class ShiboleetThrower extends Weapon {
 	@Override
 	public Bullet fire(Point startPosition){
 		String missile = getMissile();
-		FrontApplication.frontImage.addImages(missile);
 		BulletsFactory bf = BulletsFactory.getTheBulletsFactory();
 		boolean playerBullet = false;
 		if(Game.getTheGame().getPlayer1().getShip().getCurrentWeapon() == this){

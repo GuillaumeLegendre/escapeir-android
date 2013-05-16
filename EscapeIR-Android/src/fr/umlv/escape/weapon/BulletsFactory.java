@@ -66,7 +66,7 @@ public class BulletsFactory {
 		filter.maskBits=2;
 		body.getFixtureList().setFilterData(filter);
 
-		Battlefield.addBullet(bullet);
+		Game.getTheGame().getFrontApplication().getBattleField().addBullet(bullet);
 		return bullet;
 	}
 

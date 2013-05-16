@@ -4,6 +4,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.move.Movable;
 
@@ -27,8 +28,8 @@ public abstract class Bullet extends Sprite {
 	 * @param body bullet's body
 	 * @param playerBullet if it's a player who launch the bullet
 	 */
-	public Bullet(int power, int maxLoad, String name, Body body, boolean playerBullet, Bitmap image){
-		super(body, image);
+	public Bullet(int power, int maxLoad, String name, Body body, boolean playerBullet){
+		super(body, FrontApplication.frontImage.getImage(name));
 		if(name == null || body == null) throw new IllegalArgumentException();
 		this.name = name;
 		this.power = power;
