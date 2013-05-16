@@ -145,4 +145,24 @@ public class Ship extends Sprite{
 	public ListWeapon getListWeapon() {
 		return weapons;
 	}
+	
+	public Movable getMoveBehaviour() {
+		return moveBehaviour;
+	}
+
+	public void setMoveBehaviour(Movable moveBehaviour) {
+		this.moveBehaviour = moveBehaviour;
+	}
+
+	public Shootable getShootBehaviour() {
+		return shootBehaviour;
+	}
+
+	public void setShootBehaviour(Shootable shootBehaviour) {
+		this.shootBehaviour = shootBehaviour;
+	}
+
+	public ListWeapon getWeapons() {
+		return weapons;
+	}
 }

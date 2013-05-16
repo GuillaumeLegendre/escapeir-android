@@ -15,8 +15,8 @@ import android.graphics.Bitmap;
 
 public class BattleField {
 	private Sprite[] boundPlayer;
-	final int WIDTH;
-	final int HEIGHT;
+	int WIDTH;
+	int HEIGHT;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
 	final ArrayList<Bullet> bulletList;

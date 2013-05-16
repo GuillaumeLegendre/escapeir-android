@@ -43,28 +43,24 @@ public class BonusFactory {
 			switch(type){
 			case 1:
 				stringType="MissileLauncher";
-				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(50, body,stringType,img);
 				break;
 			case 2:
 				stringType="FlameThrower";
-				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(25, body,stringType,img);
 				break;
 			case 3:
 				stringType="ShiboleetThrower";
-				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(10, body,stringType,img);
 				break;
 			case 4:
 				stringType="LaserBeam";
-				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(10, body,stringType,img);
