@@ -27,12 +27,11 @@ public class Game {
 	private final int nbLevel;
 	private static Game TheGame;
 	Player player1;
-	private final FrontApplication frontApplication;
+	private FrontApplication frontApplication;
 	private final CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
 	
-	private Game(FrontApplication frontApplication){
-		this.frontApplication = frontApplication;
+	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.currentNbLv=1;
@@ -141,5 +140,9 @@ public class Game {
 	
 	public FrontApplication getFrontApplication() {
 		return frontApplication;
+	}
+	
+	public void setFrontApplication(FrontApplication frontApplication) {
+		this.frontApplication = frontApplication;
 	}
 }

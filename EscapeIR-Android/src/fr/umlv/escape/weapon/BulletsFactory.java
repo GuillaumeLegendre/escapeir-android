@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 
 import fr.umlv.escape.front.FrontApplication;
-import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.world.Bodys;
 

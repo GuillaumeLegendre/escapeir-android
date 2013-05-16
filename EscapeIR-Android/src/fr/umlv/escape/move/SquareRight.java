@@ -4,6 +4,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.world.EscapeWorld;
 
@@ -22,25 +23,25 @@ public class SquareRight implements Movable{
 		Vec2 v2 =new Vec2();
 		switch(nbCall){
 		case 0:
-			if(body.getPosition().y*EscapeWorld.SCALE>(Game.getTheGame().getWidth()/3-120)){
+			if(body.getPosition().y*EscapeWorld.SCALE>(FrontApplication.WIDTH/3-120)){
 				return;
 			}
 			v2.set(2f,0f);
 			break;
 		case 1:
-			if(body.getPosition().x*EscapeWorld.SCALE<(Game.getTheGame().getWidth()/3)){
+			if(body.getPosition().x*EscapeWorld.SCALE<(FrontApplication.WIDTH/3)){
 				return;
 			}
 			v2.set(0f,2f);
 			break;
 		case 2:
-			if(body.getPosition().y*EscapeWorld.SCALE<(Game.getTheGame().getWidth()/3)){
+			if(body.getPosition().y*EscapeWorld.SCALE<(FrontApplication.WIDTH/3)){
 				return;
 			}
 			v2.set(-2f,0f);
 			break;
 		case 3:
-			if(body.getPosition().x*EscapeWorld.SCALE>(Game.getTheGame().getWidth()/3-120)){
+			if(body.getPosition().x*EscapeWorld.SCALE>(FrontApplication.WIDTH/3-120)){
 				return;
 			}
 			v2.set(0f,-2f);
