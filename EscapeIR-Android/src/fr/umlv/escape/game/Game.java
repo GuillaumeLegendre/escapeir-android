@@ -27,13 +27,15 @@ public class Game {
 	private final int nbLevel;
 	private static Game TheGame;
 	Player player1;
+	private final FrontApplication frontApplication;
 
 	private final CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
 	
-	private Game(){
+	private Game(FrontApplication frontApplication){
+		this.frontApplication = frontApplication;
 		this.nbLevel=3; //TODO chercher dans fichier
-		this.collisionMonitor=new CollisionMonitor();
+		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.currentNbLv=1;
 		this.escapeWorld = EscapeWorld.getTheWorld();
 	}
