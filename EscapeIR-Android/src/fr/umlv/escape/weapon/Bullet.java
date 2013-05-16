@@ -116,4 +116,15 @@ public abstract class Bullet extends Sprite {
 	public int getDamage(){
 		return this.power;
 	}
+	
+	/**
+	 * @return the name of bullet with his level "name_lvl"
+	 */
+	public String getNameLvl() {
+		if(currentLoad > 1){
+			return name + "_" + currentLoad;
+		}
+		return name;
+	}
+
 }
