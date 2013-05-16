@@ -3,8 +3,6 @@ package fr.umlv.escape.weapon;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
-import android.graphics.Bitmap;
-
 import fr.umlv.escape.move.StraightLine;
 
 /**
@@ -20,8 +18,8 @@ public class BasicMissile extends Bullet {
 	 * @param body body's bullet
 	 * @param playerBullet if it's a bullet launch by player
 	 */
-	public BasicMissile(String name, Body body, boolean playerBullet, Bitmap image) {
-		super(POWER, MAXLOAD, name, body, playerBullet, image);
+	public BasicMissile(String name, Body body, boolean playerBullet) {
+		super(POWER, MAXLOAD, name, body, playerBullet);
 	}
 
 	@Override
