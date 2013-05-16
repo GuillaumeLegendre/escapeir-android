@@ -2,6 +2,8 @@ package fr.umlv.escape.weapon;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
+
+import android.graphics.Bitmap;
 import fr.umlv.escape.move.XRayMove;
 
 /**
@@ -17,8 +19,8 @@ public class XRay extends Bullet{
 	 * @param body body's bullet
 	 * @param playerBullet if it's a bullet launch by player
 	 */
-	public XRay(String name, Body body, boolean playerBullet) {
-		super(POWER, MAXLOAD, name, body, playerBullet);
+	public XRay(String name, Body body, boolean playerBullet, Bitmap img) {
+		super(POWER, MAXLOAD, name, body, playerBullet, img);
 	}
 
 	@Override

@@ -42,19 +42,19 @@ public class BulletsFactory {
 		switch(currentBullet){
 		case BASIC_MISSILE : 
 			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
-			bullet= new BasicMissile(bulletName, body, playerBullet);
+			bullet= new BasicMissile(bulletName, body, playerBullet, img);
 			break;
 		case FIREBALL : 
 			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
-			bullet= new FireBall(bulletName, body, playerBullet);
+			bullet= new FireBall(bulletName, body, playerBullet, img);
 			break;
 		case SHIBOLEET : 
 			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
-			bullet= new Shiboleet(bulletName, body, playerBullet);
+			bullet= new Shiboleet(bulletName, body, playerBullet, img);
 			break;
 		case XRAY : 
 			body = Bodys.createBasicRectangle(-100, FrontApplication.HEIGHT/2, img.getWidth(),  img.getHeight(), 0);
-			bullet= new XRay(bulletName, body, playerBullet);
+			bullet= new XRay(bulletName, body, playerBullet, img);
 			body.getFixtureList().setSensor(true);
 			break;
 		default : throw new IllegalArgumentException(bulletName+" isn't a legal bullet");

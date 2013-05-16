@@ -20,8 +20,8 @@ public class FireBall extends Bullet {
 	 * @param body body's bullet
 	 * @param playerBullet if it's a bullet launch by player
 	 */
-	public FireBall(String name, Body body, boolean playerBullet,Bitmap image) {
-		super(POWER, MAXLOAD, name, body, playerBullet,image);
+	public FireBall(String name, Body body, boolean playerBullet, Bitmap img) {
+		super(POWER, MAXLOAD, name, body, playerBullet, img);
 	}
 
 	@Override
