@@ -59,7 +59,7 @@ public class Player {
 	 */
 	public void setLife(int life) {
 		if(life<0){
-			throw new IllegalArgumentException("life cannot be negative");
+			this.life=0;
 		}
 		this.life = life;
 	}

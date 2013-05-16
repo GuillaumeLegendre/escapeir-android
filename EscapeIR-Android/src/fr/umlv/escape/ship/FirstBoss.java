@@ -41,14 +41,6 @@ public class FirstBoss extends Ship {
 			state=8;
 		}
 	}
-
-	@Override
-	public String getName(){		
-		if(state>1){
-			return super.getName()+state;
-		}
-		return super.getName();
-	}
 	
 	/**
 	 * Get the current state of the boss.

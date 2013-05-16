@@ -1,7 +1,9 @@
 package fr.umlv.escape.front;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
 import fr.umlv.escape.bonus.Bonus;
@@ -19,6 +21,10 @@ public class BattleField {
 	final ArrayList<Ship> shipList;
 	final ArrayList<Bullet> bulletList;
 	final ArrayList<Bonus> bonusList;
+	final Hashtable<Body,Ship> shipMap=new Hashtable<Body,Ship>(50);
+	final Hashtable<Body,Bullet> bulletMap=new Hashtable<Body,Bullet>(50);
+	final Hashtable<Body,Bonus> bonusMap=new Hashtable<Body,Bonus>(10);
+
 	private final BattleFieldCleaner bfCleaner;
 	
 	Object shipLock = new Object();
@@ -42,6 +48,7 @@ public class BattleField {
 						    tmp.getPosYCenter()< 0		||
 						    tmp.getPosYCenter()> HEIGHT ){
 							shipList.remove(i);
+							shipMap.remove(tmp);
 						}
 					}
 				}
@@ -54,6 +61,7 @@ public class BattleField {
 						    tmp.getPosYCenter()< 0		||
 						    tmp.getPosYCenter()> HEIGHT ){
 							bulletList.remove(i);
+							bulletMap.remove(tmp);
 						}
 					}
 				}
@@ -66,6 +74,7 @@ public class BattleField {
 						    tmp.getPosYCenter()< 0		||
 						    tmp.getPosYCenter()> HEIGHT ){
 							bonusList.remove(i);
+							bonusMap.remove(tmp);
 						}
 					}
 				} 
@@ -115,6 +124,7 @@ public class BattleField {
 	public void addBullet(Bullet bullet){
 		synchronized(bulletLock){
 			bulletList.add(bullet);
+			bulletMap.put(bullet.getBody(), bullet);
 		}
 	}
 	
@@ -125,6 +135,7 @@ public class BattleField {
 	public void addShip(Ship ship){
 		synchronized(shipLock){
 			shipList.add(ship);
+			shipMap.put(ship.getBody(), ship);
 		}
 	}
 	
@@ -135,6 +146,7 @@ public class BattleField {
 	public void addBonus(Bonus bonus){
 		synchronized(bonusLock){
 			bonusList.add(bonus);
+			bonusMap.put(bonus.getBody(), bonus);
 		}
 	}
 	
@@ -144,12 +156,42 @@ public class BattleField {
 	public void deleteAllBonus(){
 		synchronized(bulletLock){
 			bulletList.clear();
+			bulletMap.clear();
 		}
 		synchronized(shipLock){
 			shipList.clear();
+			shipMap.clear();
 		}
 		synchronized(bonusLock){
 			bonusList.clear();
+			bonusMap.clear();
 		}
-	}	
+	}
+	
+	/**
+	 * Return a ship associated to a body in O(1).
+	 * @param body the body of the ship to get.
+	 * @return The ship associated to the body in parameter.
+	 */
+	public Ship getShip(Body body){
+		return shipMap.get(body);
+	}
+	
+	/**
+	 * Return a bullet associated to a body in O(1).
+	 * @param body the body of the bullet to get.
+	 * @return The bullet associated to the body in parameter.
+	 */
+	public Bullet getBullet(Body body){
+		return bulletMap.get(body);
+	}
+	
+	/**
+	 * Return a bonus associated to a body in O(1).
+	 * @param body the body of the bonus to get.
+	 * @return The bonus associated to the body in parameter.
+	 */
+	public Bonus getBonus(Body body){
+		return bonusMap.get(body);
+	}
 }

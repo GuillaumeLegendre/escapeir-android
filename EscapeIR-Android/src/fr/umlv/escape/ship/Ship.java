@@ -89,18 +89,10 @@ public class Ship extends Sprite{
 	}
 	
 	/**
-	 * Return the name of the ship. This name can depend of some state of the ship.
+	 * Return the name of the ship.
 	 * @return The name of the ship.
 	 */
 	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * Return the basic name of the ship.
-	 * @return The basic name of the ship.
-	 */
-	public String getBasicName() {
 		return name;
 	}
 	

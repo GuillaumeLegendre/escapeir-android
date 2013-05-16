@@ -48,7 +48,7 @@ public class CollisionMonitor implements ContactListener{
 	public void performPostStepCollision(){		
 		for(int i=0; i<elemToDelete.size();++i){
 			Body body = elemToDelete.get(i);
-			EscapeWorld.getTheWorld().setActive(body, false);
+			EscapeWorld.getTheWorld().destroyBody(body);
 			if(this.createBonus){
 				Bonus bonus=bonusFactory.createBonus("WeaponReloader", (int)((body.getPosition().x*EscapeWorld.SCALE)), (int)((body.getPosition().y*EscapeWorld.SCALE)), (int)(Math.random()*(4-1))+1);
 				bonus.move();
@@ -79,7 +79,7 @@ public class CollisionMonitor implements ContactListener{
 				body=arg0.getFixtureA().getBody();
 			}
 			//if the second body that collided is an enemy
-			if((enemy=DisplayableMonitor.getShip(body))!=null){
+			if((enemy=battleField.getShip(body))!=null){
 				shipPlayer.takeDamage(10);
 				enemy.takeDamage(20);
 				if(!enemy.isAlive()){
@@ -87,11 +87,11 @@ public class CollisionMonitor implements ContactListener{
 					elemToDelete.add(body);
 				}
 			} //else if the second body that collided is a bullet 
-			else if((bullet=DisplayableMonitor.getBullet(body))!=null){
+			else if((bullet=battleField.getBullet(body))!=null){
 				shipPlayer.takeDamage(bullet.getDamage());
 				elemToDelete.add(body);
 			} //else if the second body that collided is a bonus 
-			else if((bonus=DisplayableMonitor.getBonus(body))!=null){
+			else if((bonus=battleField.getBonus(body))!=null){
 				ListWeapon playerWeapons = shipPlayer.getListWeapon();
 				playerWeapons.addWeapon(bonus.getType(), bonus.getQuantity());
 				elemToDelete.add(body);
@@ -107,8 +107,8 @@ public class CollisionMonitor implements ContactListener{
 			body=arg0.getFixtureA().getBody();
 			body2=arg0.getFixtureB().getBody();
 
-			if((enemy=DisplayableMonitor.getShip(body))!=null){
-				if((bullet=DisplayableMonitor.getBullet(body2))==null){
+			if((enemy=battleField.getShip(body))!=null){
+				if((bullet=battleField.getBullet(body2))==null){
 					throw new AssertionError();
 				}
 				enemy.takeDamage(bullet.getDamage());
@@ -117,28 +117,14 @@ public class CollisionMonitor implements ContactListener{
 				}
 				if(!enemy.isAlive()){
 					elemToDelete.add(body);
-					int score=0;
-					switch(enemy.getBasicName()){
-					case "DefaultShip":score=10;break;
-					case "KamikazeShip":score=25;break;
-					case "BatShip":score=50;break;
-					case "FirstBoss":
-					case "SecondBoss":
-					case "ThirdBoss":score=1000;break;
-					default:
-						throw new AssertionError();
-					}
-					player.addScore(score);
-					if(random.nextInt(100) <= PROBABILITY_NEW_BONUS){
-						this.createBonus=true;
-					}
+					impactEnemyDead(enemy,player);
 				}
 				if((!bullet.getNameLvl().equals("FireBall_3")) && (!bullet.getName().equals("XRay"))){
 					elemToDelete.add(body2);
 				}
 			} else {
-				bullet=DisplayableMonitor.getBullet(body);
-				enemy=DisplayableMonitor.getShip(body2);
+				bullet=battleField.getBullet(body);
+				enemy=battleField.getShip(body2);
 				if((bullet==null)||(enemy==null)){
 					throw new AssertionError();
 				}
@@ -148,9 +134,6 @@ public class CollisionMonitor implements ContactListener{
 				}
 				if(!enemy.isAlive()){
 					elemToDelete.add(body2);
-					if(random.nextInt(100) <= PROBABILITY_NEW_BONUS){
-						this.createBonus=true;
-					}
 					impactEnemyDead(enemy, player);
 				}
 				if((!bullet.getNameLvl().equals("FireBall_3"))&&(!bullet.getName().equals("XRay"))){
@@ -177,16 +160,17 @@ public class CollisionMonitor implements ContactListener{
 	
 	private void impactEnemyDead(Ship enemy, Player player){
 		int score=0;
-		switch(enemy.getBasicName()){
-		case "DefaultShip":score=10;break;
-		case "KamikazeShip":score=25;break;
-		case "BatShip":score=50;break;
-		case "FirstBoss":
-		case "SecondBoss":
-		case "ThirdBoss":score=1000;break;
-		default:
-			throw new AssertionError();
-		}
+		String name = enemy.getName();
+		if(name.equals("DefaultShip"))	score=25;
+		if(name.equals("KamikazeShip"))	score=25;
+		if(name.equals("BatShip"))		score=50;
+		if( name.equals("FirstBoss")  ||
+			name.equals("SecondBoss") ||
+			name.equals("ThirdBoss")) 	score=1000;
 		player.addScore(score);
+		
+		if(random.nextInt(100) <= PROBABILITY_NEW_BONUS){
+			this.createBonus=true;
+		}
 	}
 }

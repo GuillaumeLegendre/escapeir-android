@@ -89,7 +89,8 @@ public class Game {
 					
 					escapeWorld.step();
 					collisionMonitor.performPostStepCollision(); // Process post collision treatment
-	
+					//TODO supprimer vaisseau en dehors du jeu
+					
 					isWaveFinished = true;
 					shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
 					for(int i=0; i<shipList.size();++i){
