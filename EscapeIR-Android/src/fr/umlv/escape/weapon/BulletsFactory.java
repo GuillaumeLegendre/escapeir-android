@@ -36,15 +36,15 @@ public class BulletsFactory {
 		Bullet bullet;
 		switch(bulletName){
 		case "BasicMissile" : 
-			body = Bodys.createBasicCircle((float)startPosition.getX(),(float)startPosition.getY(), img.getWidth(null), 0);
+			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
 			bullet= new BasicMissile(bulletName, body, playerBullet);
 			break;
 		case "FireBall" : 
-			body = Bodys.createBasicCircle((float)startPosition.getX(),(float)startPosition.getY(), img.getWidth(null), 0);
+			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
 			bullet= new FireBall(bulletName, body, playerBullet);
 			break;
 		case "Shiboleet" : 
-			body = Bodys.createBasicCircle((float)startPosition.getX(),(float)startPosition.getY(), img.getWidth(null), 0);
+			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
 			bullet= new Shiboleet(bulletName, body, playerBullet);
 			break;
 		case "XRay" : 

@@ -7,6 +7,8 @@ import java.util.List;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 
+import android.graphics.Point;
+
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.front.BitmapFactory;
 import fr.umlv.escape.ship.FirstBoss;
