@@ -4,12 +4,8 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import fr.umlv.escape.R;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.move.Movable;
-import fr.umlv.escape.world.EscapeWorld;
 
 /**
  * Represent a Bullet
