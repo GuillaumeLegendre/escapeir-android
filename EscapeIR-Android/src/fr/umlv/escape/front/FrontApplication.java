@@ -15,18 +15,20 @@ import fr.umlv.escape.gesture.GestureDetector;
 	private GestureDetector gestureDetector;
 	public static FrontImages frontImage;
 	public static int HEIGHT; 
-	public static int WIDTH; 
+	public static int WIDTH;
+	final BattleField battleField;
 
 	public FrontApplication(Context context) {
 		super(context);
 		this.holder = getHolder();
 		callback();
+		this.battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 	}
 
 	private void callback(){    	  
 		getHolder().addCallback(new Callback() {
 			private Thread drawThread;
-			BattleField battleField;
+			
 
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
@@ -37,7 +39,8 @@ import fr.umlv.escape.gesture.GestureDetector;
 			public void surfaceCreated(SurfaceHolder arg0) {
 				//HEIGHT = 
 				frontImage = new FrontImages(getResources());
-				battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+				battleField.HEIGHT = getHeight();
+				battleField.WIDTH = getWidth();
 				gestureDetector = new GestureDetector();
 				
 				drawThread = new DrawThread(holder, battleField);
@@ -50,6 +53,10 @@ import fr.umlv.escape.gesture.GestureDetector;
 			}
 
 		});
+	}
+	
+	public BattleField getBattleField() {
+		return battleField;
 	}
 
 	@Override

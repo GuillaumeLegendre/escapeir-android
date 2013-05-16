@@ -24,7 +24,7 @@ public class SecondBoss extends Ship {
 	 * @param moveBehaviour How the ship move.
 	 * @param shootBehaviour How the ship shoot.
 	 */
-	public SecondBoss(Body body, int health, Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
+	public SecondBoss(int health, Body body, Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
 		super("SecondBoss",health,body,image,moveBehaviour,shootBehaviour);
 		this.invisible = false;
 		this.lvlInvisible=1;

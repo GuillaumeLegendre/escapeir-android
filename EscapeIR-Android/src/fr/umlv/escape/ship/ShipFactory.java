@@ -114,9 +114,8 @@ public class ShipFactory {
 			default:
 				throw new IllegalArgumentException(trajectory+"not accepted");
 		}
-		FrontApplication.frontImage.addImages(shipName);
-		
 		Bitmap img = FrontApplication.frontImage.getImage(shipName);
+		
 		Body body=Bodys.createBasicRectangle((posX+((float)img.getWidth()/2)), (posY+((float)img.getHeight()/2)), img.getWidth(), img.getHeight(), 0);
 		Filter filter=new Filter();
 		if(shipName.equals("DefaultShipPlayer")){
@@ -133,56 +132,44 @@ public class ShipFactory {
 		EnumShipName enumShipName = EnumShipName.valueOf(shipName);
 		switch (enumShipName){
 		case DefaultShip:
-			ship = new Ship("DefaultShip",body,health,move,new ShootDown());
+			ship = new Ship("DefaultShip",health,body,img,move,new ShootDown());
 			ship.getCurrentWeapon().setInfinityQty();
 			ship.getCurrentWeapon().setGhostShoot(ghostShoot);
 			ghostShoot=(ghostShoot+1)%7;
 			break;
 		case DefaultShipPlayer:
-			ship=  new Ship("DefaultShipPlayer",body,health,move,new ShootDown());
+			ship=  new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
 			ship.getListWeapon().setCurrentWeapon("MissileLauncher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			break;
 		case KamikazeShip:
-			ship = new Ship("KamikazeShip",body,health,move,new DoNotShoot());
+			ship = new Ship("KamikazeShip",health,body,img,move,new DoNotShoot());
 			ship.getCurrentWeapon().addQte(Integer.MIN_VALUE);
 			break;
 		case BatShip:
-			ship = new Ship("BatShip",body,health,move,new BatShipShoot());
+			ship = new Ship("BatShip",health,body,img,move,new BatShipShoot());
 			ship.getListWeapon().addWeapon("FlameThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("FlameThrower");
 			break;
 		case FirstBoss:
-			ship = new FirstBoss(body,health,move,new ShootDown());
+			ship = new FirstBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new FirstBossShoot((FirstBoss) ship));
 			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
-			for(int i=2;i<=7;++i){
-				img=BitmapFactory.getTheImagesFactory().createShipImage(shipName+i);
-				FrontImages.addImages(shipName+i,img);
-			}
 			break;
 		case SecondBoss:
-			ship = new SecondBoss(body,health,move,new ShootDown());
+			ship = new SecondBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new SecondBossShoot((SecondBoss) ship));
 			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
-			for(int i=2;i<=7;++i){
-				img=BitmapFactory.getTheImagesFactory().createShipImage(shipName+i);
-				FrontImages.addImages(shipName+i,img);
-			}
 			break;
 		case ThirdBoss:
-			ship = new ThirdBoss(body,health,move,new ShootDown());
+			ship = new ThirdBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new ThirdBossShoot((ThirdBoss) ship));
 			ship.getListWeapon().addWeapon("MissileLauncher",Integer.MIN_VALUE);
 			ship.getListWeapon().addWeapon("FlameThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("BasicMissile");
-			for(int i=2;i<=5;++i){
-				img=BitmapFactory.getTheImagesFactory().createShipImage(shipName+i);
-				FrontImages.addImages(shipName+i,img);
-			}
 			break;
 		default:
 			throw new IllegalArgumentException(shipName+"not accepted");

@@ -24,7 +24,7 @@ public class ThirdBoss extends Ship{
 	 * @param moveBehaviour How the ship move.
 	 * @param shootBehaviour How the ship shoot.
 	 */
-	public ThirdBoss(Body body, int health, Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
+	public ThirdBoss(int health, Body body,Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
 		super("ThirdBoss",health,body,image,moveBehaviour,shootBehaviour);
 		this.state=1;
 		this.fullHealth=health;
