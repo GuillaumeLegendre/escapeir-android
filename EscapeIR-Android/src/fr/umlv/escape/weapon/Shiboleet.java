@@ -22,8 +22,8 @@ public class Shiboleet extends Bullet {
 	 * @param body body's bullet
 	 * @param playerBullet if it's a bullet launch by player
 	 */
-	public Shiboleet(String name, Body body, boolean playerBullet, Bitmap image) {
-		super(POWER, MAXLOAD, name, body, playerBullet,image);
+	public Shiboleet(String name, Body body, boolean playerBullet, Bitmap img) {
+		super(POWER, MAXLOAD, name, body, playerBullet, img);
 	}
 
 	@Override
