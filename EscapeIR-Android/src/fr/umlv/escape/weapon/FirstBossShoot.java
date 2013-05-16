@@ -7,10 +7,11 @@ import java.util.List;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 
+import android.graphics.Bitmap;
 import android.graphics.Point;
 
 import fr.umlv.escape.Objects;
-import fr.umlv.escape.front.BitmapFactory;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.ship.FirstBoss;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
@@ -82,9 +83,9 @@ public class FirstBossShoot implements Shootable{
 			}
 		}
 		else if(lastState<7){
-			Image newImage=FrontImages.getImage("FirstBoss"+(shipBoss.getState()));
+			Bitmap newImage=FrontImages.getImage("FirstBoss"+(shipBoss.getState()));
 			Ship ship;
-			Image newShipImage;
+			Bitmap newShipImage;
 			PolygonShape dynamicBox=new PolygonShape();
 			switch (lastState){
 			case 1:
