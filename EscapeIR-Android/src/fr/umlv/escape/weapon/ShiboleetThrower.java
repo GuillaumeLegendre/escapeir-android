@@ -1,7 +1,6 @@
 package fr.umlv.escape.weapon;
 
 import android.graphics.Point;
-import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 
 /**
