@@ -3,9 +3,11 @@ package fr.umlv.escape.weapon;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import android.graphics.Bitmap;
 import android.graphics.Point;
 
-import fr.umlv.escape.front.BitmapFactory;
+import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.world.Bodys;
 
@@ -36,22 +38,23 @@ public class BulletsFactory {
 		Body body;
 		Bullet bullet;
 		Bullets currentBullet = Bullets.valueOf(bulletName.toUpperCase());
+		Bitmap img = FrontApplication.frontImage.getImage(bulletName);
 
 		switch(currentBullet){
 		case BASIC_MISSILE : 
-			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
+			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
 			bullet= new BasicMissile(bulletName, body, playerBullet);
 			break;
 		case FIREBALL : 
-			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
+			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
 			bullet= new FireBall(bulletName, body, playerBullet);
 			break;
 		case SHIBOLEET : 
-			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
+			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
 			bullet= new Shiboleet(bulletName, body, playerBullet);
 			break;
 		case XRAY : 
-			body = Bodys.createBasicRectangle(-100, Game.getTheGame().getHeight()/2, img.getWidth(null),  img.getHeight(null), 0);
+			body = Bodys.createBasicRectangle(-100, FrontApplication.HEIGHT/2, img.getWidth(),  img.getHeight(), 0);
 			bullet= new XRay(bulletName, body, playerBullet);
 			body.getFixtureList().setSensor(true);
 			break;
@@ -63,7 +66,7 @@ public class BulletsFactory {
 		filter.maskBits=2;
 		body.getFixtureList().setFilterData(filter);
 
-		DisplayableMonitor.addBullet(bullet);
+		Battlefield.addBullet(bullet);
 		return bullet;
 	}
 
