@@ -18,6 +18,13 @@ public class BulletsFactory {
 	private BulletsFactory(){
 	}
 
+	public enum Bullets {
+		BASIC_MISSILE,
+		FIREBALL,
+		SHIBOLEET,
+		XRAY
+	}
+
 	/**
 	 * @param bulletName kind of bullet to create
 	 * @param startPosition it's the position where the bullet appear
@@ -26,28 +33,24 @@ public class BulletsFactory {
 	 */
 	public Bullet createBullet(String bulletName, Point startPosition, Boolean playerBullet) {
 
-		Image img = FrontImages.getImage(bulletName);
-		if( img == null){
-			img=BitmapFactory.getTheImagesFactory().createBulletImage(bulletName);
-			FrontImages.addImages(bulletName, img);
-		}
-		
 		Body body;
 		Bullet bullet;
-		switch(bulletName){
-		case "BasicMissile" : 
+		Bullets currentBullet = Bullets.valueOf(bulletName.toUpperCase());
+
+		switch(currentBullet){
+		case BASIC_MISSILE : 
 			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
 			bullet= new BasicMissile(bulletName, body, playerBullet);
 			break;
-		case "FireBall" : 
+		case FIREBALL : 
 			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
 			bullet= new FireBall(bulletName, body, playerBullet);
 			break;
-		case "Shiboleet" : 
+		case SHIBOLEET : 
 			body = Bodys.createBasicCircle((float)startPosition.x,(float)startPosition.y, img.getWidth(null), 0);
 			bullet= new Shiboleet(bulletName, body, playerBullet);
 			break;
-		case "XRay" : 
+		case XRAY : 
 			body = Bodys.createBasicRectangle(-100, Game.getTheGame().getHeight()/2, img.getWidth(null),  img.getHeight(null), 0);
 			bullet= new XRay(bulletName, body, playerBullet);
 			body.getFixtureList().setSensor(true);
