@@ -24,7 +24,7 @@ public class FrontImages {
 	 * @param value The image to add
 	 * @return true if the image have been added else false
 	 */
-	public boolean addImages(String key){
+	/*public boolean addImages(String key){
 		if(key==null){
 			throw new IllegalArgumentException();
 		}
@@ -33,7 +33,7 @@ public class FrontImages {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	/**
 	 * Get the {@link Image} associated to the key
