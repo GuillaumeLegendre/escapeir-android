@@ -5,7 +5,9 @@ import org.jbox2d.dynamics.Body;
 import android.graphics.Bitmap;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.move.Movable;
+import fr.umlv.escape.weapon.ListWeapon;
 import fr.umlv.escape.weapon.Shootable;
+import fr.umlv.escape.weapon.Weapon;
 import fr.umlv.escape.world.EscapeWorld;
 
 /**
@@ -17,6 +19,7 @@ public class Ship extends Sprite{
 	private boolean isAlive;
 	private Movable moveBehaviour;
 	private Shootable shootBehaviour;
+	private final ListWeapon weapons;
 	
 
 	/**
@@ -33,7 +36,7 @@ public class Ship extends Sprite{
 		if(health<0){
 			throw new IllegalArgumentException("health can't be negative");
 		}
-		
+		this.weapons = new ListWeapon();
 		this.name=name;
 		this.health=health;
 		this.isAlive=true;
@@ -101,5 +104,45 @@ public class Ship extends Sprite{
 	 */
 	public void move() {
 		this.moveBehaviour.move(this.body);
+	}
+	
+	/**Create a bullet to shoot at the position x and y.
+	 * 
+	 * @param x Position x where to spawn the bullet.
+	 * @param y Position x where to spawn the bullet.
+	 * @return true if the bullet has been created else false.
+	 */
+	public boolean shoot(int x,int y){
+		if(!this.isAlive){
+			return false;
+		}
+		return shootBehaviour.shoot(weapons.getCurrentWeapon(),x,y);
+	}
+	
+	/**
+	 * launch the bullet previously created with the method {@link #shoot(int, int)}. 
+	 */
+	public void fire() {
+		Weapon w = weapons.getCurrentWeapon();
+		shootBehaviour.fire(w);
+		if(w.getBulletQty() <= 0){
+			weapons.setNextWeapon();
+		}
+	}
+	
+	/**
+	 * Return the current weapon of the ship.
+	 * @return The {@link Weapon} of the ship.
+	 */
+	public Weapon getCurrentWeapon() {
+		return this.weapons.getCurrentWeapon();
+	}
+
+	/**
+	 * Return the {@link ListWeapon} of the ship.
+	 * @return The {@link ListWeapon} of the ship.
+	 */
+	public ListWeapon getListWeapon() {
+		return weapons;
 	}
 }

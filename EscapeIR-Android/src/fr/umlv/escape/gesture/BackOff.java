@@ -59,5 +59,4 @@ public class BackOff implements Gesture {
 			playerSprite.setCurrentSprite(PlayerSprites.SpriteType.BASIC_IMAGE);
 		}
 	}
-
 }

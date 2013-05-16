@@ -1,7 +1,6 @@
 package fr.umlv.escape.front;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -12,7 +11,7 @@ import android.graphics.BitmapFactory;
  */
 public class FrontImages {
 	private Resources resources;
-	private final Map<String,Bitmap> imagesMap = new HashMap<String, Bitmap>();
+	private final HashMap<String,Bitmap> imagesMap = new HashMap<String, Bitmap>();
 	
 	public FrontImages(Resources resources)
 	{
@@ -25,7 +24,7 @@ public class FrontImages {
 	 * @param value The image to add
 	 * @return true if the image have been added else false
 	 */
-	public boolean addImages(String key){
+	/*public boolean addImages(String key){
 		if(key==null){
 			throw new IllegalArgumentException();
 		}
@@ -34,7 +33,7 @@ public class FrontImages {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	/**
 	 * Get the {@link Image} associated to the key
@@ -42,6 +41,11 @@ public class FrontImages {
 	 * @return the image associated to the key given
 	 */
 	public Bitmap getImage(String key){
+		if(!imagesMap.containsKey(key)){
+			Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", null));
+			imagesMap.put(key, image);
+			return image;
+		}
 		return imagesMap.get(key);
 	}
 	
