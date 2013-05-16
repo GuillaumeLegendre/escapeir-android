@@ -46,7 +46,7 @@ public class Game {
 	public void initializeGame() throws IOException, IllegalFormatContentFile{	
 		currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
 		
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", height/3, width/2, 99, "StraightLine");
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "StraightLine");
 		player1=new Player("Marc",playerShip,3);
 		/*		//Initialize the player
 		filter.categoryBits=2;
