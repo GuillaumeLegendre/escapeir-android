@@ -14,8 +14,8 @@ public class GameActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		this.game = Game.getTheGame();
 		frontApplication = new FrontApplication(this);
+		this.game = Game.getTheGame(frontApplication);
 		setContentView(frontApplication);
 	}
 	
