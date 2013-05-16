@@ -12,6 +12,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 
 import fr.umlv.escape.bonus.Bonus;
 import fr.umlv.escape.bonus.BonusFactory;
+import fr.umlv.escape.front.BattleField;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.game.Player;
 import fr.umlv.escape.ship.Ship;
@@ -27,13 +28,17 @@ public class CollisionMonitor implements ContactListener{
 	private boolean createBonus;
 	private final Random random = new Random(0);
 	private final static int PROBABILITY_NEW_BONUS = 20;
+	private final BonusFactory bonusFactory;
+	private final BattleField battleField;
 	
 	/**
 	 * Constructor.
 	 */
-	public CollisionMonitor(){
+	public CollisionMonitor(BattleField battleField){
 		EscapeWorld.getTheWorld().setContactListener(this);
 		this.elemToDelete=new ArrayList<Body>();
+		this.bonusFactory = new BonusFactory(battleField);
+		this.battleField = battleField;
 	}
 	
 	/**
@@ -41,17 +46,17 @@ public class CollisionMonitor implements ContactListener{
 	 * and are done in this method which have to be called just after a step.
 	 */
 	public void performPostStepCollision(){		
-		while(iterDeadBody.hasNext()){
-			Body body=iterDeadBody.next();
+		for(int i=0; i<elemToDelete.size();++i){
+			Body body = elemToDelete.get(i);
 			EscapeWorld.getTheWorld().setActive(body, false);
 			if(this.createBonus){
-				Bonus bonus=BonusFactory.getTheBonusFactory().createBonus("WeaponReloader", (int)((body.getPosition().x*EscapeWorld.SCALE)), (int)((body.getPosition().y*EscapeWorld.SCALE)), (int)(Math.random()*(4-1))+1);
+				Bonus bonus=bonusFactory.createBonus("WeaponReloader", (int)((body.getPosition().x*EscapeWorld.SCALE)), (int)((body.getPosition().y*EscapeWorld.SCALE)), (int)(Math.random()*(4-1))+1);
 				bonus.move();
-				DisplayableMonitor.addBonus(bonus);
+				battleField.addBonus(bonus);
 				this.createBonus=false;
 			}
-			iterDeadBody.remove();
 		}
+		elemToDelete.clear();
 	}
 	
 	@Override

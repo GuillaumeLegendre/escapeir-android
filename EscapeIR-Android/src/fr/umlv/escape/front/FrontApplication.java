@@ -1,26 +1,19 @@
 package fr.umlv.escape.front;
 
-import org.jbox2d.dynamics.Body;
-
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import android.widget.Toast;
 import fr.umlv.escape.R;
 import fr.umlv.escape.gesture.GestureDetector;
-import fr.umlv.escape.ship.Ship;
-import fr.umlv.escape.world.Bodys;
 
  public class FrontApplication extends SurfaceView{
 	private SurfaceHolder holder;
 	private GestureDetector gestureDetector;
-	FrontImages frontImage;
+	public static FrontImages frontImage;
 	public static int HEIGHT; 
 	public static int WIDTH; 
 
@@ -43,8 +36,7 @@ import fr.umlv.escape.world.Bodys;
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
 				//HEIGHT = 
-				//frontImage = new FrontImages(getResources()); TODO delete
-				
+				frontImage = new FrontImages(getResources());
 				battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
 				gestureDetector = new GestureDetector();
 				

@@ -30,6 +30,8 @@ public class EscapeWorld {
     public final static int CATEGORY_PLAYER=2;
     public final static int CATEGORY_ENNEMY=4;
     public final static int CATEGORY_BONUS=8;
+    public final static int CATEGORY_BULLET_PLAYER=16;
+    public final static int CATEGORY_BULLET_ENNEMY=32;
     
     private final Object lock = new Object();
 

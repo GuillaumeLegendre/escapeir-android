@@ -3,8 +3,11 @@ package fr.umlv.escape.ship;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import android.graphics.Bitmap;
+
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.move.DownMove;
 import fr.umlv.escape.move.KamikazeMove;
 import fr.umlv.escape.move.LeftDampedMove;
@@ -24,6 +27,7 @@ import fr.umlv.escape.weapon.SecondBossShoot;
 import fr.umlv.escape.weapon.ShootDown;
 import fr.umlv.escape.weapon.ThirdBossShoot;
 import fr.umlv.escape.world.Bodys;
+import fr.umlv.escape.world.EscapeWorld;
 
 /**This class supplies methods to create properly a {@link Ship}.
  */
@@ -44,54 +48,59 @@ public class ShipFactory {
 	 * @param trajectory the name of the move behavior of the ship.
 	 * @return the ship created.
 	 */
-	public Ship createShip(String shipName,int posX, int posY,int health, String trajectory){
+	public Ship createShip(String shipName,int posX, int posY,int health, int trajectoryID){
 		Objects.requireNonNull(shipName);
-		Objects.requireNonNull(trajectory);
 		
 		Movable move;
-		switch (trajectory){
-			case "LeftMove":
+		switch (trajectoryID){
+			case 1: //"LeftMove":
 				move=new LeftMove();
 				break;
-			case "RightMove":
+			case 2: //"RightMove":
 				move=new RightMove();
 				break;
-			case "DownMove":
+			case 3: //"DownMove":
 				move=new DownMove();
 				break;
-			case "UpMove":
+			case 4: //"UpMove":
 				move=new UpMove();
 				break;
-			case "SquareRight":
+			case 5: //"SquareRight":
 				move=new SquareRight();
 				break;
-			case "SquareLeft":
+			case 6: //"SquareLeft":
 				move=new SquareLeft();
 				break;
-			case "StraightLine":
+			case 7: //"StraightLine":
 				move=new UpMove();
 				break;
-			case "LeftDampedMove":
+			case 8: //"LeftDampedMove":
 				move=new LeftDampedMove();
 				break;
-			case "RightDampedMove":
+			case 9: //"RightDampedMove":
 				move=new RightDampedMove();
 				break;
-			case "KamikazeMove":
+			case 10: //"KamikazeMove":
 				move=new KamikazeMove();
 				break;
-			case "LeftRight":
+			case 11: //"LeftRight":
 				move=new LeftRightMove();
 				break;
 			default:
-				throw new IllegalArgumentException(trajectory+"not accepted");
+				throw new IllegalArgumentException(trajectoryID+"not accepted");
 		}
-		Image img=BitmapFactory.getTheImagesFactory().createShipImage(shipName);
-
-		Body body=Bodys.createBasicRectangle((posX+((float)img.getWidth(null)/2)), (posY+((float)img.getHeight(null)/2)), img.getWidth(null), img.getHeight(null), 0);
+		FrontApplication.frontImage.addImages(shipName);
+		
+		Bitmap img = FrontApplication.frontImage.getImage(shipName);
+		Body body=Bodys.createBasicRectangle((posX+((float)img.getWidth()/2)), (posY+((float)img.getHeight()/2)), img.getWidth(), img.getHeight(), 0);
 		Filter filter=new Filter();
-		filter.categoryBits=4;
-		filter.maskBits=10;
+		if(shipName.equals("DefaultShipPlayer")){
+			filter.categoryBits=EscapeWorld.CATEGORY_PLAYER;
+			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY | EscapeWorld.CATEGORY_BULLET_ENNEMY;
+		} else{
+			filter.categoryBits=EscapeWorld.CATEGORY_ENNEMY;
+			filter.maskBits=EscapeWorld.CATEGORY_PLAYER | EscapeWorld.CATEGORY_BULLET_PLAYER;
+		}
 		body.getFixtureList().setFilterData(filter);
 		body.setActive(false);
 		Ship ship;

@@ -2,6 +2,8 @@ package fr.umlv.escape.ship;
 
 import org.jbox2d.dynamics.Body;
 
+import android.graphics.Bitmap;
+
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.Shootable;
 import fr.umlv.escape.world.EscapeWorld;
@@ -22,8 +24,8 @@ public class SecondBoss extends Ship {
 	 * @param moveBehaviour How the ship move.
 	 * @param shootBehaviour How the ship shoot.
 	 */
-	public SecondBoss(Body body, int health, Movable moveBehaviour,Shootable shootBehaviour){
-		super("SecondBoss",body,health,moveBehaviour,shootBehaviour);
+	public SecondBoss(Body body, int health, Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
+		super("SecondBoss",health,body,image,moveBehaviour,shootBehaviour);
 		this.invisible = false;
 		this.lvlInvisible=1;
 	}

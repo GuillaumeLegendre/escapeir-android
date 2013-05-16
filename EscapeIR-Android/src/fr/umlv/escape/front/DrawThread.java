@@ -1,6 +1,8 @@
 package fr.umlv.escape.front;
 
 import java.util.ArrayList;
+
+import fr.umlv.escape.bonus.Bonus;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.weapon.Bullet;
 import android.graphics.Canvas;
@@ -30,18 +32,20 @@ public class DrawThread extends Thread{
 				// TODO Gerer exception
 			}
 			battleField.backgoundScroller.onDrawBackground(canvas);
-			synchronized (battleField.lock) {
+			synchronized (battleField.shipLock) {
 				ArrayList<Ship> listShip = battleField.shipList;
 				for(int i = 0; i < listShip.size(); i++){
 					listShip.get(i).onDrawSprite(canvas);
 				}
-				
+			}
+			synchronized (battleField.bulletLock) {
 				ArrayList<Bullet> listBullet = battleField.bulletList;
 				for(int i = 0; i < listBullet.size(); i++){
 					listBullet.get(i).onDrawSprite(canvas);
 				}
-				
-				ArrayList<Bullet> listBonus = battleField.bonusList;
+			}
+			synchronized (battleField.bonusLock) {
+				ArrayList<Bonus> listBonus = battleField.bonusList;
 				for(int i = 0; i < listBonus.size(); i++){
 					listBonus.get(i).onDrawSprite(canvas);
 				}

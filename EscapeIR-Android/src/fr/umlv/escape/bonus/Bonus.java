@@ -2,45 +2,61 @@ package fr.umlv.escape.bonus;
 
 import org.jbox2d.dynamics.Body;
 
+import android.graphics.Bitmap;
+
+import fr.umlv.escape.Objects;
+import fr.umlv.escape.front.Sprite;
+import fr.umlv.escape.move.DownMove;
+import fr.umlv.escape.move.Movable;
+import fr.umlv.escape.weapon.Weapon;
 import fr.umlv.escape.world.EscapeWorld;
 
-
-/**Interface that all kind of bonus should implements. This interface contains all nesserary methods
- * needed to manage a bonus.
+/**Class that represent a reloader for a given {@link Weapon}.
+ * @Implements {@link Bonus}
  */
-public interface Bonus {
-	
-	/**Return the name of the {@link Bonus}.
-	 * @return the name of the {@link Bonus}.
+public class Bonus extends Sprite{
+	private final String name;
+	private final int quantity;
+	private final Body body;
+	private final String type;
+	private final Movable moveBehaviour;
+
+	/**Constructor.
+	 * @param quantity quantity of ammo that the bonus will reload.
+	 * @param body body that represent the bonus in the {@link EscapeWorld}.
+	 * @param type Type that represents the weapon to reload.
 	 */
-	public String getName();
+	public Bonus(int quantity, Body body,String type, Bitmap img){
+		super(body, img);
+		if(quantity<0){
+			throw new IllegalArgumentException("quantity can't be negative");
+		}
+		Objects.requireNonNull(body);
+		Objects.requireNonNull(type);
+		this.name="WeaponReloader";
+		this.quantity=quantity;
+		this.body=body;
+		this.type=type;
+		this.moveBehaviour=new DownMove();
+	}
+
+	public void move(){
+		moveBehaviour.move(body);
+	}
 	
-	/**Return the type of the {@link Bonus}.
-	 * @return the type of the {@link Bonus}.
-	 */
-	public String getType();
+	public String getType(){
+		return type;
+	}
 	
-	/**Return the quantity of the {@link Bonus}.
-	 * @return the quantity of the {@link Bonus}.
-	 */
-	public int getQuantity();
+	public Body getBody() {
+		return body;
+	}
 	
-	/**Return the x position of the center of the {@link Bonus}.
-	 * @return the x position of the center of the {@link Bonus}.
-	 */
-	public int getPosXCenter();
+	public String getName() {
+		return name;
+	}
 	
-	/**Return the y position of the center of the {@link Bonus}.
-	 * @return the y position of the center of the {@link Bonus}.
-	 */
-	public int getPosYCenter();
-	
-	/**Return the {@link Body} that represent the bonus in the {@link EscapeWorld}.
-	 * @return the {@link Body} that represent the bonus in the {@link EscapeWorld}.
-	 */
-	public Body getBody();
-	
-	/**Method that move the bonus.
-	 */
-	public void move();
+	public int getQuantity() {
+		return quantity;
+	}
 }

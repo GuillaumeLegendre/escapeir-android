@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.front.BattleField;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.world.Bodys;
 import fr.umlv.escape.world.EscapeWorld;
@@ -17,8 +18,8 @@ public class BonusFactory {
 	private final FrontImages frontImages;
 	private final BattleField battleField;
 	
-	public BonusFactory(FrontImages frontImages, BattleField battleField){
-		this.frontImages = frontImages;
+	public BonusFactory(BattleField battleField){
+		this.frontImages = FrontApplication.frontImage;
 		this.battleField = battleField;
 	}
 
@@ -45,28 +46,28 @@ public class BonusFactory {
 				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
-				bonus= new WeaponReloader(50, body,stringType);
+				bonus= new Bonus(50, body,stringType,img);
 				break;
 			case 2:
 				stringType="FlameThrower";
 				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
-				bonus= new WeaponReloader(25, body,stringType);
+				bonus= new Bonus(25, body,stringType,img);
 				break;
 			case 3:
 				stringType="ShiboleetThrower";
 				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
-				bonus= new WeaponReloader(10, body,stringType);
+				bonus= new Bonus(10, body,stringType,img);
 				break;
 			case 4:
 				stringType="LaserBeam";
 				frontImages.addImages(bonusName+stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
-				bonus= new WeaponReloader(10, body,stringType);
+				bonus= new Bonus(10, body,stringType,img);
 				break;
 			default : throw new IllegalArgumentException(type+" isn't a legal type");
 			}

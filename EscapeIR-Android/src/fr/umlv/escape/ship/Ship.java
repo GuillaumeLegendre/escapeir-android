@@ -3,8 +3,6 @@ package fr.umlv.escape.ship;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.Shootable;
@@ -30,7 +28,7 @@ public class Ship extends Sprite{
 	 * @param moveBehaviour How the ship move.
 	 * @param shootBehaviour How the ship shoot.
 	 */
-	public Ship(String name, int health, Body body, Bitmap image){
+	public Ship(String name, int health, Body body, Bitmap image, Movable moveBehaviour, Shootable shootBehaviour){
 		super(body, image);
 		if(health<0){
 			throw new IllegalArgumentException("health can't be negative");
@@ -39,6 +37,8 @@ public class Ship extends Sprite{
 		this.name=name;
 		this.health=health;
 		this.isAlive=true;
+		this.moveBehaviour = moveBehaviour;
+		this.shootBehaviour = shootBehaviour;
 	}
 	
 	/**
@@ -102,27 +102,6 @@ public class Ship extends Sprite{
 	 */
 	public String getBasicName() {
 		return name;
-	}
-	
-	/**
-	 * Return the x position of the center of the ship.
-	 * @return The x position of the center of the ship.
-	 */
-	public int getPosXCenter() {
-		return (int)(body.getPosition().x*EscapeWorld.SCALE);
-	}
-
-	/**
-	 * Return the y position of the center of the ship.
-	 * @return The y position of the center of the ship.
-	 */
-	public int getPosYCenter() {
-		return (int)(body.getPosition().y*EscapeWorld.SCALE);
-	}
-	
-	
-	public void onDrawSprite(Canvas canvas){
-		canvas.drawBitmap(image, getPosXCenter() - image.getWidth()/2 , getPosYCenter() - image.getHeight()/2, new Paint());
 	}
 	
 	/**
