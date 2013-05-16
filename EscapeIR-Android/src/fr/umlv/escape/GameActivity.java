@@ -15,7 +15,8 @@ public class GameActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		
 		frontApplication = new FrontApplication(this);
-		this.game = Game.getTheGame(frontApplication);
+		this.game = Game.getTheGame();
+		this.game.setFrontApplication(frontApplication);
 		setContentView(frontApplication);
 	}
 	
