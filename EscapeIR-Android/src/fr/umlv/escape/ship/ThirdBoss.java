@@ -36,18 +36,11 @@ public class ThirdBoss extends Ship{
 		if(this.getHealth()<=0){
 			this.setHealth(fullHealth);
 			this.state++;
+			//TODO changer image ici
 		}
 		if(state>6){
 			state=6;
 		}
-	}
-
-	@Override
-	public String getName(){		
-		if(state>1){
-			return super.getName()+state;
-		}
-		return super.getName();
 	}
 
 	/**

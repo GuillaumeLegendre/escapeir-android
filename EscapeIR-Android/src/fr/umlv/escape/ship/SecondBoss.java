@@ -29,15 +29,7 @@ public class SecondBoss extends Ship {
 		this.invisible = false;
 		this.lvlInvisible=1;
 	}
-	
-	@Override
-	public String getName(){
-		if(lvlInvisible>1){
-			return super.getName() + lvlInvisible;
-		}
-		return super.getName();
-	}
-	
+
 	/**
 	 * get the current level of invisibility.
 	 * @return The current level of invisibility.
@@ -52,6 +44,7 @@ public class SecondBoss extends Ship {
 	public void incLvlInvisible() {
 		if(this.lvlInvisible<7){
 			this.lvlInvisible++;
+			//TODO changer image
 		}
 		if(lvlInvisible==7){
 			this.invisible=true;
@@ -64,6 +57,7 @@ public class SecondBoss extends Ship {
 	public void decLvlInvisible() {
 		if(this.lvlInvisible>1){
 			this.lvlInvisible--;
+			//TODO changer image
 		}
 		if(lvlInvisible==1){
 			this.invisible=false;

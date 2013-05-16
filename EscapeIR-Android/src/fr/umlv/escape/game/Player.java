@@ -39,4 +39,51 @@ public class Player {
 		}*/
 		//TODO remetre
 	}
+	
+	public Ship getShip() {
+		return ship;
+	}
+
+	public void setShip(Ship ship) {
+		this.ship = ship;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * Return the current score of the player
+	 * @return The current score of the player
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * Add some points to the current score of the player
+	 * @param score Number of points to add to the current score
+	 */
+	public void addScore(int score) {
+		this.score = this.score + score;
+	}
+	
+	/**
+	 * Get the current number of life of the player.
+	 * @return The current number of life of the player.
+	 */
+	public int getLife() {
+		return life;
+	}
+	
+	/**
+	 * Set the current number of life of the player.
+	 * @param life the new number of life of the player.
+	 */
+	public void setLife(int life) {
+		if(life<0){
+			this.life=0;
+		}
+		this.life = life;
+	}
 }

@@ -11,7 +11,7 @@ import android.graphics.Paint;
 public class Sprite {
 	public final Body body; //FIXME que faire du public car utilisé dans tous les packages public ou getter?
 	public Bitmap image;
-	
+
 	/* ou passer parametre directement pour cr�er le body ici*/
 	public Sprite(Body body, Bitmap image){
 		this.body = body;
@@ -36,5 +36,17 @@ public class Sprite {
 	 */
 	public int getPosYCenter() {
 		return (int)(body.getPosition().y*EscapeWorld.SCALE);
+	}
+	
+	public Bitmap getImage() {
+		return image;
+	}
+
+	public void setImage(Bitmap image) {
+		this.image = image;
+	}
+
+	public Body getBody() {
+		return body;
 	}
 }
