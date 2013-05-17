@@ -7,14 +7,13 @@ import android.graphics.Point;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.ship.Ship;
 
-public class LeftCircle implements Gesture{
+public class RightCircle implements Gesture{
 	private final int MARGIN_ERROR = 40;		// margin error for the back off gesture
 	private final int MIN_NUMBER_POINT = 3;
 
 	@Override
 	public boolean isRecognized(ArrayList<Point> pointList) {
-		
-		//Verify if it is on left direction
+		//Verify if it is on right direction
 		if(pointList.size()<MIN_NUMBER_POINT){
 			return false;
 		}
@@ -24,7 +23,7 @@ public class LeftCircle implements Gesture{
 		for(i=0;i<pointList.size() && i<10;++i){
 			int tmp=pointList.get(i).x;
 
-			if(previousX<tmp){
+			if(previousX>tmp){
 				return false;
 			}
 			previousX=tmp;
@@ -34,7 +33,6 @@ public class LeftCircle implements Gesture{
 		}
 		
 		//Verify if it is a circle
-
 		Point tmp=pointList.get(0);
 		int radius;
 		int minX=tmp.x;
@@ -98,7 +96,7 @@ public class LeftCircle implements Gesture{
 	@Override
 	public void apply(Ship ship) {
 		if(ship.getCurrentWeapon().getLoadingBullet() == null){
-			ship.setImage(FrontApplication.frontImage.getImage("default_ship_player_vl1"));
+			ship.setImage(FrontApplication.frontImage.getImage("default_ship_player_vr1"));
 		}
 	}
 }
