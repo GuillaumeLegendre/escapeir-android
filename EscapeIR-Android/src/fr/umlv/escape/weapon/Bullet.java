@@ -4,14 +4,16 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.front.Sprite;
+import fr.umlv.escape.front.SpriteBullet;
 import fr.umlv.escape.move.Movable;
 
 /**
  * Represent a Bullet
  */
-public abstract class Bullet extends Sprite {
+public abstract class Bullet extends SpriteBullet {
 	private final int power;
 	private int currentLoad;
 	private final int maxLoad;
@@ -126,5 +128,10 @@ public abstract class Bullet extends Sprite {
 		}
 		return name;
 	}
-
+	
+	@Override
+	public void onDrawSprite(Canvas canvas) {
+		this.setCurrentName(this.name);
+		super.onDrawSprite(canvas);
+	}
 }

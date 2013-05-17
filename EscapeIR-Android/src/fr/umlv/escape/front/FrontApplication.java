@@ -8,6 +8,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import fr.umlv.escape.R;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.gesture.GestureDetector;
 
  public class FrontApplication extends SurfaceView{
@@ -41,7 +42,7 @@ import fr.umlv.escape.gesture.GestureDetector;
 				frontImage = new FrontImages(getResources());
 				battleField.HEIGHT = getHeight();
 				battleField.WIDTH = getWidth();
-				gestureDetector = new GestureDetector();
+				gestureDetector = new GestureDetector(Game.getTheGame().getPlayer1().getShip());
 				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
