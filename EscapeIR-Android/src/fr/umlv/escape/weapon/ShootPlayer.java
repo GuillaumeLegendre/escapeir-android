@@ -54,7 +54,7 @@ public class ShootPlayer implements Shootable{
 		
 		Bullet b = weapon.getLoadingBullet();
 		if(b != null){
-			b.fire(gestureDetector.);
+			b.fire(gestureDetector.getLastForce());
 			weapon.setLoadingBullet(null);
 		}
 	}
