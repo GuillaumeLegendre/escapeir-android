@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 
+import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.game.Game;
+import fr.umlv.escape.game.Player;
 import fr.umlv.escape.gesture.GestureDetector.GestureType;
+import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.world.EscapeWorld;
 
 import android.graphics.Point;
@@ -51,12 +56,11 @@ public class BackOff implements Gesture {
 		return false;
 	}
 
-
 	@Override
-	public void apply() {
+	public void apply(Ship playerShip) {
 		if(playerShip.getCurrentWeapon().getLoadingBullet() == null){
 			playerShip.move();
-			playerSprite.setCurrentSprite(PlayerSprites.SpriteType.BASIC_IMAGE);
+			playerShip.setImage(FrontApplication.frontImage.getImage("default_ship_player"));
 		}
 	}
 }

@@ -6,22 +6,23 @@ import android.graphics.Point;
 
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.gesture.Gesture;
+import fr.umlv.escape.gesture.GestureDetector;
 
 /**
  * Class that represent the shoot behavior of the {@link Player}.
  * @implements {@link Shootable}.
  */
 public class ShootPlayer implements Shootable{
-	private final Gesture gesture;
+	private final GestureDetector gestureDetector;
 	
 	/**
 	 * Constructor
 	 * @param gesture {@link Gesture} used by the {@link Player}.
 	 */
-	public ShootPlayer(Gesture gesture) {
-		Objects.requireNonNull(gesture);
+	public ShootPlayer(GestureDetector gestureDetector) {
+		Objects.requireNonNull(gestureDetector);
 		
-		this.gesture=gesture;
+		this.gestureDetector=gestureDetector;
 	}
 	
 	private boolean canShoot(Weapon weapon){

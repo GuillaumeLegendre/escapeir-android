@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.jbox2d.common.Vec2;
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.world.EscapeWorld;
 
 /** Static class that allow to detect gestures and calculate forces that they represent
@@ -14,6 +15,7 @@ import fr.umlv.escape.world.EscapeWorld;
 public class GestureDetector {
 	private final ArrayList<Point> pointList;
 	private final ArrayList<Gesture> gestureList;
+	private final Ship playerShip;
 	
 	/**
 	 * Enum that represent a gesture.
@@ -57,9 +59,10 @@ public class GestureDetector {
 	/**
 	 * Constructor.
 	 */
-	public GestureDetector(){
+	public GestureDetector(Ship playerShip){
 		this.pointList=new ArrayList<Point>();
 		this.gestureList=new ArrayList<Gesture>();
+		this.playerShip = playerShip;
 	}
 	
 	/** Detect if it is a left circle gesture. It uses the firsts points to determinate the
@@ -505,13 +508,13 @@ public class GestureDetector {
 		for(int i = 0; i < size; i++){
 			Gesture g = gestureList.get(i);
 			if(g.isRecognized(pointList)){
-				g.apply();
+				g.apply(this.playerShip);
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Add a point to the gesture detector. When the method {@link #detectGesture()} will be called
 	 * it will uses all the point added to detect a gesture.
