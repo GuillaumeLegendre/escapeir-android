@@ -14,8 +14,11 @@ public class Sprite {
 
 	/* ou passer parametre directement pour cr�er le body ici*/
 	public Sprite(Body body, Bitmap image){
+		System.out.println("TEST2");
 		this.body = body;
+		System.out.println("TEST3");
 		this.image = image;
+		System.out.println("TEST4");
 	}
 	
 	public void onDrawSprite(Canvas canvas){
