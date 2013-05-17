@@ -98,7 +98,9 @@ public class BattleField {
 		this.bfCleaner = new BattleFieldCleaner();
 		
 		//Creating the bounds for the player
-		boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),null);	//wall bot
+		Bitmap image = FrontApplication.frontImage.getImage("default_ship");
+		System.out.println(image);
+		boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),image);	//wall bot
 		boundPlayer[1]= new Sprite(Bodys.createBasicRectangle(0, 0, width, 1,2),null);		//wall top
 		boundPlayer[2]= new Sprite(Bodys.createBasicRectangle(0, 0, 1, height,2),null);		//wall left
 		boundPlayer[3]= new Sprite(Bodys.createBasicRectangle(width, 0, 1, height,2),null);	//wall right

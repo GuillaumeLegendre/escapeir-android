@@ -22,8 +22,9 @@ import fr.umlv.escape.gesture.GestureDetector;
 	public FrontApplication(Context context) {
 		super(context);
 		this.holder = getHolder();
-		callback();
+		frontImage = new FrontImages(getResources());
 		this.battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+		callback();
 	}
 
 	private void callback(){    	  
@@ -39,7 +40,6 @@ import fr.umlv.escape.gesture.GestureDetector;
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
 				//HEIGHT = 
-				frontImage = new FrontImages(getResources());
 				battleField.HEIGHT = getHeight();
 				battleField.WIDTH = getWidth();
 				gestureDetector = new GestureDetector(Game.getTheGame().getPlayer1().getShip());
