@@ -46,18 +46,8 @@ public class Game {
 	public void initializeGame() throws IOException, IllegalFormatContentFile{	
 		currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
 		
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "StraightLine");
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
 		player1=new Player("Marc",playerShip,3);
-		/*		//Initialize the player
-		filter.categoryBits=2;
-		filter.maskBits=53;
-		this.player1.getShip().setMoveBehaviour(new PlayerMove());
-		this.player1.getShip().setShootBehaviour(new ShootPlayer());
-		this.player1.getShip().getBody().setActive(true);
-		this.player1.getShip().getBody().getFixtureList().setSensor(false);
-		this.player1.getShip().getBody().getFixtureList().setFilterData(filter);
-		this.player1.getShip().getBody().setLinearDamping(3);
-		isValideLevelState=true;*/
 	}
 
 

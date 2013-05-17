@@ -14,6 +14,7 @@ import fr.umlv.escape.move.LeftDampedMove;
 import fr.umlv.escape.move.LeftMove;
 import fr.umlv.escape.move.LeftRightMove;
 import fr.umlv.escape.move.Movable;
+import fr.umlv.escape.move.PlayerMove;
 import fr.umlv.escape.move.RightDampedMove;
 import fr.umlv.escape.move.RightMove;
 import fr.umlv.escape.move.SquareLeft;
@@ -39,6 +40,7 @@ public class ShipFactory {
 	}
 
 	private enum EnumTrajectory {
+		PlayerMove,
 		LeftMove,
 		RightMove,
 		DownMove,
@@ -78,6 +80,9 @@ public class ShipFactory {
 		Movable move;
 		EnumTrajectory enumTrajectory = EnumTrajectory.valueOf(trajectory);
 		switch (enumTrajectory){
+			case PlayerMove:
+				move=new PlayerMove();
+				break;
 			case LeftMove:
 				move=new LeftMove();
 				break;
@@ -121,12 +126,14 @@ public class ShipFactory {
 		if(shipName.equals("DefaultShipPlayer")){
 			filter.categoryBits=EscapeWorld.CATEGORY_PLAYER;
 			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY | EscapeWorld.CATEGORY_BULLET_ENNEMY;
+			body.setLinearDamping(3);
+			
 		} else{
 			filter.categoryBits=EscapeWorld.CATEGORY_ENNEMY;
 			filter.maskBits=EscapeWorld.CATEGORY_PLAYER | EscapeWorld.CATEGORY_BULLET_PLAYER;
 		}
 		body.getFixtureList().setFilterData(filter);
-		body.setActive(false);
+		body.setActive(true);
 		Ship ship;
 		
 		EnumShipName enumShipName = EnumShipName.valueOf(shipName);
