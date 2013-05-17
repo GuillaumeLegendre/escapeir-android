@@ -2,7 +2,6 @@ package fr.umlv.escape.weapon;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -11,7 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 
 import fr.umlv.escape.Objects;
-import fr.umlv.escape.front.FrontImages;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.ship.FirstBoss;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
@@ -83,40 +82,36 @@ public class FirstBossShoot implements Shootable{
 			}
 		}
 		else if(lastState<7){
-			Bitmap newImage=FrontImages.getImage("FirstBoss"+(shipBoss.getState()));
+			Bitmap newImage=FrontApplication.frontImage.getImage("FirstBoss"+(shipBoss.getState()));
 			Ship ship;
 			Bitmap newShipImage;
 			PolygonShape dynamicBox=new PolygonShape();
 			switch (lastState){
 			case 1:
-				FrontImages.addImages("DefaultShip", BitmapFactory.getTheImagesFactory().createShipImage("DefaultShip"));
-				FrontImages.addImages("BatShip", BitmapFactory.getTheImagesFactory().createShipImage("BatShip"));
-				FrontImages.addImages("KamikazeShip", BitmapFactory.getTheImagesFactory().createShipImage("KamikazeShip"));
-				
-				newShipImage=FrontImages.getImage("DefaultShip");
-				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()+newShipImage.getWidth(null), shipBoss.getPosYCenter(), 50, "SquareRight");
+				newShipImage=FrontApplication.frontImage.getImage("DefaultShip");
+				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
 				break;
 			case 2:
-				newShipImage=FrontImages.getImage("DefaultShip");
-				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()-newShipImage.getWidth(null), shipBoss.getPosYCenter(), 50, "SquareLeft");
+				newShipImage=FrontApplication.frontImage.getImage("DefaultShip");
+				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
 				break;
 			case 3:
-				newShipImage=FrontImages.getImage("BatShip");
-				ship=ShipFactory.getTheShipFactory().createShip("BatShip", shipBoss.getPosXCenter()+newShipImage.getWidth(null), shipBoss.getPosYCenter(), 50, "SquareRight");
+				newShipImage=FrontApplication.frontImage.getImage("BatShip");
+				ship=ShipFactory.getTheShipFactory().createShip("BatShip", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
 				break;
 			case 4:
-				newShipImage=FrontImages.getImage("BatShip");
-				ship=ShipFactory.getTheShipFactory().createShip("BatShip", shipBoss.getPosXCenter()-newShipImage.getWidth(null), shipBoss.getPosYCenter(), 50, "SquareLeft");
+				newShipImage=FrontApplication.frontImage.getImage("BatShip");
+				ship=ShipFactory.getTheShipFactory().createShip("BatShip", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
 				break;
 			case 5:
 			case 6:
-				newShipImage=FrontImages.getImage("KamikazeShip");
-				ship=ShipFactory.getTheShipFactory().createShip("KamikazeShip", shipBoss.getPosXCenter()+newShipImage.getWidth(null), shipBoss.getPosYCenter(), 50, "KamikazeMove");
+				newShipImage=FrontApplication.frontImage.getImage("KamikazeShip");
+				ship=ShipFactory.getTheShipFactory().createShip("KamikazeShip", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "KamikazeMove");
 				break;
 			default:
 				throw new AssertionError();
 			}
-			dynamicBox.setAsBox(((newImage.getWidth(null))/EscapeWorld.SCALE)/2, ((newImage.getHeight(null))/EscapeWorld.SCALE)/2);
+			dynamicBox.setAsBox(((newImage.getWidth())/EscapeWorld.SCALE)/2, ((newImage.getHeight())/EscapeWorld.SCALE)/2);
 			shipBoss.getBody().getFixtureList().m_shape=dynamicBox;
 			EscapeWorld.getTheWorld().setActive(ship.getBody(),true);
 			shipCreated.add(ship);
