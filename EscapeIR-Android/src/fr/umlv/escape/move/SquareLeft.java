@@ -52,4 +52,9 @@ public class SquareLeft implements Movable{
 		body.setLinearVelocity(v2);
 		nbCall=(nbCall+1)%4;
 	}
+	
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
+	}
 }

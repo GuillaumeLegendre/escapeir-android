@@ -9,16 +9,21 @@ import fr.umlv.escape.Objects;
  * @implements {@link Movable}
  */
 public class LeftDampedMove implements Movable{
-		private boolean hasBeenCalled=false;
-		@Override
-		public void move(Body body) {
-			Objects.requireNonNull(body);
+	private boolean hasBeenCalled=false;
+	@Override
+	public void move(Body body) {
+		Objects.requireNonNull(body);
 
-			if(!hasBeenCalled){
-				Vec2 v2 =new Vec2(-4.0f, 0.0f);
-				body.setLinearVelocity(v2);
-				body.setLinearDamping(0.9f);
-				hasBeenCalled=true;
-			}
+		if(!hasBeenCalled){
+			Vec2 v2 =new Vec2(-4.0f, 0.0f);
+			body.setLinearVelocity(v2);
+			body.setLinearDamping(0.9f);
+			hasBeenCalled=true;
 		}
 	}
+	
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
+	}
+}

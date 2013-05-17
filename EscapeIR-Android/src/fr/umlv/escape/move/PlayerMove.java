@@ -5,19 +5,20 @@ import org.jbox2d.dynamics.Body;
 
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.gesture.Gesture;
+import fr.umlv.escape.gesture.GestureDetector;
 
 /**
  * This class represent player move.
  * @implements {@link Movable}
  */
 public class PlayerMove implements Movable {
-	private Gesture gesture;
+	private GestureDetector gesture;
 	
 	/**
 	 * Constructor.
 	 * @param gesture {@link Gesture} that manage the player interactions.
 	 */
-	public PlayerMove(Gesture gesture){
+	public PlayerMove(GestureDetector gesture){
 		this.gesture=gesture;
 	}
 	
@@ -31,5 +32,10 @@ public class PlayerMove implements Movable {
 		Vec2 vec=gesture.getLastForce();
 		vec.set(vec.x*2, vec.y*2);
 		body.setLinearVelocity(vec);
+	}
+	
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
 	}
 }

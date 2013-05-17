@@ -22,4 +22,9 @@ public class UpMove implements Movable{
 			hasBeenCalled=true;
 		}
 	}
+	
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
+	}
 }

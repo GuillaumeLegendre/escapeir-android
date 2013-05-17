@@ -12,10 +12,15 @@ public class XRayMove implements Movable {
 	@Override
 	public void move(Body body) {
 		Objects.requireNonNull(body);
-		
+
 		if(body.getLinearVelocity().x==0){
 			Vec2 v2 =new Vec2(4.0f, 0.0f);
 			body.setLinearVelocity(v2);
 		}
+	}
+
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
 	}
 }

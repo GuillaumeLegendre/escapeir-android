@@ -1,5 +1,6 @@
 package fr.umlv.escape.ship;
 
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
@@ -104,6 +105,17 @@ public class Ship extends Sprite{
 	 */
 	public void move() {
 		this.moveBehaviour.move(this.body);
+	}
+	
+	public void move(Vec2 force) {
+		if(force == null ||
+			(force.x == 0) &&
+			(force.y == 0)){
+			this.move();
+		}
+		else{
+			this.moveBehaviour.move(this.body, force);
+		}
 	}
 	
 	/**Create a bullet to shoot at the position x and y.

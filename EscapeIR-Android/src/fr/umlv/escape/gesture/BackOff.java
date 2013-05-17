@@ -27,19 +27,19 @@ public class BackOff implements Gesture {
 	 */
 	@Override
 	public boolean isRecognized(ArrayList<Point> pointList) {
-		Iterator<Point> iterPoint=pointList.iterator();
 		Point firstPoint;
 		Point previous;
 		
-		if(!iterPoint.hasNext()){
+		if(pointList.size()<MIN_NUMBER_POINT){
 			return false;
 		}
-		previous=iterPoint.next();
+	
+		previous=pointList.get(0);
 		firstPoint=previous;
-		int numOfPoint=1;
+
 		Point tmp;
-		while(iterPoint.hasNext()){
-			tmp=iterPoint.next();
+		for(int i=1; i<pointList.size();++i){
+			tmp=pointList.get(i);
 
 			if(previous.y > tmp.y 				    ||
 			   tmp.x<(firstPoint.x-(MARGIN_ERROR))	||
@@ -47,19 +47,16 @@ public class BackOff implements Gesture {
 				return false;
 			}
 			previous=tmp;
-			numOfPoint++;
 		}
-		if(numOfPoint > MIN_NUMBER_POINT){
-			force.set(0, (previous.y-firstPoint.y)/EscapeWorld.SCALE);
-			return true;
-		}
-		return false;
+
+		force.set(0, (previous.y-firstPoint.y)/EscapeWorld.SCALE);
+		return true;
 	}
 
 	@Override
 	public void apply(Ship playerShip) {
 		if(playerShip.getCurrentWeapon().getLoadingBullet() == null){
-			playerShip.move();
+			playerShip.move(force);
 			playerShip.setImage(FrontApplication.frontImage.getImage("default_ship_player"));
 		}
 	}

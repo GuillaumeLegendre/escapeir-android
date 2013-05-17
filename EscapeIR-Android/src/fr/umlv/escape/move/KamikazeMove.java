@@ -25,4 +25,9 @@ public class KamikazeMove implements Movable{
 		}
 		body.setLinearVelocity(v2);
 	}
+	
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
+	}
 }

@@ -31,4 +31,9 @@ public class StraightLine implements Movable {
 	public String toString(){
 		return "StraightLine";
 	}
+	
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
+	}
 }

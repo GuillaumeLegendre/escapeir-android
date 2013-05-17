@@ -8,14 +8,19 @@ import org.jbox2d.dynamics.Body;
  * @implements {@link Movable}
  */
 public class RightDampedMove implements Movable{
-		private boolean hasBeenCalled=false;
-		@Override
-		public void move(Body body) {
-			if(!hasBeenCalled){
-				Vec2 v2 =new Vec2(4.0f, 0.0f);
-				body.setLinearVelocity(v2);
-				body.setLinearDamping(0.9f);
-				hasBeenCalled=true;
-			}
+	private boolean hasBeenCalled=false;
+	@Override
+	public void move(Body body) {
+		if(!hasBeenCalled){
+			Vec2 v2 =new Vec2(4.0f, 0.0f);
+			body.setLinearVelocity(v2);
+			body.setLinearDamping(0.9f);
+			hasBeenCalled=true;
 		}
 	}
+
+	@Override
+	public void move(Body body, Vec2 force) {
+		this.move(body);
+	}
+}

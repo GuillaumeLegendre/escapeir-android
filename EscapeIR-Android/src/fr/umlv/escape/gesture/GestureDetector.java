@@ -16,7 +16,8 @@ public class GestureDetector {
 	private final ArrayList<Point> pointList;
 	private final ArrayList<Gesture> gestureList;
 	private final Ship playerShip;
-	
+	Vec2 lastForce;
+
 	/**
 	 * Enum that represent a gesture.
 	 */
@@ -27,14 +28,7 @@ public class GestureDetector {
 		/**Bad gesture detected.
 		 */
 		NOT_GESTURE,
-		/**Back off detected.
-		 */
-		BACK_OFF,
-		/**Left diagonal detected.
-		 */
-		LEFT_DIAG,
-		/**Right diagonal detected.
-		 */
+	
 		RIGHT_DIAG,
 		/**Left circle detected.
 		 */
@@ -545,5 +539,11 @@ public class GestureDetector {
 	 */
 	public void clear(){
 		this.pointList.clear();
+		this.lastForce.x = 0;
+		this.lastForce.y = 0;
+	}
+	
+	public Vec2 getLastForce() {
+		return lastForce;
 	}
 }
