@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
 import fr.umlv.escape.front.Sprite;
+import fr.umlv.escape.front.SpriteShip;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.ListWeapon;
 import fr.umlv.escape.weapon.Shootable;
@@ -14,7 +15,7 @@ import fr.umlv.escape.world.EscapeWorld;
 /**
  * Abstract class that represent a ship in the Escape Game
  */
-public class Ship extends Sprite{
+public class Ship extends SpriteShip{
 	private final String name;
 	public int health;
 	private boolean isAlive;
@@ -104,7 +105,7 @@ public class Ship extends Sprite{
 	 * Method that move the ship depending the last {@link Movable} set.
 	 */
 	public void move() {
-		this.moveBehaviour.move(this.body);
+		this.moveBehaviour.move(body);
 	}
 	
 	public void move(Vec2 force) {
