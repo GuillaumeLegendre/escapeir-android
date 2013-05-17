@@ -1,11 +1,13 @@
 package fr.umlv.escape.front;
 
-import java.awt.Image;
+import org.jbox2d.dynamics.Body;
+
+import android.graphics.Bitmap;
 
 /**
  * Class that an explosion sprite
  */
-public class SpriteAnimation implements Sprite{
+public class SpriteAnimation extends Sprite{
 	private int currentImage;
 	private long lastImageChange;
 	private final int speed;
@@ -19,7 +21,8 @@ public class SpriteAnimation implements Sprite{
 	 * @param x the position x where the explosion is spawn
 	 * @param y the position y where the explosion is spawn
 	 */
-	public SpriteAnimation(int speed, int x, int y){
+	public SpriteAnimation(int speed, int x, int y, Body body, Bitmap image){
+		super(body, image);
 		if(speed<0){
 			throw new IllegalArgumentException("speed cannot be negative");
 		}
@@ -30,19 +33,8 @@ public class SpriteAnimation implements Sprite{
 		this.x=x;
 		this.y=y;
 	}
-	
-	/**
-	 * Load all images that are needed to the sprites. This method has to be called before using this class.
-	 */
-	public static void loadImagesSprites() {
-		for(int i=1;i<=12;++i){
-			Image image=ImagesFactory.getTheImagesFactory().createShipImage("Explosion"+i);
-			FrontImages.addImages("Explosion"+i, image);
-		}
-	}
 
-	@Override
-	public Image getNextImage() {
+	public Bitmap getNextImage() {
 		String imageName = "Explosion"+currentImage;
 		long currentTime=System.currentTimeMillis();
 		
@@ -64,7 +56,7 @@ public class SpriteAnimation implements Sprite{
 				return null;
 			}
 		}
-		return FrontImages.getImage(imageName);
+		return FrontApplication.frontImage.getImage(imageName);
 	}
 	
 	/**
