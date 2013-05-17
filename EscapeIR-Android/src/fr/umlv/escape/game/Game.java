@@ -28,12 +28,11 @@ public class Game {
 	private static Game TheGame;
 	Player player1;
 	private FrontApplication frontApplication;
-	private final CollisionMonitor collisionMonitor;
+	private CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier
-		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.currentNbLv=1;
 		this.escapeWorld = EscapeWorld.getTheWorld();
 	}
@@ -43,9 +42,10 @@ public class Game {
 	 * @throws IOException
 	 * @throws IllegalFormatContentFile
 	 */
-	public void initializeGame() throws IOException, IllegalFormatContentFile{	
+	public void initializeGame(FrontApplication frontAplication) throws IOException, IllegalFormatContentFile{	
 		currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
-		
+		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
+		this.frontApplication = frontAplication;
 		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
 		player1=new Player("Marc",playerShip,3);
 	}

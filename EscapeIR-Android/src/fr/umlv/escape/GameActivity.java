@@ -1,5 +1,8 @@
 package fr.umlv.escape;
 
+import java.io.IOException;
+
+import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import android.app.Activity;
@@ -17,7 +20,17 @@ public class GameActivity extends Activity{
 		frontApplication = new FrontApplication(this);
 		this.game = Game.getTheGame();
 		this.game.setFrontApplication(frontApplication);
-		setContentView(frontApplication);
+		try {
+			this.game.initializeGame(frontApplication);
+			this.game.startGame();
+			setContentView(frontApplication);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalFormatContentFile e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 	
 	/**
