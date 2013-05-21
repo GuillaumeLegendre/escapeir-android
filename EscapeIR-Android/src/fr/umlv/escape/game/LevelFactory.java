@@ -2,6 +2,8 @@ package fr.umlv.escape.game;
 
 import java.io.IOException;
 
+import android.content.Context;
+
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.file.ParseFile;
 
@@ -21,9 +23,9 @@ public class LevelFactory {
 	 * @throws IOException
 	 * @throws IllegalFormatContentFile
 	 */
-	public Level createLevel(String levelName) throws IOException, IllegalFormatContentFile{
+	public Level createLevel(Context context, String levelName) throws IOException, IllegalFormatContentFile{
 		Level newLevel = new Level(levelName);
-		this.parseLevel=new ParseFile("Levels/"+levelName);
+		this.parseLevel=new ParseFile(context, "levels/"+levelName);
 		
 		//Get all the wave
 		String waveName=this.parseLevel.getNextLine();
@@ -32,7 +34,7 @@ public class LevelFactory {
 			throw new IllegalFormatContentFile("The file "+parseLevel.getFileName()+" is corrupted");
 		}
 		while(waveName!=null){
-			if(!newLevel.addWaveList(WaveFactory.getTheWaveFactory().createWave(waveName))){
+			if(!newLevel.addWaveList(WaveFactory.getTheWaveFactory().createWave(context, waveName))){
 				throw new IllegalFormatContentFile("The file "+parseLevel.getFileName()+" is corrupted");
 			}
 			try{

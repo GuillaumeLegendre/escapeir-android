@@ -7,6 +7,8 @@ import java.util.Iterator;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import android.content.Context;
+
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.gesture.Gesture;
@@ -43,7 +45,7 @@ public class Game {
 	 * @throws IllegalFormatContentFile
 	 */
 	public void initializeGame(FrontApplication frontAplication) throws IOException, IllegalFormatContentFile{	
-		currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
+		//currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.frontApplication = frontAplication;
 		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
@@ -57,7 +59,7 @@ public class Game {
 	 * @throws IOException
 	 * @throws IllegalFormatContentFile
 	 */
-	public void startGame() throws IOException, IllegalFormatContentFile{
+	public void startGame(Context context) throws IOException, IllegalFormatContentFile{
 		long begin;
 		long elapsedWave;
 		long elapsedStep;
@@ -66,7 +68,7 @@ public class Game {
 		
 		//Process all levels
 		while(currentNbLv<=nbLevel){
-			currentLevel=LevelFactory.getTheLevelFactory().createLevel("level"+currentNbLv);
+			currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, "level"+currentNbLv);
 			while(currentLevel.launchNextWave()){
 				ArrayList<Ship> shipList;
 				begin=System.currentTimeMillis();

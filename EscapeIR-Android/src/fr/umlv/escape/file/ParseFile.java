@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import android.content.Context;
 
 import fr.umlv.escape.Objects;
 
@@ -19,18 +22,20 @@ public class ParseFile {
 	private final ArrayList<String> fileContent;
 	private int currentLine;
 	private boolean isInitialased;
+	private final Context context;
 	
 	 /** Create a ParseFile object.
 	  * 
 	  * @param fileName Path of the file.
-	  * @throws  FileNotFoundException
+	 * @throws IOException 
 	  */
-	public ParseFile(String fileName) throws FileNotFoundException{
+	public ParseFile(Context context, String fileName) throws IOException{
 		Objects.requireNonNull(fileName);
 		this.fileName=fileName;
-		this.in=new BufferedReader(new FileReader(fileName));
+		this.in=new BufferedReader(new InputStreamReader(context.getAssets().open(fileName)));
 		this.fileContent=new ArrayList<String>();
 		this.isInitialased=false;
+		this.context = context;
 	}
 
 	/** Load all the file content in memory.

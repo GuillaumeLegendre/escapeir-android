@@ -2,6 +2,8 @@ package fr.umlv.escape.game;
 
 import java.io.IOException;
 
+import android.content.Context;
+
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
 import fr.umlv.escape.file.IllegalFormatContentFile;
@@ -25,11 +27,11 @@ public class WaveFactory {
 	 * @throws IOException
 	 * @throws IllegalFormatContentFile
 	 */
-	public Wave createWave(String waveName) throws IOException, IllegalFormatContentFile{
+	public Wave createWave(Context context, String waveName) throws IOException, IllegalFormatContentFile{
 		Objects.requireNonNull(waveName);
 		
 		Wave newWave = new Wave(waveName);
-		this.parseWave=new ParseFile("Levels/Waves/"+waveName);
+		this.parseWave=new ParseFile(context, "levels/waves/"+waveName);
 
 		String shipName;
 		String trajectory;

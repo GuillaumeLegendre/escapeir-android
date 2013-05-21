@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.jbox2d.common.Vec2;
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.world.EscapeWorld;
 
@@ -15,7 +16,7 @@ import fr.umlv.escape.world.EscapeWorld;
 public class GestureDetector {
 	private final ArrayList<Point> pointList;
 	private final ArrayList<Gesture> gestureList;
-	private final Ship playerShip;
+	private Ship playerShip;
 	Vec2 lastForce;
 
 	/**
@@ -44,10 +45,10 @@ public class GestureDetector {
 	/**
 	 * Constructor.
 	 */
-	public GestureDetector(Ship playerShip){
+	public GestureDetector(){
 		this.pointList=new ArrayList<Point>();
 		this.gestureList=new ArrayList<Gesture>();
-		this.playerShip = playerShip;
+		this.playerShip = null;
 	}
 //	
 //	/** Detect if a point list represent a horizontal line left or right.
@@ -254,6 +255,10 @@ public class GestureDetector {
 	 */
 	public boolean detect(){
 		int size = gestureList.size();
+		
+		if(this.playerShip==null) {
+			this.playerShip = Game.getTheGame().getPlayer1().getShip();
+		}
 		for(int i = 0; i < size; i++){
 			Gesture g = gestureList.get(i);
 			if(g.isRecognized(pointList)){

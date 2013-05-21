@@ -6,13 +6,15 @@ import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 public class GameActivity extends Activity{
 	FrontApplication frontApplication;
 	Game game;
-	
+	public static Context context;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,7 +24,7 @@ public class GameActivity extends Activity{
 		this.game.setFrontApplication(frontApplication);
 		try {
 			this.game.initializeGame(frontApplication);
-			this.game.startGame();
+			this.game.startGame(getApplicationContext());
 			setContentView(frontApplication);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

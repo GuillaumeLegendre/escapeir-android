@@ -42,7 +42,7 @@ import fr.umlv.escape.gesture.GestureDetector;
 				//HEIGHT = 
 				battleField.HEIGHT = getHeight();
 				battleField.WIDTH = getWidth();
-				gestureDetector = new GestureDetector(Game.getTheGame().getPlayer1().getShip());
+				gestureDetector = new GestureDetector();
 				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
