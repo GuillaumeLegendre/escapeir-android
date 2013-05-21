@@ -48,7 +48,7 @@ public class Game {
 		//currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.frontApplication = frontAplication;
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("DefaultShipPlayer", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
 		player1=new Player("Marc",playerShip,3);
 	}
 
