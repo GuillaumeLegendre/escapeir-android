@@ -69,7 +69,10 @@ public class Game {
 		//Process all levels
 		while(currentNbLv<=nbLevel){
 			currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, "level"+currentNbLv);
+
+			System.out.println("launching wave");
 			while(currentLevel.launchNextWave()){
+				System.out.println("wave launched");
 				ArrayList<Ship> shipList;
 				begin=System.currentTimeMillis();
 				elapsedWave=0;

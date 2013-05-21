@@ -33,7 +33,6 @@ public class WeaponsFactory {
 	 * @return a weapon with a quantity of bullet in function of string weaponName
 	 */
 	public Weapon createWeapon(String weaponName, int qty){
-		System.out.println(weaponName);
 		Weapons currentWeapon = Weapons.valueOf(weaponName.toUpperCase());
 		switch(currentWeapon){
 		case MISSILELAUNCHER : return new MissileLauncher(qty);

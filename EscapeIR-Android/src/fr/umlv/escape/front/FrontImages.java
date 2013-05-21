@@ -43,13 +43,14 @@ public class FrontImages {
 	 * @return the image associated to the key given
 	 */
 	public Bitmap getImage(String key){
-		if(!imagesMap.containsKey(key)){
-			
-			Bitmap image = BitmapFactory.decodeResource(this.resources, R.drawable.default_ship);
-			//Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", null));
+		System.out.println(key);
+		if(!imagesMap.containsKey(key)){		
+			Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", null));
 			imagesMap.put(key, image);
 			return image;
 		}
+		System.out.println(imagesMap.get(key));
+
 		return imagesMap.get(key);
 	}
 	
