@@ -43,13 +43,11 @@ public class FrontImages {
 	 * @return the image associated to the key given
 	 */
 	public Bitmap getImage(String key){
-		System.out.println(key);
 		if(!imagesMap.containsKey(key)){		
 			Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", "fr.umlv.escape"));
 			imagesMap.put(key, image);
 			return image;
 		}
-		System.out.println(imagesMap.get(key));
 
 		return imagesMap.get(key);
 	}

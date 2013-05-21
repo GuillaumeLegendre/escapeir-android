@@ -124,7 +124,7 @@ public class ShipFactory {
 		
 		Body body=Bodys.createBasicRectangle((posX+((float)img.getWidth()/2)), (posY+((float)img.getHeight()/2)), img.getWidth(), img.getHeight(), 0);
 		Filter filter=new Filter();
-		if(shipName.equals("DefaultShipPlayer")){
+		if(shipName.equals("default_ship_player")){
 			filter.categoryBits=EscapeWorld.CATEGORY_PLAYER;
 			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY | EscapeWorld.CATEGORY_BULLET_ENNEMY;
 			body.setLinearDamping(3);
