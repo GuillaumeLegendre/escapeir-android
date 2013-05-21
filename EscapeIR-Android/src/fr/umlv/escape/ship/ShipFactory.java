@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
 import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.move.DownMove;
 import fr.umlv.escape.move.KamikazeMove;
 import fr.umlv.escape.move.LeftDampedMove;
@@ -181,7 +182,7 @@ public class ShipFactory {
 		default:
 			throw new IllegalArgumentException(shipName+"not accepted");
 		}
-		
+		Game.getTheGame().getFrontApplication().getBattleField().addShip(ship);
 		return ship;
 	}
 	

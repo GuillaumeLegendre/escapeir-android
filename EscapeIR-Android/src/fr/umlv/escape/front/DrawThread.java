@@ -23,9 +23,10 @@ public class DrawThread extends Thread{
 	public void run() {
 		long begin;
 		long elapsed;
-		
+		System.out.println("DRAWWWW THREAD");
 		while(!Thread.currentThread().isInterrupted()){
 			begin = System.currentTimeMillis();
+			System.out.println("DRAWWWW THREAD2");
 			
 			Canvas canvas = holder.lockCanvas(null); // TODO Optim ?????
 			if(canvas == null){
@@ -41,6 +42,7 @@ public class DrawThread extends Thread{
 			synchronized (battleField.bulletLock) {
 				ArrayList<Bullet> listBullet = battleField.bulletList;
 				for(int i = 0; i < listBullet.size(); i++){
+					System.out.println("BULLLEETTTTT DRAWWWW");
 					listBullet.get(i).onDrawSprite(canvas);
 				}
 			}
