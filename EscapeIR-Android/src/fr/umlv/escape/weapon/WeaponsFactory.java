@@ -11,10 +11,10 @@ public class WeaponsFactory {
 	}
 
 	public enum Weapons {
-		MISSILE_LAUNCHER,
+		MISSILELAUNCHER,
 		FLAMETHROWER,
-		SHIBOLEET_THROWER,
-		LASER_BEAM
+		SHIBOLEETTHROWER,
+		LASERBEAM
 	}
 	
 	/**
@@ -33,12 +33,13 @@ public class WeaponsFactory {
 	 * @return a weapon with a quantity of bullet in function of string weaponName
 	 */
 	public Weapon createWeapon(String weaponName, int qty){
+		System.out.println(weaponName);
 		Weapons currentWeapon = Weapons.valueOf(weaponName.toUpperCase());
 		switch(currentWeapon){
-		case MISSILE_LAUNCHER : return new MissileLauncher(qty);
+		case MISSILELAUNCHER : return new MissileLauncher(qty);
 		case FLAMETHROWER : return new FlameThrower(qty);
-		case SHIBOLEET_THROWER : return new ShiboleetThrower(qty);
-		case LASER_BEAM : return new LaserBeam(qty);
+		case SHIBOLEETTHROWER : return new ShiboleetThrower(qty);
+		case LASERBEAM : return new LaserBeam(qty);
 		default : throw new IllegalArgumentException("WeaponName: "+ weaponName +" isn't a legal weapon");
 		}
 	}

@@ -20,7 +20,7 @@ public class BulletsFactory {
 	}
 
 	public enum Bullets {
-		BASIC_MISSILE,
+		BASICMISSILE,
 		FIREBALL,
 		SHIBOLEET,
 		XRAY
@@ -40,7 +40,7 @@ public class BulletsFactory {
 		Bitmap img = FrontApplication.frontImage.getImage(bulletName);
 
 		switch(currentBullet){
-		case BASIC_MISSILE : 
+		case BASICMISSILE : 
 			body = Bodys.createBasicCircle(startPosition.x, startPosition.y, img.getWidth(), 0);
 			bullet= new BasicMissile(bulletName, body, playerBullet, img);
 			break;
