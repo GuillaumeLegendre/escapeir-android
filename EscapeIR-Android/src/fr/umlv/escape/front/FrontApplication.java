@@ -24,14 +24,15 @@ import fr.umlv.escape.gesture.GestureDetector;
 		this.holder = getHolder();
 		frontImage = new FrontImages(getResources());
 		this.battleField = new BattleField(getWidth(),getHeight(),BitmapFactory.decodeResource(getResources(), R.drawable.level1));
+		System.out.println("CALLLBACK calling");
 		callback();
+		System.out.println("CALLLBACK called");
 	}
 
 	private void callback(){    	  
 		getHolder().addCallback(new Callback() {
 			private Thread drawThread;
 			
-
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
 				drawThread.interrupt();
@@ -39,13 +40,16 @@ import fr.umlv.escape.gesture.GestureDetector;
 
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
+				System.out.println("starting draw thread");
 				//HEIGHT = 
 				battleField.HEIGHT = getHeight();
 				battleField.WIDTH = getWidth();
 				gestureDetector = new GestureDetector();
 				
 				drawThread = new DrawThread(holder, battleField);
+				System.out.println("starting draw thread");
 				drawThread.start();
+				System.out.println("draw thread started");
 			}
 
 			@Override

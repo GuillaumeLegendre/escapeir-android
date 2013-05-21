@@ -20,6 +20,7 @@ public class Sprite {
 	
 	public void onDrawSprite(Canvas canvas){
 		canvas.drawBitmap(image, getPosXCenter() - image.getWidth()/2 , getPosYCenter() - image.getHeight()/2, new Paint());
+		System.out.println("DRAWWWW");
 	}
 	
 	/**
