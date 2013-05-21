@@ -2,7 +2,8 @@ package fr.umlv.escape.front;
 
 import java.util.HashMap;
 
-import android.R;
+import fr.umlv.escape.R;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -44,7 +45,7 @@ public class FrontImages {
 	public Bitmap getImage(String key){
 		if(!imagesMap.containsKey(key)){
 			
-			Bitmap image = BitmapFactory.decodeResource(this.resources, fr.umlv.escape.R.drawable.default_ship);
+			Bitmap image = BitmapFactory.decodeResource(this.resources, R.drawable.default_ship);
 			//Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", null));
 			imagesMap.put(key, image);
 			return image;
