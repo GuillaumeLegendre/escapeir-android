@@ -39,29 +39,32 @@ public class BonusFactory {
 		Body body;
 		Bitmap img;
 		
-		if(bonusName.equals("WeaponReloader")){
+		if(bonusName.equals("weapon_reloader")){
 			switch(type){
 			case 1:
-				stringType="MissileLauncher";
-				img=frontImages.getImage(bonusName+stringType);
+				stringType="missile_launcher";
+				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(50, body,stringType,img);
 				break;
 			case 2:
-				stringType="FlameThrower";
+				stringType="flame_thrower";
+				System.out.println("=======>");
+				System.out.println(bonusName);
+				System.out.println(stringType);
 				img=frontImages.getImage(bonusName+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(25, body,stringType,img);
 				break;
 			case 3:
-				stringType="ShiboleetThrower";
-				img=frontImages.getImage(bonusName+stringType);
+				stringType="shiboleet_thrower";
+				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(10, body,stringType,img);
 				break;
 			case 4:
-				stringType="LaserBeam";
-				img=frontImages.getImage(bonusName+stringType);
+				stringType="laser_beam";
+				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(10, body,stringType,img);
 				break;

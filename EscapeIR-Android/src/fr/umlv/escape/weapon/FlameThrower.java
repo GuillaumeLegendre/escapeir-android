@@ -7,7 +7,7 @@ public class FlameThrower extends Weapon {
 	private static final int MAXQTY = 50;
 	private static final int FREQUENCY = 400;
 	private static final String MISSILE = "fireball";
-	private static final String NAME = "FlameThrower";
+	private static final String NAME = "flame_thrower";
 
 	/**
 	 * Constructor of FlameThrower

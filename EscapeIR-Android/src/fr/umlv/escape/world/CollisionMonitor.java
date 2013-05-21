@@ -50,7 +50,7 @@ public class CollisionMonitor implements ContactListener{
 			Body body = elemToDelete.get(i);
 			EscapeWorld.getTheWorld().destroyBody(body);
 			if(this.createBonus){
-				Bonus bonus=bonusFactory.createBonus("WeaponReloader", (int)((body.getPosition().x*EscapeWorld.SCALE)), (int)((body.getPosition().y*EscapeWorld.SCALE)), (int)(Math.random()*(4-1))+1);
+				Bonus bonus=bonusFactory.createBonus("weapon_reloader", (int)((body.getPosition().x*EscapeWorld.SCALE)), (int)((body.getPosition().y*EscapeWorld.SCALE)), (int)(Math.random()*(4-1))+1);
 				bonus.move();
 				battleField.addBonus(bonus);
 				this.createBonus=false;

@@ -33,7 +33,7 @@ public class Bonus extends Sprite{
 		}
 		Objects.requireNonNull(body);
 		Objects.requireNonNull(type);
-		this.name="WeaponReloader";
+		this.name="weapon_reloader";
 		this.quantity=quantity;
 		this.body=body;
 		this.type=type;

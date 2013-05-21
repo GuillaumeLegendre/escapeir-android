@@ -2,8 +2,6 @@ package fr.umlv.escape.front;
 
 import java.util.HashMap;
 
-import fr.umlv.escape.R;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -45,6 +43,9 @@ public class FrontImages {
 	public Bitmap getImage(String key){
 		if(!imagesMap.containsKey(key)){		
 			Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", "fr.umlv.escape"));
+			if(image == null){
+				throw new IllegalArgumentException("String key: '"+ key +"' don't match with any name drawable");
+			}
 			imagesMap.put(key, image);
 			return image;
 		}
