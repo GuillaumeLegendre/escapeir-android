@@ -9,7 +9,7 @@ import fr.umlv.escape.game.Game;
 public class ShiboleetThrower extends Weapon {
 	private static final int MAXQTY = 20;
 	private static final int FREQUENCY = 500;
-	private static final String MISSILE = "Shiboleet";
+	private static final String MISSILE = "shiboleet";
 	private static final String NAME = "ShiboleetThrower";
 
 	/**

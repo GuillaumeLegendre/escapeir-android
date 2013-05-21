@@ -6,7 +6,7 @@ package fr.umlv.escape.weapon;
 public class FlameThrower extends Weapon {
 	private static final int MAXQTY = 50;
 	private static final int FREQUENCY = 400;
-	private static final String MISSILE = "FireBall";
+	private static final String MISSILE = "fireball";
 	private static final String NAME = "FlameThrower";
 
 	/**

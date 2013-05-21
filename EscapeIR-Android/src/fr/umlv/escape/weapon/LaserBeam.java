@@ -6,7 +6,7 @@ package fr.umlv.escape.weapon;
 public class LaserBeam extends Weapon {
 	private static final int MAXQTY = 1;
 	private static final int FREQUENCY = 400;
-	private static final String MISSILE = "XRay";
+	private static final String MISSILE = "xray";
 	private static final String NAME = "LaserBeam";
 
 	/**
