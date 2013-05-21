@@ -55,13 +55,13 @@ public class ShipFactory {
 	}
 	
 	private enum EnumShipName {
-		DefaultShipPlayer,
-		DefaultShip,
-		KamikazeShip,
-		BatShip,
-		FirstBoss,
-		SecondBoss,
-		ThirdBoss
+		default_ship_player,
+		default_ship,
+		kamikaze_ship,
+		bat_ship,
+		first_boss,
+		second_boss,
+		third_boss
 	}
 
 	/**
@@ -138,39 +138,39 @@ public class ShipFactory {
 		
 		EnumShipName enumShipName = EnumShipName.valueOf(shipName);
 		switch (enumShipName){
-		case DefaultShip:
+		case default_ship:
 			ship = new Ship("DefaultShip",health,body,img,move,new ShootDown());
 			ship.getCurrentWeapon().setInfinityQty();
 			ship.getCurrentWeapon().setGhostShoot(ghostShoot);
 			ghostShoot=(ghostShoot+1)%7;
 			break;
-		case DefaultShipPlayer:
+		case default_ship_player:
 			ship=  new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
 			ship.getListWeapon().setCurrentWeapon("MissileLauncher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			break;
-		case KamikazeShip:
+		case kamikaze_ship:
 			ship = new Ship("KamikazeShip",health,body,img,move,new DoNotShoot());
 			ship.getCurrentWeapon().addQte(Integer.MIN_VALUE);
 			break;
-		case BatShip:
+		case bat_ship:
 			ship = new Ship("BatShip",health,body,img,move,new BatShipShoot());
 			ship.getListWeapon().addWeapon("FlameThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("FlameThrower");
 			break;
-		case FirstBoss:
+		case first_boss:
 			ship = new FirstBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new FirstBossShoot((FirstBoss) ship));
 			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
 			break;
-		case SecondBoss:
+		case second_boss:
 			ship = new SecondBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new SecondBossShoot((SecondBoss) ship));
 			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
 			break;
-		case ThirdBoss:
+		case third_boss:
 			ship = new ThirdBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new ThirdBossShoot((ThirdBoss) ship));
 			ship.getListWeapon().addWeapon("MissileLauncher",Integer.MIN_VALUE);
