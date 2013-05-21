@@ -49,10 +49,7 @@ public class BonusFactory {
 				break;
 			case 2:
 				stringType="flame_thrower";
-				System.out.println("=======>");
-				System.out.println(bonusName);
-				System.out.println(stringType);
-				img=frontImages.getImage(bonusName+stringType);
+				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(25, body,stringType,img);
 				break;
