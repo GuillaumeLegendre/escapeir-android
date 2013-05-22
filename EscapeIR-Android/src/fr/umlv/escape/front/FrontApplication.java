@@ -57,6 +57,7 @@ import fr.umlv.escape.gesture.RightDiag;
 				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
+				battleField.launchBfCleaner();
 			}
 
 			@Override

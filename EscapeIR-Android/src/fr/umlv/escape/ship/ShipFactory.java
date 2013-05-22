@@ -127,7 +127,7 @@ public class ShipFactory {
 		Filter filter=new Filter();
 		if(shipName.equals("default_ship_player")){
 			filter.categoryBits=EscapeWorld.CATEGORY_PLAYER;
-			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY | EscapeWorld.CATEGORY_BULLET_ENNEMY;
+			filter.maskBits=EscapeWorld.CATEGORY_BONUS | EscapeWorld.CATEGORY_ENNEMY | EscapeWorld.CATEGORY_BULLET_ENNEMY | EscapeWorld.CATEGORY_DECOR;
 			body.setLinearDamping(3);
 			
 		}else{

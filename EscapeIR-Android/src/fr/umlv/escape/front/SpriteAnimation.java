@@ -3,6 +3,8 @@ package fr.umlv.escape.front;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 
 /**
  * Class that an explosion sprite
@@ -21,8 +23,8 @@ public class SpriteAnimation extends Sprite{
 	 * @param x the position x where the explosion is spawn
 	 * @param y the position y where the explosion is spawn
 	 */
-	public SpriteAnimation(int speed, int x, int y, Body body, Bitmap image){
-		super(body, image);
+	public SpriteAnimation(int speed, int x, int y, Bitmap image){
+		super(null, image);
 		if(speed<0){
 			throw new IllegalArgumentException("speed cannot be negative");
 		}
@@ -59,11 +61,25 @@ public class SpriteAnimation extends Sprite{
 		return FrontApplication.frontImage.getImage(imageName);
 	}
 	
+	@Override
+	public void onDrawSprite(Canvas canvas){
+		if(image==null) return;
+		
+		canvas.drawBitmap(image, x - image.getWidth()/2 , y - image.getHeight()/2, new Paint());
+		this.image = getNextImage();
+	}
+
+	@Override
+	public boolean isStillDisplayable(){
+		return this.image == null;
+	}
+	
 	/**
 	 * Get the x position of the current explosion
 	 * @return the x position of the current explosion
 	 */
-	public int getX() {
+	@Override
+	public int getPosXCenter() {
 		return x;
 	}
 
@@ -71,7 +87,8 @@ public class SpriteAnimation extends Sprite{
 	 * Get the y position of the current explosion
 	 * @return the y position of the current explosion
 	 */
-	public int getY() {
+	@Override
+	public int getPosYCenter() {
 		return y;
 	}
 }

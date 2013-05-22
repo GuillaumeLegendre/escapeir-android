@@ -11,6 +11,7 @@ import android.content.Context;
 
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.front.SpriteShip.SpriteType;
 import fr.umlv.escape.gesture.Gesture;
 import fr.umlv.escape.gesture.GestureDetector;
 import fr.umlv.escape.move.PlayerMove;
@@ -42,6 +43,7 @@ public class Game {
 	}
 	
 	private class GameRoutine extends Thread {
+		private final long TIME_TO_RESPAWN = 4000;
 		Context context;
 		private GameRoutine(Context context){
 			this.context = context;
@@ -82,6 +84,18 @@ public class Game {
 						collisionMonitor.performPostStepCollision(); // Process post collision treatment
 						//TODO supprimer vaisseau en dehors du jeu
 						
+						if(lastDeath==0 && (!player1.getShip().isAlive())){
+							if(player1.getLife()==0){
+								//TODO Game Over
+								return;
+							} else {
+								EscapeWorld.getTheWorld().setActive(player1.ship.body, false);
+								lastDeath=elapsedStep;
+							}
+						} else if(elapsedStep - lastDeath > TIME_TO_RESPAWN){
+							EscapeWorld.getTheWorld().setActive(player1.ship.body, true);
+							player1.getShip().setAlive(true);
+						}
 						isWaveFinished = true;
 						shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
 						for(int i=0; i<shipList.size();++i){
@@ -125,7 +139,7 @@ public class Game {
 	public void initializeGame(FrontApplication frontAplication, int height, int width) throws IOException, IllegalFormatContentFile{	
 		this.frontApplication = frontAplication;
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player",height/3, width/2, 99, "PlayerMove");
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player",width/2, height/3*2, 99, "PlayerMove");
 		Game.getTheGame().getFrontApplication().getBattleField().addShip(playerShip);
 		player1=new Player("Marc",playerShip,3);
 	}

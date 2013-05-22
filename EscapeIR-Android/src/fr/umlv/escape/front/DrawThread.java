@@ -50,6 +50,13 @@ public class DrawThread extends Thread{
 					listBonus.get(i).onDrawSprite(canvas);
 				}
 			}
+			synchronized (battleField.animationLock) {
+				ArrayList<SpriteAnimation> listAnimation = battleField.animationList;
+				for(int i = 0; i < listAnimation.size(); i++){
+					listAnimation.get(i).onDrawSprite(canvas);
+				}
+			}
+		
 			holder.unlockCanvasAndPost(canvas);
 			battleField.backgoundScroller.verticalScroll();
 			

@@ -22,4 +22,9 @@ public class PlayerShip extends Ship{
 		System.out.println("Drawing player : "+this.toString());
 		this.setImage(FrontApplication.frontImage.getImage(getNextImageName()));
 	}
+	
+	@Override
+	public boolean isStillDisplayable(){
+		return true;
+	}
 }

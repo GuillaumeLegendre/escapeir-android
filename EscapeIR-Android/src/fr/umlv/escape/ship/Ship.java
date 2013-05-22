@@ -183,4 +183,9 @@ public class Ship extends SpriteShip{
 	public String toString(){
 		return (this.name+" x:"+this.getPosXCenter()+" y"+this.getPosYCenter());
 	}
+	
+	@Override
+	public boolean isStillDisplayable(){
+		return this.isAlive;
+	}
 }

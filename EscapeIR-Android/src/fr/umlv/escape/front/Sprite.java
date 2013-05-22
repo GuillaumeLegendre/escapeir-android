@@ -49,4 +49,8 @@ public class Sprite {
 	public Body getBody() {
 		return body;
 	}
+	
+	public boolean isStillDisplayable(){
+		return true;
+	}
 }

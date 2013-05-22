@@ -134,4 +134,9 @@ public abstract class Bullet extends SpriteBullet {
 		this.setCurrentName(this.name);
 		super.onDrawSprite(canvas);
 	}
+	
+	@Override
+	public boolean isStillDisplayable(){
+		return this.body.isActive();
+	}
 }

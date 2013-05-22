@@ -7,6 +7,8 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
 import fr.umlv.escape.bonus.Bonus;
+import fr.umlv.escape.front.SpriteShip.SpriteType;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.weapon.Bullet;
 import fr.umlv.escape.world.Bodys;
@@ -17,25 +19,30 @@ public class BattleField {
 	private Sprite[] boundPlayer;
 	private int WIDTH;
 	private int HEIGHT;
+	private final int LIMIT = 500;
+	private final int ANIMATIONSPEED = 50;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
 	final ArrayList<Bullet> bulletList;
+	final ArrayList<SpriteAnimation> animationList;
 	final ArrayList<Bonus> bonusList;
 	final Hashtable<Body,Ship> shipMap=new Hashtable<Body,Ship>(50);
 	final Hashtable<Body,Bullet> bulletMap=new Hashtable<Body,Bullet>(50);
 	final Hashtable<Body,Bonus> bonusMap=new Hashtable<Body,Bonus>(10);
 
+	
 	private final BattleFieldCleaner bfCleaner;
 	
 	Object shipLock = new Object();
 	Object bonusLock = new Object();
 	Object bulletLock = new Object();
+	Object animationLock = new Object();
 	
 	/**
 	 * Thread that remove all elements of the {@link Battlefield} that should not be
 	 * drawn anymore at fixed rate
 	 */
-	private class BattleFieldCleaner implements Runnable{
+	private class BattleFieldCleaner extends Thread{
 		@Override
 		public void run() {
 			while(!Thread.currentThread().isInterrupted()){
@@ -43,10 +50,17 @@ public class BattleField {
 					// Treating ships
 					for(int i = 0; i < shipList.size(); i++){
 						Ship tmp = shipList.get(i);
-						if( tmp.getPosXCenter()< 0 		|| 
-						    tmp.getPosXCenter()> WIDTH	||
-						    tmp.getPosYCenter()< 0		||
-						    tmp.getPosYCenter()> HEIGHT ){
+						if(!tmp.isAlive()){
+							animationList.add(new SpriteAnimation(ANIMATIONSPEED, tmp.getPosXCenter(), tmp.getPosYCenter(), FrontApplication.frontImage.getImage("explosion1")));
+							if(tmp.equals(Game.getTheGame().getPlayer1().getShip())){
+								tmp.setCurrentSprite(SpriteType.DEAD_SHIP);
+							}
+						}
+						if( !tmp.isStillDisplayable()			||
+							tmp.getPosXCenter()< (-LIMIT) 		|| 
+						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+						    tmp.getPosYCenter()< (-LIMIT)		||
+						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							shipList.remove(i);
 							shipMap.remove(tmp);
 						}
@@ -56,10 +70,11 @@ public class BattleField {
 					// Treating bullets
 					for(int i = 0; i < bulletList.size(); i++){
 						Bullet tmp = bulletList.get(i);
-						if( tmp.getPosXCenter()< 0 		|| 
-						    tmp.getPosXCenter()> WIDTH	||
-						    tmp.getPosYCenter()< 0		||
-						    tmp.getPosYCenter()> HEIGHT ){
+						if( !tmp.isStillDisplayable()			||
+							tmp.getPosXCenter()< (-LIMIT) 		|| 
+						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+						    tmp.getPosYCenter()< (-LIMIT)		||
+						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							bulletList.remove(i);
 							bulletMap.remove(tmp);
 						}
@@ -69,15 +84,30 @@ public class BattleField {
 					// Treating bonus
 					for(int i = 0; i < bonusList.size(); i++){
 						Bonus tmp = bonusList.get(i);
-						if( tmp.getPosXCenter()< 0 		|| 
-						    tmp.getPosXCenter()> WIDTH	||
-						    tmp.getPosYCenter()< 0		||
-						    tmp.getPosYCenter()> HEIGHT ){
+						if( !tmp.isStillDisplayable()			||
+							tmp.getPosXCenter()< (-LIMIT) 		|| 
+						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+						    tmp.getPosYCenter()< (-LIMIT)		||
+						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							bonusList.remove(i);
 							bonusMap.remove(tmp);
 						}
 					}
-				} 
+				}
+				synchronized (animationLock) {
+					// Treating animation
+					for(int i = 0; i < animationList.size(); i++){
+						SpriteAnimation tmp = animationList.get(i);
+						if( !tmp.isStillDisplayable()			||
+							tmp.getPosXCenter()< (-LIMIT) 		|| 
+						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+						    tmp.getPosYCenter()< (-LIMIT)		||
+						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+							bulletList.remove(i);
+							bulletMap.remove(tmp);
+						}
+					}
+				}
 				
 				try {
 					Thread.sleep(100);
@@ -95,6 +125,7 @@ public class BattleField {
 		this.shipList = new ArrayList<Ship>();
 		this.bulletList = new ArrayList<Bullet>();
 		this.bonusList = new ArrayList<Bonus>();
+		this.animationList = new ArrayList<SpriteAnimation>();
 		this.bfCleaner = new BattleFieldCleaner();
 		this.boundPlayer = new Sprite[4];
 		
@@ -115,7 +146,7 @@ public class BattleField {
 	}
 	
 	public void launchBfCleaner(){
-		this.bfCleaner.run();
+		this.bfCleaner.start();
 	}
 	
 	/**

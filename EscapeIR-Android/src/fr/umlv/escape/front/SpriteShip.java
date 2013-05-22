@@ -125,4 +125,9 @@ public class SpriteShip extends Sprite{
 		}
 		return imageName;
 	}
+	
+	@Override
+	public boolean isStillDisplayable(){
+		return super.isStillDisplayable();
+	}
 }

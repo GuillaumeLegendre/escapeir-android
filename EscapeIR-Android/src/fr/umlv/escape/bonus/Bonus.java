@@ -59,4 +59,9 @@ public class Bonus extends Sprite{
 	public int getQuantity() {
 		return quantity;
 	}
+	
+	@Override
+	public boolean isStillDisplayable(){
+		return this.body.isActive();
+	}
 }
