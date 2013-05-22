@@ -103,8 +103,7 @@ public class BattleField {
 						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
 						    tmp.getPosYCenter()< (-LIMIT)		||
 						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
-							bulletList.remove(i);
-							bulletMap.remove(tmp);
+							animationList.remove(i);
 						}
 					}
 				}
