@@ -25,6 +25,7 @@ public class PlayerShip extends Ship{
 	
 	@Override
 	public boolean isStillDisplayable(){
+		System.out.println("is player still displayable???");
 		return true;
 	}
 }

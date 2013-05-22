@@ -3,7 +3,6 @@ package fr.umlv.escape.front;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 
 /**
  * Class that manage all sprites of {@link Player}
@@ -124,10 +123,5 @@ public class SpriteShip extends Sprite{
 			throw new AssertionError();
 		}
 		return imageName;
-	}
-	
-	@Override
-	public boolean isStillDisplayable(){
-		return super.isStillDisplayable();
 	}
 }
