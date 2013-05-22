@@ -28,6 +28,7 @@ import fr.umlv.escape.weapon.FirstBossShoot;
 import fr.umlv.escape.weapon.ListWeapon;
 import fr.umlv.escape.weapon.SecondBossShoot;
 import fr.umlv.escape.weapon.ShootDown;
+import fr.umlv.escape.weapon.ShootPlayer;
 import fr.umlv.escape.weapon.ThirdBossShoot;
 import fr.umlv.escape.world.Bodys;
 import fr.umlv.escape.world.EscapeWorld;
@@ -146,7 +147,7 @@ public class ShipFactory {
 			ghostShoot=(ghostShoot+1)%7;
 			break;
 		case default_ship_player:
-			ship= new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
+			ship= new Ship("DefaultShipPlayer",health,body,img,move,new ShootPlayer());
 			ship.getListWeapon().setCurrentWeapon("missile_launcher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);

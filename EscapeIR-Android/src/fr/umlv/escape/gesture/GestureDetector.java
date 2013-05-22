@@ -7,6 +7,7 @@ import java.util.List;
 import org.jbox2d.common.Vec2;
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.weapon.ShootPlayer;
 
 /** Static class that allow to detect gestures and calculate forces that they represent
  */
@@ -15,7 +16,7 @@ public class GestureDetector {
 	private final ArrayList<Gesture> gestureList;
 	private final Ship playerShip;
 	Vec2 lastForce;
-	private final float SHOOT_SENSIBILITY;
+	private final float SHOOT_SENSIBILITY = 10;
 	private boolean mustShoot;
 	
 	/**
@@ -48,7 +49,6 @@ public class GestureDetector {
 		this.pointList=new ArrayList<Point>();
 		this.gestureList=new ArrayList<Gesture>();
 		this.playerShip = ship;
-		this.SHOOT_SENSIBILITY = 30;
 	}
 //	
 //	/** Detect if a point list represent a horizontal line left or right.
@@ -261,18 +261,17 @@ public class GestureDetector {
 		System.out.println(this.playerShip);
 		
 		if(mustShoot){
-			System.out.println("SHHHHOOOOOOTTTTTTT");
-			
+			playerShip.shoot(playerShip.getPosXCenter(), playerShip.getPosYCenter());
+			ShootPlayer sp = (ShootPlayer) playerShip.getShootBehaviour();
+			sp.isRecognized(pointList);
+			playerShip.fire();
 			mustShoot = false;
 			return false;
 		}
 		
 		for(int i = 0; i < size; i++){
 			Gesture g = gestureList.get(i);
-			System.out.println(g.getClass().toString());
 			if(g.isRecognized(pointList)){
-				System.out.println("RECOGNIZED");
-				System.out.println(g.getClass().toString());
 				g.apply(this.playerShip);
 				return true;
 			}

@@ -1,5 +1,8 @@
 package fr.umlv.escape.weapon;
 
+import java.util.ArrayList;
+
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Filter;
 
 import android.graphics.Point;
@@ -7,23 +10,15 @@ import android.graphics.Point;
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.gesture.Gesture;
 import fr.umlv.escape.gesture.GestureDetector;
+import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.world.EscapeWorld;
 
 /**
  * Class that represent the shoot behavior of the {@link Player}.
  * @implements {@link Shootable}.
  */
-public class ShootPlayer implements Shootable{
-	private final GestureDetector gestureDetector;
-	
-	/**
-	 * Constructor
-	 * @param gesture {@link Gesture} used by the {@link Player}.
-	 */
-	public ShootPlayer(GestureDetector gestureDetector) {
-		Objects.requireNonNull(gestureDetector);
-		
-		this.gestureDetector=gestureDetector;
-	}
+public class ShootPlayer implements Shootable, Gesture{
+	private Vec2 force;
 	
 	private boolean canShoot(Weapon weapon){
 		Objects.requireNonNull(weapon);
@@ -33,7 +28,6 @@ public class ShootPlayer implements Shootable{
 	@Override
 	public boolean shoot(Weapon weapon,int x,int y) {
 		Objects.requireNonNull(weapon);
-		
 		if(canShoot(weapon)){
 			Point positionShip = new Point(x,y);
 			Bullet bullet=weapon.fire(positionShip);
@@ -54,8 +48,23 @@ public class ShootPlayer implements Shootable{
 		
 		Bullet b = weapon.getLoadingBullet();
 		if(b != null){
-			b.fire(gestureDetector.getLastForce());
+			b.fire(force);
 			weapon.setLoadingBullet(null);
 		}
+	}
+
+	@Override
+	public boolean isRecognized(ArrayList<Point> pointList) {
+		Point firstPoint;
+		Point lastPoint;
+		firstPoint = pointList.get(0);
+		lastPoint = pointList.get(pointList.size()-1);
+		force=new Vec2((lastPoint.x-firstPoint.x)/EscapeWorld.SCALE,(lastPoint.y-firstPoint.y)/EscapeWorld.SCALE);
+		return true;
+	}
+
+	@Override
+	public void apply(Ship ship) {
+		fire(ship.getCurrentWeapon());
 	}
 }
