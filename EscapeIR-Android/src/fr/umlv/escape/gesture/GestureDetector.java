@@ -1,6 +1,7 @@
 package fr.umlv.escape.gesture;
 
 import android.graphics.Point;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -267,8 +268,7 @@ public class GestureDetector {
 		System.out.println(this.playerShip);
 		
 		if(mustShoot){
-			//TODO tirer
-			
+			System.out.println("SHHHHOOOOOTTTTTT");
 			mustShoot = false;
 			return false;
 		}
