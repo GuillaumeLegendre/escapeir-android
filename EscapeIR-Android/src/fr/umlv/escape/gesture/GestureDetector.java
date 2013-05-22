@@ -299,8 +299,10 @@ public class GestureDetector {
 	 */
 	public void clear(){
 		this.pointList.clear();
-		this.lastForce.x = 0;
-		this.lastForce.y = 0;
+		if(this.lastForce != null){
+			this.lastForce.x = 0;
+			this.lastForce.y = 0;
+		}
 	}
 	
 	public Vec2 getLastForce() {
