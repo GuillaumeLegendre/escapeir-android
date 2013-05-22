@@ -7,8 +7,13 @@ import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.Display;
+import android.view.View;
+import android.widget.LinearLayout;
 
 public class GameActivity extends Activity{
 	FrontApplication frontApplication;
@@ -18,13 +23,15 @@ public class GameActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		frontApplication = new FrontApplication(this);
 		this.game = Game.getTheGame();
-		this.game.setFrontApplication(frontApplication);
-		setContentView(frontApplication);
+		Display display = getWindowManager().getDefaultDisplay();
+		int width = display.getWidth();  // deprecated
+		int height = display.getHeight();
+		
 		try {
-			this.game.initializeGame(frontApplication);
+			this.game.initializeGame(frontApplication,height,width);	
+			setContentView(frontApplication);
 			this.game.startGame(getApplicationContext());
 			
 		} catch (IOException e) {

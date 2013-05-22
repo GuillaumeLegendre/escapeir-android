@@ -130,7 +130,7 @@ public class ShipFactory {
 			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY | EscapeWorld.CATEGORY_BULLET_ENNEMY;
 			body.setLinearDamping(3);
 			
-		} else{
+		}else{
 			filter.categoryBits=EscapeWorld.CATEGORY_ENNEMY;
 			filter.maskBits=EscapeWorld.CATEGORY_PLAYER | EscapeWorld.CATEGORY_BULLET_PLAYER;
 		}

@@ -47,7 +47,7 @@ import fr.umlv.escape.gesture.RightDiag;
 				
 				System.out.println("SURFACE CREATED");
 				battleField.updateSreenSize(getWidth(), getHeight());
-				gestureDetector = new GestureDetector();
+				gestureDetector = new GestureDetector(Game.getTheGame().getPlayer1().getShip());
 				gestureDetector.addGesture(new BackOff());
 				gestureDetector.addGesture(new LeftDiag());
 				gestureDetector.addGesture(new RightDiag());

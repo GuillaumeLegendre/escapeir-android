@@ -1,23 +1,19 @@
 package fr.umlv.escape.gesture;
 
 import android.graphics.Point;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.jbox2d.common.Vec2;
 import fr.umlv.escape.Objects;
-import fr.umlv.escape.game.Game;
 import fr.umlv.escape.ship.Ship;
-import fr.umlv.escape.world.EscapeWorld;
 
 /** Static class that allow to detect gestures and calculate forces that they represent
  */
 public class GestureDetector {
 	private final ArrayList<Point> pointList;
 	private final ArrayList<Gesture> gestureList;
-	private Ship playerShip;
+	private final Ship playerShip;
 	Vec2 lastForce;
 	private final float SHOOT_SENSIBILITY;
 	private boolean mustShoot;
@@ -48,10 +44,10 @@ public class GestureDetector {
 	/**
 	 * Constructor.
 	 */
-	public GestureDetector(){
+	public GestureDetector(Ship ship){
 		this.pointList=new ArrayList<Point>();
 		this.gestureList=new ArrayList<Gesture>();
-		this.playerShip = null;
+		this.playerShip = ship;
 		this.SHOOT_SENSIBILITY = 3;
 	}
 //	
@@ -260,15 +256,13 @@ public class GestureDetector {
 	public boolean detect(){
 		int size = gestureList.size();
 		
-		if(this.playerShip==null) {
-			this.playerShip = Game.getTheGame().getPlayer1().getShip();
-		}
 		System.out.println(gestureList.size());
 		System.out.println(pointList.size());
 		System.out.println(this.playerShip);
 		
 		if(mustShoot){
-			System.out.println("SHHHHOOOOOTTTTTT");
+			System.out.println("SHHHHOOOOOOTTTTTTT");
+			
 			mustShoot = false;
 			return false;
 		}

@@ -122,14 +122,10 @@ public class Game {
 	 * @throws IOException
 	 * @throws IllegalFormatContentFile
 	 */
-	public void initializeGame(FrontApplication frontAplication) throws IOException, IllegalFormatContentFile{	
-		//currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
-		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
+	public void initializeGame(FrontApplication frontAplication, int height, int width) throws IOException, IllegalFormatContentFile{	
 		this.frontApplication = frontAplication;
-		//while(FrontApplication.HEIGHT == 0);
-		System.out.println(FrontApplication.HEIGHT+" - "+FrontApplication.WIDTH);
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
-		System.out.println("SHIP PLAYER: "+playerShip.getPosXCenter()+"-"+playerShip.getPosYCenter());
+		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player",height/3, width/2, 99, "PlayerMove");
 		Game.getTheGame().getFrontApplication().getBattleField().addShip(playerShip);
 		player1=new Player("Marc",playerShip,3);
 	}
