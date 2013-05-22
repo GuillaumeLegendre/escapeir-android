@@ -48,7 +48,7 @@ public class GestureDetector {
 		this.pointList=new ArrayList<Point>();
 		this.gestureList=new ArrayList<Gesture>();
 		this.playerShip = ship;
-		this.SHOOT_SENSIBILITY = 3;
+		this.SHOOT_SENSIBILITY = 30;
 	}
 //	
 //	/** Detect if a point list represent a horizontal line left or right.

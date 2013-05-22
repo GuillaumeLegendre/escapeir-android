@@ -146,8 +146,8 @@ public class ShipFactory {
 			ghostShoot=(ghostShoot+1)%7;
 			break;
 		case default_ship_player:
-			ship=  new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
-			ship.getListWeapon().setCurrentWeapon("MissileLauncher");
+			ship= new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
+			ship.getListWeapon().setCurrentWeapon("missile_launcher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);
 			body.setActive(true);
@@ -158,14 +158,14 @@ public class ShipFactory {
 			break;
 		case bat_ship:
 			ship = new Ship("BatShip",health,body,img,move,new BatShipShoot());
-			ship.getListWeapon().addWeapon("FlameThrower",Integer.MIN_VALUE);
-			ship.getListWeapon().setCurrentWeapon("FlameThrower");
+			ship.getListWeapon().addWeapon("flame_thrower",Integer.MIN_VALUE);
+			ship.getListWeapon().setCurrentWeapon("flame_thrower");
 			break;
 		case first_boss:
 			ship = new FirstBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new FirstBossShoot((FirstBoss) ship));
-			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
-			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
+			ship.getListWeapon().addWeapon("shiboleet_thrower",Integer.MIN_VALUE);
+			ship.getListWeapon().setCurrentWeapon("shiboleet_thrower");
 			break;
 		case second_boss:
 			ship = new SecondBoss(health,body,img,move,new ShootDown());

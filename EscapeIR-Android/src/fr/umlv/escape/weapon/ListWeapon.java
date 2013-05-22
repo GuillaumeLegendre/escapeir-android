@@ -17,7 +17,7 @@ public class ListWeapon {
 	public final static int BASIC_QTY_BULLET = 99;
 	/**Constant that represent the basic weapon.
 	 */
-	public final static String BASIC_WEAPON = "MissileLauncher";
+	public final static String BASIC_WEAPON = "missile_launcher";
 	
 	/**
 	 * Constructor of listWeapon
@@ -26,9 +26,9 @@ public class ListWeapon {
 		weapons = new Hashtable<String, Weapon>();
 		weaponsList = new ArrayList<Weapon>();
 		current = addWeapon(BASIC_WEAPON, 0);
-		addWeapon("FlameThrower", 0);
-		addWeapon("ShiboleetThrower", 0);
-		addWeapon("LaserBeam", 0);
+		addWeapon("flame_thrower", 0);
+		addWeapon("shiboleet_thrower", 0);
+		addWeapon("laser_beam", 0);
 	}
 
 	/**
