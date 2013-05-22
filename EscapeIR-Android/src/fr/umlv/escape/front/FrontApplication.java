@@ -9,7 +9,13 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import fr.umlv.escape.R;
 import fr.umlv.escape.game.Game;
+import fr.umlv.escape.gesture.BackOff;
 import fr.umlv.escape.gesture.GestureDetector;
+import fr.umlv.escape.gesture.Horizontal;
+import fr.umlv.escape.gesture.LeftCircle;
+import fr.umlv.escape.gesture.LeftDiag;
+import fr.umlv.escape.gesture.RightCircle;
+import fr.umlv.escape.gesture.RightDiag;
 
  public class FrontApplication extends SurfaceView{
 	private SurfaceHolder holder;
@@ -39,8 +45,15 @@ import fr.umlv.escape.gesture.GestureDetector;
 			@Override
 			public void surfaceCreated(SurfaceHolder arg0) {
 				
+				System.out.println("SURFACE CREATED");
 				battleField.updateSreenSize(getWidth(), getHeight());
 				gestureDetector = new GestureDetector();
+				gestureDetector.addGesture(new BackOff());
+				gestureDetector.addGesture(new LeftDiag());
+				gestureDetector.addGesture(new RightDiag());
+				gestureDetector.addGesture(new Horizontal());
+				gestureDetector.addGesture(new LeftCircle());
+				gestureDetector.addGesture(new RightCircle());
 				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();

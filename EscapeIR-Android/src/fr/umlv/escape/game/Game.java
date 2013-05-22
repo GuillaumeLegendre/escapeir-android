@@ -12,6 +12,7 @@ import android.content.Context;
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.gesture.Gesture;
+import fr.umlv.escape.gesture.GestureDetector;
 import fr.umlv.escape.move.PlayerMove;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
@@ -125,6 +126,8 @@ public class Game {
 		//currentLevel=LevelFactory.getTheLevelFactory().createLevel("level1");
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.frontApplication = frontAplication;
+		//while(FrontApplication.HEIGHT == 0);
+		System.out.println(FrontApplication.HEIGHT+" - "+FrontApplication.WIDTH);
 		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
 		System.out.println("SHIP PLAYER: "+playerShip.getPosXCenter()+"-"+playerShip.getPosYCenter());
 		Game.getTheGame().getFrontApplication().getBattleField().addShip(playerShip);

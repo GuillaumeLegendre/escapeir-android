@@ -22,10 +22,11 @@ public class GameActivity extends Activity{
 		frontApplication = new FrontApplication(this);
 		this.game = Game.getTheGame();
 		this.game.setFrontApplication(frontApplication);
+		setContentView(frontApplication);
 		try {
 			this.game.initializeGame(frontApplication);
 			this.game.startGame(getApplicationContext());
-			setContentView(frontApplication);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
