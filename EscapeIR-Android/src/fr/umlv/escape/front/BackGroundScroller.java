@@ -44,6 +44,14 @@ public class BackGroundScroller {
 	}
 	
 	public void onDrawBackground(Canvas canvas){
+		System.out.println(backgroundImage);
+		System.out.println(this.backgroundRect);
+		System.out.println(this.backgroundHeight);
 		canvas.drawBitmap(backgroundImage, backgroundRect, screenRect, null);
+	}
+	
+	public void updateScreenSizes(int width, int height){
+		this.screenRect = new Rect(0,0,width,height);
+		this.backgroundRect = new Rect(0, backgroundHeight-height, this.backgroundImage.getWidth(), this.backgroundHeight);
 	}
 }

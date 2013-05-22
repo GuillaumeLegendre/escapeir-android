@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
 import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.front.SpriteShip.SpriteType;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.move.DownMove;
 import fr.umlv.escape.move.KamikazeMove;
@@ -149,6 +150,7 @@ public class ShipFactory {
 			ship=  new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
 			ship.getListWeapon().setCurrentWeapon("MissileLauncher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
+			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);
 			break;
 		case kamikaze_ship:
 			ship = new Ship("KamikazeShip",health,body,img,move,new DoNotShoot());

@@ -34,6 +34,9 @@ public class SpriteShip extends Sprite{
 		/**Represent the basic image without sprite
 		 */
 		BASIC_IMAGE,
+		/**Represent the basic image without sprite
+		 */
+		BASIC_IMAGE_PLAYER,
 		/**Represent the sprite of a left looping
 		 */
 		LEFT_VRILLE,
@@ -60,14 +63,15 @@ public class SpriteShip extends Sprite{
 		this.lastSet=System.currentTimeMillis();
 	}
 
-	private String getNextImageName() {
+	protected String getNextImageName() {
 		String imageName;
 		long currentTime=System.currentTimeMillis();
 		
 		switch(sprite){
-		case BASIC_IMAGE: imageName = "DefaultShipPlayer";break;
+		case BASIC_IMAGE: imageName = "default_ship";break;
+		case BASIC_IMAGE_PLAYER: imageName = "default_ship_player";break;
 		case LEFT_VRILLE: 
-			imageName = "DefaultShipPlayerVL"+currentImage;
+			imageName = "default_ship_player_vl"+currentImage;
 			if(currentTime-lastSet>speed){
 				currentImage++;
 				lastSet=currentTime;
@@ -77,7 +81,7 @@ public class SpriteShip extends Sprite{
 			}
 			break;
 		case RIGHT_VRILLE:
-			imageName = "DefaultShipPlayerVR"+currentImage;
+			imageName = "default_ship_player_vr"+currentImage;
 			if(currentTime-lastSet>speed){
 				currentImage++;
 				lastSet=currentTime;
@@ -87,7 +91,7 @@ public class SpriteShip extends Sprite{
 			}
 			break;
 		case LEFT_MOVE:
-			imageName = "DefaultShipPlayerLM"+currentImage;
+			imageName = "default_ship_player_lm"+currentImage;
 			if((currentTime-lastSet)>(speed*13)){
 				currentImage++;
 				lastSet=currentTime;
@@ -97,7 +101,7 @@ public class SpriteShip extends Sprite{
 			}
 			break;
 		case RIGHT_MOVE:
-			imageName = "DefaultShipPlayerRM"+currentImage;
+			imageName = "default_ship_player_rm"+currentImage;
 			if((currentTime-lastSet)>(speed*13)){
 				currentImage++;
 				lastSet=currentTime;
@@ -107,7 +111,7 @@ public class SpriteShip extends Sprite{
 			}
 			break;
 		case DEAD_SHIP:
-			imageName = "DefaultShipPlayerDead"+explosion;
+			imageName = "default_ship_player_dead"+explosion;
 			if(currentTime-lastImageChange>speed){
 				explosion++;
 				lastImageChange=currentTime;
@@ -120,11 +124,5 @@ public class SpriteShip extends Sprite{
 			throw new AssertionError();
 		}
 		return imageName;
-	}
-	
-	@Override
-	public void onDrawSprite(Canvas canvas) {
-		super.onDrawSprite(canvas);
-		this.setImage(FrontApplication.frontImage.getImage(getNextImageName()));
 	}
 }

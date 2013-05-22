@@ -35,7 +35,7 @@ public class SpriteAnimation extends Sprite{
 	}
 
 	public Bitmap getNextImage() {
-		String imageName = "Explosion"+currentImage;
+		String imageName = "explosion"+currentImage;
 		long currentTime=System.currentTimeMillis();
 		
 		if(isGrowing){
@@ -74,5 +74,4 @@ public class SpriteAnimation extends Sprite{
 	public int getY() {
 		return y;
 	}
-
 }

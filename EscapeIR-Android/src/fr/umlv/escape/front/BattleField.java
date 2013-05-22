@@ -15,8 +15,8 @@ import android.graphics.Bitmap;
 
 public class BattleField {
 	private Sprite[] boundPlayer;
-	int WIDTH;
-	int HEIGHT;
+	private int WIDTH;
+	private int HEIGHT;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
 	final ArrayList<Bullet> bulletList;
@@ -194,5 +194,19 @@ public class BattleField {
 	 */
 	public Bonus getBonus(Body body){
 		return bonusMap.get(body);
+	}
+	
+	public void updateSreenSize(int width, int height){
+		this.WIDTH = width;
+		this.HEIGHT = height;
+		backgoundScroller.updateScreenSizes(width, height);
+	}
+	
+	public int getWIDTH() {
+		return WIDTH;
+	}
+
+	public int getHEIGHT() {
+		return HEIGHT;
 	}
 }

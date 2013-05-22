@@ -32,11 +32,87 @@ public class Game {
 	private FrontApplication frontApplication;
 	private CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
+	private GameRoutine gameRoutine;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier
 		this.currentNbLv=1;
 		this.escapeWorld = EscapeWorld.getTheWorld();
+	}
+	
+	private class GameRoutine extends Thread {
+		Context context;
+		private GameRoutine(Context context){
+			this.context = context;
+		}
+		
+		@Override
+		public void run() {
+			long begin;
+			long elapsedWave;
+			long elapsedStep;
+			boolean isWaveFinished;
+			long lastDeath=0; //TODO gerer mort du joueur
+			
+			//Process all levels
+			while(currentNbLv<=nbLevel){
+				try {
+					currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, "level"+currentNbLv);
+				} catch (IOException e1) {
+					Thread.currentThread().interrupt();
+				} catch (IllegalFormatContentFile e) {
+					Thread.currentThread().interrupt();
+				}
+
+				System.out.println("launching wave");
+				while(currentLevel.launchNextWave()){
+					System.out.println("wave launched");
+					ArrayList<Ship> shipList;
+					begin=System.currentTimeMillis();
+					elapsedWave=0;
+					
+					isWaveFinished=false;
+					while(!isWaveFinished){
+						//world step every 15ms
+						elapsedStep=System.currentTimeMillis();
+						elapsedWave=elapsedStep-begin;
+						
+						escapeWorld.step();
+						collisionMonitor.performPostStepCollision(); // Process post collision treatment
+						//TODO supprimer vaisseau en dehors du jeu
+						
+						isWaveFinished = true;
+						shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
+						for(int i=0; i<shipList.size();++i){
+							Ship ship=shipList.get(i);
+							if(ship.isAlive()){
+								ship.move();			// Move all ship of the wave
+								if(ship.shoot(ship.getPosXCenter(),ship.getPosYCenter())){
+									ship.fire();		// Make all ship shooting
+								}
+								isWaveFinished=false; // If their still are ship the wave is not finished
+							}
+						}
+						if((currentLevel.getCurrentDelay()!=0) && (elapsedWave>currentLevel.getCurrentDelay())){
+							isWaveFinished=true;
+						}
+						
+						try{
+							elapsedStep=System.currentTimeMillis()-elapsedStep;
+							if(elapsedStep>15){
+								elapsedStep=15;
+							}
+							Thread.sleep(15-elapsedStep);
+						} catch (InterruptedException e) {
+							Thread.currentThread().interrupt();
+						}
+					}
+					currentLevel.changeWave();
+				}
+				currentNbLv+=1;
+			}
+		}
+		
 	}
 
 	/**
@@ -52,7 +128,6 @@ public class Game {
 		player1=new Player("Marc",playerShip,3);
 	}
 
-
 	/**
 	 * Start the game. When this method is called, the simulation of the world begin.
 	 * 
@@ -60,63 +135,8 @@ public class Game {
 	 * @throws IllegalFormatContentFile
 	 */
 	public void startGame(Context context) throws IOException, IllegalFormatContentFile{
-		long begin;
-		long elapsedWave;
-		long elapsedStep;
-		boolean isWaveFinished;
-		long lastDeath=0; //TODO gerer mort du joueur
-		
-		//Process all levels
-		while(currentNbLv<=nbLevel){
-			currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, "level"+currentNbLv);
-
-			System.out.println("launching wave");
-			while(currentLevel.launchNextWave()){
-				System.out.println("wave launched");
-				ArrayList<Ship> shipList;
-				begin=System.currentTimeMillis();
-				elapsedWave=0;
-				
-				isWaveFinished=false;
-				while(!isWaveFinished){
-					//world step every 15ms
-					elapsedStep=System.currentTimeMillis();
-					elapsedWave=elapsedStep-begin;
-					
-					escapeWorld.step();
-					collisionMonitor.performPostStepCollision(); // Process post collision treatment
-					//TODO supprimer vaisseau en dehors du jeu
-					
-					isWaveFinished = true;
-					shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
-					for(int i=0; i<shipList.size();++i){
-						Ship ship=shipList.get(i);
-						if(ship.isAlive()){
-							ship.move();			// Move all ship of the wave
-							if(ship.shoot(ship.getPosXCenter(),ship.getPosYCenter())){
-								ship.fire();		// Make all ship shooting
-							}
-							isWaveFinished=false; // If their still are ship the wave is not finished
-						}
-					}
-					if((currentLevel.getCurrentDelay()!=0) && (elapsedWave>currentLevel.getCurrentDelay())){
-						isWaveFinished=true;
-					}
-					
-					try{
-						elapsedStep=System.currentTimeMillis()-elapsedStep;
-						if(elapsedStep>15){
-							elapsedStep=15;
-						}
-						Thread.sleep(15-elapsedStep);
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
-					}
-				}
-				currentLevel.changeWave();
-			}
-			currentNbLv+=1;
-		}
+		this.gameRoutine = new GameRoutine(context);
+		this.gameRoutine.start();
 	}
 	
 	public Player getPlayer1() {

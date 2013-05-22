@@ -19,7 +19,6 @@ public class GameActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		System.out.println(this.getPackageName());
 		frontApplication = new FrontApplication(this);
 		this.game = Game.getTheGame();
 		this.game.setFrontApplication(frontApplication);

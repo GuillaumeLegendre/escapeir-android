@@ -58,8 +58,8 @@ public class SpriteBullet extends Sprite{
 	}
 	
 	private enum ImageName{
-		BASICMISSILEP,
-		BASICMISSILE,
+		BASIC_MISSILEP,
+		BASIC_MISSILE,
 		XRAY,
 		FIREBALL,
 		FIREBALL_2,
@@ -74,12 +74,12 @@ public class SpriteBullet extends Sprite{
 		ImageName enumImage = ImageName.valueOf(imageName.toUpperCase());
 		
 		switch(enumImage){
-		case BASICMISSILEP:
+		case BASIC_MISSILEP:
 			if(currentMissile==1){
 				return FrontApplication.frontImage.getImage("basic_missile_off_player");
 			}
 			return FrontApplication.frontImage.getImage("basic_missile_player");
-		case BASICMISSILE:
+		case BASIC_MISSILE:
 			if(currentMissile==1){
 				return FrontApplication.frontImage.getImage("basic_missile_off");
 			}
@@ -87,10 +87,10 @@ public class SpriteBullet extends Sprite{
 		case XRAY:
 			if(xRay==1){
 				xRay=0;
-				return FrontApplication.frontImage.getImage("XRay");
+				return FrontApplication.frontImage.getImage("xray");
 			}
 			xRay=1;
-			return FrontApplication.frontImage.getImage("XRay2");
+			return FrontApplication.frontImage.getImage("xray2");
 		case FIREBALL: 
 		case FIREBALL_2: 
 		case FIREBALL_3: 
