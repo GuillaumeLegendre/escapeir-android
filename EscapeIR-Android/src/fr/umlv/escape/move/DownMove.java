@@ -14,11 +14,11 @@ public class DownMove implements Movable{
 	@Override
 	public void move(Body body) {
 		Objects.requireNonNull(body);
-//		if(!hasBeenCalled){
+		if(!hasBeenCalled){
 			Vec2 v2 =new Vec2(0.0f, 2.0f);
 			body.setLinearVelocity(v2);
 			hasBeenCalled=true;
-//		}
+		}
 	}
 
 	@Override

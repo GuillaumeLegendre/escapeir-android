@@ -18,7 +18,9 @@ public class GestureDetector {
 	private final ArrayList<Gesture> gestureList;
 	private Ship playerShip;
 	Vec2 lastForce;
-
+	private final float SHOOT_SENSIBILITY;
+	private boolean mustShoot;
+	
 	/**
 	 * Enum that represent a gesture.
 	 */
@@ -49,6 +51,7 @@ public class GestureDetector {
 		this.pointList=new ArrayList<Point>();
 		this.gestureList=new ArrayList<Gesture>();
 		this.playerShip = null;
+		this.SHOOT_SENSIBILITY = 3;
 	}
 //	
 //	/** Detect if a point list represent a horizontal line left or right.
@@ -262,6 +265,14 @@ public class GestureDetector {
 		System.out.println(gestureList.size());
 		System.out.println(pointList.size());
 		System.out.println(this.playerShip);
+		
+		if(mustShoot){
+			//TODO tirer
+			
+			mustShoot = false;
+			return false;
+		}
+		
 		for(int i = 0; i < size; i++){
 			Gesture g = gestureList.get(i);
 			System.out.println(g.getClass().toString());
@@ -283,7 +294,15 @@ public class GestureDetector {
 	 */
 	public boolean addPoint(Point point){
 		Objects.requireNonNull(point);
-		
+		if(this.pointList.size()!=0){
+			Point last = pointList.get(pointList.size());
+			Vec2 force = new Vec2(point.x-last.x,point.y-last.y);
+			if(force.x < SHOOT_SENSIBILITY){
+				this.playerShip.body.setLinearVelocity(force);
+			} else {
+				this.mustShoot = true;
+			}
+		}
 		return this.pointList.add(point);
 	}
 	
