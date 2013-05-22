@@ -61,7 +61,6 @@ public class BattleField {
 						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
 						    tmp.getPosYCenter()< (-LIMIT)		||
 						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
-							System.out.println("REMOVED");
 							shipList.remove(i);
 							shipMap.remove(tmp);
 						}

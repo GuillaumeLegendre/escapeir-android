@@ -9,6 +9,7 @@ import android.graphics.Point;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.world.Bodys;
+import fr.umlv.escape.world.EscapeWorld;
 
 /**
  * Bullet's factory
@@ -61,8 +62,13 @@ public class BulletsFactory {
 		}
 		body.setActive(false);
 		Filter filter=new Filter();
-		filter.categoryBits=32;
-		filter.maskBits=2;
+		if(playerBullet){
+			filter.categoryBits=EscapeWorld.CATEGORY_BULLET_PLAYER;
+			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY;
+		} else {
+			filter.categoryBits=EscapeWorld.CATEGORY_BULLET_ENNEMY;
+			filter.maskBits=EscapeWorld.CATEGORY_PLAYER;	
+		}
 		body.getFixtureList().setFilterData(filter);
 
 		Game.getTheGame().getFrontApplication().getBattleField().addBullet(bullet);

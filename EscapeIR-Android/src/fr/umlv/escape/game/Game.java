@@ -95,6 +95,7 @@ public class Game {
 						} else if(elapsedStep - lastDeath > TIME_TO_RESPAWN){
 							EscapeWorld.getTheWorld().setActive(player1.ship.body, true);
 							player1.getShip().setAlive(true);
+							System.out.println("REVVIIIIII PLAYER1 !!!");
 						}
 						isWaveFinished = true;
 						shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
