@@ -171,16 +171,16 @@ public class ShipFactory {
 		case second_boss:
 			ship = new SecondBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new SecondBossShoot((SecondBoss) ship));
-			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
-			ship.getListWeapon().setCurrentWeapon("ShiboleetThrower");
+			ship.getListWeapon().addWeapon("shiboleet_thrower",Integer.MIN_VALUE);
+			ship.getListWeapon().setCurrentWeapon("shiboleet_thrower");
 			break;
 		case third_boss:
 			ship = new ThirdBoss(health,body,img,move,new ShootDown());
 			ship.setShootBehaviour(new ThirdBossShoot((ThirdBoss) ship));
-			ship.getListWeapon().addWeapon("MissileLauncher",Integer.MIN_VALUE);
-			ship.getListWeapon().addWeapon("FlameThrower",Integer.MIN_VALUE);
-			ship.getListWeapon().addWeapon("ShiboleetThrower",Integer.MIN_VALUE);
-			ship.getListWeapon().setCurrentWeapon("BasicMissile");
+			ship.getListWeapon().addWeapon("missile_launcher",Integer.MIN_VALUE);
+			ship.getListWeapon().addWeapon("flame_thrower",Integer.MIN_VALUE);
+			ship.getListWeapon().addWeapon("shiboleet_thrower",Integer.MIN_VALUE);
+			ship.getListWeapon().setCurrentWeapon("shiboleet_thrower");
 			break;
 		default:
 			throw new IllegalArgumentException(shipName+"not accepted");
