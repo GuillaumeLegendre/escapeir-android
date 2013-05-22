@@ -135,7 +135,6 @@ public class ShipFactory {
 			filter.maskBits=EscapeWorld.CATEGORY_PLAYER | EscapeWorld.CATEGORY_BULLET_PLAYER;
 		}
 		body.getFixtureList().setFilterData(filter);
-		body.setActive(true);
 		Ship ship;
 		
 		EnumShipName enumShipName = EnumShipName.valueOf(shipName);
@@ -151,6 +150,7 @@ public class ShipFactory {
 			ship.getListWeapon().setCurrentWeapon("MissileLauncher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);
+			body.setActive(true);
 			break;
 		case kamikaze_ship:
 			ship = new Ship("KamikazeShip",health,body,img,move,new DoNotShoot());
@@ -184,7 +184,6 @@ public class ShipFactory {
 		default:
 			throw new IllegalArgumentException(shipName+"not accepted");
 		}
-		Game.getTheGame().getFrontApplication().getBattleField().addShip(ship);
 		return ship;
 	}
 	

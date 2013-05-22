@@ -31,6 +31,7 @@ public class Wave {
 		Iterator<Ship> iterShip=this.shipList.iterator();
 		while(iterShip.hasNext()){
 			Ship ship=iterShip.next();
+			Game.getTheGame().getFrontApplication().getBattleField().addShip(ship);
 			ship.body.setActive(true);
 			ship.move();
 		}

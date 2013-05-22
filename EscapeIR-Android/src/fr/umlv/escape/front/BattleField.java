@@ -135,6 +135,7 @@ public class BattleField {
 	 */
 	public void addShip(Ship ship){
 		synchronized(shipLock){
+			System.out.println(ship.toString()+" added");
 			shipList.add(ship);
 			shipMap.put(ship.getBody(), ship);
 		}

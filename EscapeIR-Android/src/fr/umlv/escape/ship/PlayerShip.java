@@ -19,6 +19,7 @@ public class PlayerShip extends Ship{
 	@Override
 	public void onDrawSprite(Canvas canvas) {
 		super.onDrawSprite(canvas);
+		System.out.println("Drawing player : "+this.toString());
 		this.setImage(FrontApplication.frontImage.getImage(getNextImageName()));
 	}
 }

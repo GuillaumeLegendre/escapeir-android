@@ -94,6 +94,7 @@ public class Game {
 							}
 						}
 						if((currentLevel.getCurrentDelay()!=0) && (elapsedWave>currentLevel.getCurrentDelay())){
+							System.out.println("Delay has expired must launched a wave");
 							isWaveFinished=true;
 						}
 						
@@ -125,6 +126,8 @@ public class Game {
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		this.frontApplication = frontAplication;
 		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player", FrontApplication.HEIGHT/3, FrontApplication.WIDTH/2, 99, "PlayerMove");
+		System.out.println("SHIP PLAYER: "+playerShip.getPosXCenter()+"-"+playerShip.getPosYCenter());
+		Game.getTheGame().getFrontApplication().getBattleField().addShip(playerShip);
 		player1=new Player("Marc",playerShip,3);
 	}
 

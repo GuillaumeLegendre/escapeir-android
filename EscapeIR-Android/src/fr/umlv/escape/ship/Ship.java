@@ -178,4 +178,9 @@ public class Ship extends SpriteShip{
 	public ListWeapon getWeapons() {
 		return weapons;
 	}
+	
+	@Override
+	public String toString(){
+		return (this.name+" x:"+this.getPosXCenter()+" y"+this.getPosYCenter());
+	}
 }
