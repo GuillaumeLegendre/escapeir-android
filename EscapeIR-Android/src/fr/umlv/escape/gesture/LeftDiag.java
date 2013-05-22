@@ -8,6 +8,7 @@ import org.jbox2d.common.Vec2;
 import android.graphics.Point;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.world.EscapeWorld;
 
 
 public class LeftDiag implements Gesture{
@@ -37,7 +38,7 @@ public class LeftDiag implements Gesture{
 		Point firstPoint=pointList.get(0);
 		Point lastPoint=pointList.get(pointList.size()-1);
 
-		force=new Vec2(lastPoint.x-firstPoint.x,lastPoint.y-firstPoint.y);
+		force=new Vec2( (lastPoint.x-firstPoint.x)/EscapeWorld.SCALE, (lastPoint.y-firstPoint.y)/EscapeWorld.SCALE);
 		if((force.y/force.x)>2 || (force.y/force.x)<0.5){
 			return false;
 		}

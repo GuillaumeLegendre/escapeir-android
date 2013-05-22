@@ -259,9 +259,15 @@ public class GestureDetector {
 		if(this.playerShip==null) {
 			this.playerShip = Game.getTheGame().getPlayer1().getShip();
 		}
+		System.out.println(gestureList.size());
+		System.out.println(pointList.size());
+		System.out.println(this.playerShip);
 		for(int i = 0; i < size; i++){
 			Gesture g = gestureList.get(i);
+			System.out.println(g.getClass().toString());
 			if(g.isRecognized(pointList)){
+				System.out.println("RECOGNIZED");
+				System.out.println(g.getClass().toString());
 				g.apply(this.playerShip);
 				return true;
 			}
