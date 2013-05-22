@@ -9,6 +9,7 @@ import android.graphics.Point;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.gesture.GestureDetector.GestureType;
 import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.world.EscapeWorld;
 
 public class Horizontal implements Gesture{
 	private final int MARGIN_ERROR = 30;		// margin error for the back off gesture
@@ -37,8 +38,7 @@ public class Horizontal implements Gesture{
 			previous=tmp;
 			numOfPoint++;
 		}
-		force.x =(float)previous.x-firstPoint.x;
-		force.y = 0f;
+		force = new Vec2((previous.x-firstPoint.x)/EscapeWorld.SCALE, 0);
 		return true;
 	}
 

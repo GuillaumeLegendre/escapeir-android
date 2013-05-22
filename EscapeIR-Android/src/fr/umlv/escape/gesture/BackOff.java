@@ -49,7 +49,7 @@ public class BackOff implements Gesture {
 			previous=tmp;
 		}
 
-		force.set(0, (previous.y-firstPoint.y)/EscapeWorld.SCALE);
+		force=new Vec2(0,(previous.y-firstPoint.y)/EscapeWorld.SCALE);
 		return true;
 	}
 
