@@ -146,7 +146,7 @@ public class ShipFactory {
 			ghostShoot=(ghostShoot+1)%7;
 			break;
 		case default_ship_player:
-			ship= new Ship("DefaultShipPlayer",health,body,img,move,new ShootDown());
+			ship= new PlayerShip("DefaultShipPlayer",health,body,img,move,new ShootDown());
 			ship.getListWeapon().setCurrentWeapon("missile_launcher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);

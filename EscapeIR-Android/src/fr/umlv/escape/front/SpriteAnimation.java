@@ -1,7 +1,5 @@
 package fr.umlv.escape.front;
 
-import org.jbox2d.dynamics.Body;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -71,7 +69,7 @@ public class SpriteAnimation extends Sprite{
 
 	@Override
 	public boolean isStillDisplayable(){
-		return this.image == null;
+		return (this.image != null);
 	}
 	
 	/**

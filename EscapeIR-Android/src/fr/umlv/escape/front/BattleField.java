@@ -52,7 +52,7 @@ public class BattleField {
 						Ship tmp = shipList.get(i);
 						if(!tmp.isAlive()){
 							animationList.add(new SpriteAnimation(ANIMATIONSPEED, tmp.getPosXCenter(), tmp.getPosYCenter(), FrontApplication.frontImage.getImage("explosion1")));
-							if(tmp.equals(Game.getTheGame().getPlayer1().getShip())){
+							if(tmp==Game.getTheGame().getPlayer1().getShip()){
 								tmp.setCurrentSprite(SpriteType.DEAD_SHIP);
 							}
 						}
@@ -61,6 +61,7 @@ public class BattleField {
 						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
 						    tmp.getPosYCenter()< (-LIMIT)		||
 						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+							System.out.println("REMOVED");
 							shipList.remove(i);
 							shipMap.remove(tmp);
 						}
