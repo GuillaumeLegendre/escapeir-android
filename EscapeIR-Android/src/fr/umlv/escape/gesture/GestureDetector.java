@@ -296,11 +296,11 @@ public class GestureDetector {
 		Objects.requireNonNull(point);
 		//If it is not the first point, the ship must follow the points
 		if(this.pointList.size()!=0){
-			Point last = pointList.get(pointList.size());
+			Point last = pointList.get(pointList.size()-1);
 			Vec2 force = new Vec2(point.x-last.x,point.y-last.y);
 			
 			//If the distance between two point is too high it is a shoot
-			if(force.x < SHOOT_SENSIBILITY){
+			if(force.x < SHOOT_SENSIBILITY && force.y < SHOOT_SENSIBILITY){
 				this.playerShip.body.setLinearVelocity(force);
 			} else {
 				this.mustShoot = true;
