@@ -29,7 +29,7 @@ public class DrawThread extends Thread{
 			
 			Canvas canvas = holder.lockCanvas(null); // TODO Optim ?????
 			if(canvas == null){
-				throw new AssertionError();
+				continue;
 				// TODO Gerer exception
 			}
 			battleField.backgoundScroller.onDrawBackground(canvas);

@@ -112,9 +112,9 @@ public class CollisionMonitor implements ContactListener{
 					elemToDelete.add(body);
 					impactEnemyDead(enemy,player);
 				}
-				/*if((!bullet.getNameLvl().equals("FireBall_3")) && (!bullet.getName().equals("XRay"))){
+				if((!bullet.getNameLvl().equals("FireBall_3")) && (!bullet.getName().equals("XRay"))){
 					elemToDelete.add(body2);
-				}*/
+				}
 			} else {
 				bullet=battleField.getBullet(body);
 				enemy=battleField.getShip(body2);
@@ -125,7 +125,8 @@ public class CollisionMonitor implements ContactListener{
 					System.out.println(body2.m_fixtureList.m_filter.categoryBits);
 					System.out.println(body2.m_fixtureList.m_filter.maskBits);
 					System.out.println(body2.getPosition().x*50+" - "+body2.getPosition().y);
-					throw new AssertionError();
+					return;
+					//throw new AssertionError();
 				}
 				enemy.takeDamage(bullet.getDamage());
 				if(bullet == player.getShip().getCurrentWeapon().getLoadingBullet()){

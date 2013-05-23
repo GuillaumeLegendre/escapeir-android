@@ -290,6 +290,7 @@ public class GestureDetector {
 			
 			//If the distance between two point is too high it is a shoot
 			if(!mustShoot && force.x < SHOOT_SENSIBILITY && force.y < SHOOT_SENSIBILITY){
+				System.out.println(force.x+" - "+force.y);
 				this.playerShip.body.setLinearVelocity(force);
 			} else {
 				this.mustShoot = true;
