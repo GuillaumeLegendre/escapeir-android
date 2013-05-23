@@ -76,7 +76,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void launchEditor(View view){
-		Toast.makeText(getApplicationContext(), "Editor on construction", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this,EditorActivity.class);
+		startActivity(intent);
 	}
 	
 	public void launchGame(View view){

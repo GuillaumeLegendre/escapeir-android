@@ -19,13 +19,11 @@ public class PlayerShip extends Ship{
 	@Override
 	public void onDrawSprite(Canvas canvas) {
 		super.onDrawSprite(canvas);
-		System.out.println("Drawing player : "+this.toString());
 		this.setImage(FrontApplication.frontImage.getImage(getNextImageName()));
 	}
 	
 	@Override
 	public boolean isStillDisplayable(){
-		System.out.println("is player still displayable???");
 		return true;
 	}
 }

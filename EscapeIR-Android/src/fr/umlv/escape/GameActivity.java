@@ -23,12 +23,12 @@ public class GameActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		frontApplication = new FrontApplication(this);
-		this.game = Game.getTheGame();
 		Display display = getWindowManager().getDefaultDisplay();
 		int width = display.getWidth();  // deprecated
 		int height = display.getHeight();
 		
+		frontApplication = new FrontApplication(this,width,height);
+		this.game = Game.getTheGame();
 		try {
 			this.game.initializeGame(frontApplication,height,width);	
 			setContentView(frontApplication);

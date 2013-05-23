@@ -4,6 +4,7 @@ import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 
 /**
  * Class that manage all sprites of {@link Bullet}
@@ -39,6 +40,12 @@ public class SpriteBullet extends Sprite{
 	 */
 	public void setCurrentTime(){
 		currentTime=System.currentTimeMillis();
+	}
+	
+	private Bitmap rotate(Bitmap source, float angle){
+		Matrix matrix = new Matrix();
+	    matrix.postRotate(angle);
+	    return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 	}
 	
 	/**
@@ -97,11 +104,11 @@ public class SpriteBullet extends Sprite{
 		case SHIBOLEET: 
 		case SHIBOLEET_2: 
 		case SHIBOLEET_3:
-			double angle=currentRotation*20;
+			float angle=currentRotation*20;
 			if(angle==90){
 				angle=100;
 			}
-			//return rotate((BufferedImage)FrontImages.getImage(imageName),angle);	
+			return rotate(FrontApplication.frontImage.getImage(imageName),angle);	
 		default:
 			throw new AssertionError(imageName);
 		}

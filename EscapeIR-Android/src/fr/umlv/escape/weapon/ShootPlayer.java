@@ -31,10 +31,10 @@ public class ShootPlayer implements Shootable, Gesture{
 		if(canShoot(weapon)){
 			Point positionShip = new Point(x,y);
 			Bullet bullet=weapon.fire(positionShip);
-			Filter filter=new Filter();
+			/*Filter filter=new Filter();
 			filter.categoryBits=8;
 			filter.maskBits=4;
-			bullet.getBody().getFixtureList().setFilterData(filter);
+			bullet.getBody().getFixtureList().setFilterData(filter);*/
 			bullet.getBody().setActive(true);
 			weapon.setLoadingBullet(bullet);
 			return true;

@@ -25,11 +25,11 @@ import fr.umlv.escape.gesture.RightDiag;
 	public static int WIDTH;
 	final BattleField battleField;
 
-	public FrontApplication(Context context) {
+	public FrontApplication(Context context,int width, int height) {
 		super(context);
 		this.holder = getHolder();
 		frontImage = new FrontImages(getResources());
-		battleField = new BattleField(getWidth(),getHeight(),frontImage.getImage("level1"));
+		battleField = new BattleField(width,height,frontImage.getImage("level1"));
 		callback();
 	}
 
@@ -86,8 +86,8 @@ import fr.umlv.escape.gesture.RightDiag;
 			break;
 		case MotionEvent.ACTION_UP:
 			if(gestureDetector.detect()){
-	//			gestureDetector.
 			}
+			gestureDetector.clear();
 		default:
 			break;
 		}

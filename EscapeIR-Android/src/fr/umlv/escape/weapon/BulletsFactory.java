@@ -63,9 +63,11 @@ public class BulletsFactory {
 		body.setActive(false);
 		Filter filter=new Filter();
 		if(playerBullet){
+			System.out.println("PLAYERRRR BULLETTT");
 			filter.categoryBits=EscapeWorld.CATEGORY_BULLET_PLAYER;
 			filter.maskBits=EscapeWorld.CATEGORY_ENNEMY;
 		} else {
+			System.out.println("ENNEMIII BULLETTT");
 			filter.categoryBits=EscapeWorld.CATEGORY_BULLET_ENNEMY;
 			filter.maskBits=EscapeWorld.CATEGORY_PLAYER;	
 		}
