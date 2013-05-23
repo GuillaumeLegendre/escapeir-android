@@ -1,7 +1,6 @@
 package fr.umlv.escape.world;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.jbox2d.callbacks.ContactImpulse;

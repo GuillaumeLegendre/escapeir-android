@@ -156,6 +156,7 @@ public class BattleField {
 		synchronized(bulletLock){
 			bulletList.add(bullet);
 			bulletMap.put(bullet.getBody(), bullet);
+			System.out.println(bulletMap.get(bullet.getBody()));
 		}
 	}
 	
@@ -167,6 +168,7 @@ public class BattleField {
 		synchronized(shipLock){
 			shipList.add(ship);
 			shipMap.put(ship.getBody(), ship);
+			System.out.println(shipMap.get(ship.getBody()));
 		}
 	}
 	
@@ -178,6 +180,7 @@ public class BattleField {
 		synchronized(bonusLock){
 			bonusList.add(bonus);
 			bonusMap.put(bonus.getBody(), bonus);
+			System.out.println(bonusMap.get(bonus.getBody()));
 		}
 	}
 	
