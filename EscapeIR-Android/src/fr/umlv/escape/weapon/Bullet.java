@@ -20,7 +20,7 @@ public abstract class Bullet extends SpriteBullet {
 	private Movable move;
 	private final String name;
 	private long lastTimeLoad;
-	private final boolean playerBullet;
+	protected final boolean playerBullet;
 	
 	/**
 	 * Constructor of bullet

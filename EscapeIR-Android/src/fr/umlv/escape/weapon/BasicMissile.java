@@ -4,6 +4,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 import fr.umlv.escape.move.StraightLine;
 
@@ -34,5 +35,16 @@ public class BasicMissile extends Bullet {
 	@Override
 	public boolean loadPower() {
 		return false;
+	}
+	
+	@Override
+	public void onDrawSprite(Canvas canvas) {
+		if(playerBullet == true){
+			this.setCurrentName(this.getName()+"_player");
+		}
+		else
+			this.setCurrentName(this.getName());
+		image = getNextImage();
+		super.onDrawSprite(canvas);
 	}
 }
