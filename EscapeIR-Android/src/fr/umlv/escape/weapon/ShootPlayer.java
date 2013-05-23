@@ -48,8 +48,12 @@ public class ShootPlayer implements Shootable, Gesture{
 		
 		Bullet b = weapon.getLoadingBullet();
 		if(b != null){
+			if(force == null){
+				force = new Vec2(0,-2);
+			}
 			b.fire(force);
 			weapon.setLoadingBullet(null);
+			force = null;
 		}
 	}
 

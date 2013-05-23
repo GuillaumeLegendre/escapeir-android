@@ -85,22 +85,21 @@ import fr.umlv.escape.weapon.Weapon;
 			if(( w = UserInterface.clickIsWeaponSelect(p)) != null){
 				s.getListWeapon().setCurrentWeapon(w.getName());
 			}
-			if(p.x > s.getPosXCenter()-20 &&
-					p.x < s.getPosXCenter()+20 &&
-					p.y > s.getPosYCenter()-20 &&
-					p.y < s.getPosYCenter()+20 ){
-				s.shoot(s.getPosXCenter(), s.getPosYCenter());
-			} else {
-				gestureDetector.clear();
-				gestureDetector.addPoint(p);
-			}
+			gestureDetector.clear();
+			gestureDetector.addPoint(p);
 			break;
 		case MotionEvent.ACTION_MOVE:
 			Point p2 = new Point((int)arg1.getX(), (int)arg1.getY());
 			gestureDetector.addPoint(p2);
 			break;
 		case MotionEvent.ACTION_UP:
-			if(gestureDetector.detect()){
+			if(gestureDetector.getListPoint().size() == 1){
+				Ship s2 = Game.getTheGame().getPlayer1().getShip();
+				if(s2.getCurrentWeapon().getLoadingBullet() == null)
+					s2.shoot(s2.getPosXCenter(), s2.getPosYCenter());
+				else
+					s2.fire();
+			} else if(gestureDetector.detect()){
 			}
 			gestureDetector.clear();
 		default:
