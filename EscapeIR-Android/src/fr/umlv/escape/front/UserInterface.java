@@ -101,9 +101,8 @@ public class UserInterface {
 			if(w == current_weapon){
 				p.setColor(Color.BLUE);
 			}
-			System.out.println(FrontApplication.WIDTH );
-			canvas.drawRect(FrontApplication.WIDTH, 50+i*75, FrontApplication.WIDTH, 110+i*75, p);
-			canvas.drawBitmap(bmp, FrontApplication.WIDTH, 70+i*75, p);
+			canvas.drawRect(FrontApplication.WIDTH - 60, 50+i*75, FrontApplication.WIDTH - 10, 110+i*75, p);
+			canvas.drawBitmap(bmp, FrontApplication.WIDTH - 60, 70+i*75, p);
 			p.setColor(Color.BLACK);
 		}
 	}
