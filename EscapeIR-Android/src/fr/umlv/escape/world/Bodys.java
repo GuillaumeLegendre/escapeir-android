@@ -24,6 +24,7 @@ public class Bodys {
 	 * @return The body created.
 	 */
 	public static Body createBasicRectangle(float posX, float posY, float width, float height,int type){
+		System.out.println("Body Rect "+posX+"-"+posY);
 		if(type>2 || type<0){
 			throw new IllegalArgumentException("must be between 0 and 2");
 		}
@@ -66,6 +67,7 @@ public class Bodys {
 	 * @return The body created.
 	 */
 	public static Body createBasicCircle(float posX, float posY, float radius,int type){
+		System.out.println("Body Circle "+posX+"-"+posY);
 		if(type>2 || type<0){
 			throw new IllegalArgumentException("must be between 0 and 2");
 		}
