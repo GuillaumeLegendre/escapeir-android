@@ -81,7 +81,7 @@ import fr.umlv.escape.weapon.Weapon;
 			Point p = new Point((int)arg1.getX(), (int)arg1.getY());
 			Weapon w = null;
 			if(( w = UserInterface.clickIsWeaponSelect(p)) != null){
-				System.out.println(Game.getTheGame().getPlayer1().getShip().getListWeapon().setCurrentWeapon(w.getName()));
+				Game.getTheGame().getPlayer1().getShip().getListWeapon().setCurrentWeapon(w.getName());
 			}
 			gestureDetector.clear();
 			gestureDetector.addPoint(p);

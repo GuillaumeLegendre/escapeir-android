@@ -256,10 +256,6 @@ public class GestureDetector {
 	public boolean detect(){
 		int size = gestureList.size();
 		
-		System.out.println(gestureList.size());
-		System.out.println(pointList.size());
-		System.out.println(this.playerShip);
-		
 		if(mustShoot){
 			playerShip.shoot(playerShip.getPosXCenter(), playerShip.getPosYCenter());
 			ShootPlayer sp = (ShootPlayer) playerShip.getShootBehaviour();
