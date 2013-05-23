@@ -53,6 +53,7 @@ public class SpriteBullet extends Sprite{
 	 * which have only 2 images.
 	 */
 	public void setLastChange(){
+		setCurrentTime();
 		if((currentTime-lastImageChange)>speed){
 			this.lastImageChange=currentTime;
 			if(currentMissile==0){
@@ -65,7 +66,7 @@ public class SpriteBullet extends Sprite{
 	}
 	
 	private enum ImageName{
-		BASIC_MISSILEP,
+		BASIC_MISSILE_PLAYER,
 		BASIC_MISSILE,
 		XRAY,
 		FIREBALL,
@@ -79,14 +80,15 @@ public class SpriteBullet extends Sprite{
 	public Bitmap getNextImage() {
 		currentRotation=((currentRotation+1)%18)+1;
 		ImageName enumImage = ImageName.valueOf(imageName.toUpperCase());
-		
 		switch(enumImage){
-		case BASIC_MISSILEP:
+		case BASIC_MISSILE_PLAYER:
+			setLastChange();
 			if(currentMissile==1){
-				return FrontApplication.frontImage.getImage("basic_missile_off_player");
+				return rotate(FrontApplication.frontImage.getImage("basic_missile_off"), 180);
 			}
-			return FrontApplication.frontImage.getImage("basic_missile_player");
+			return rotate(FrontApplication.frontImage.getImage("basic_missile"), 180);
 		case BASIC_MISSILE:
+			setLastChange();
 			if(currentMissile==1){
 				return FrontApplication.frontImage.getImage("basic_missile_off");
 			}
