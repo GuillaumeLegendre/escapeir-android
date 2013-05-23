@@ -102,7 +102,7 @@ public class CollisionMonitor implements ContactListener{
 					player.setLife(player.getLife()-1);
 					shipPlayer.setHealth(99);
 				}
-				elemToDelete.add(shipPlayer.getBody());
+				//elemToDelete.add(shipPlayer.getBody());
 			}
 		} else {
 			body=arg0.getFixtureA().getBody();
