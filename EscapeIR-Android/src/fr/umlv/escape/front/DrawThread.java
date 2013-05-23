@@ -33,8 +33,6 @@ public class DrawThread extends Thread{
 				// TODO Gerer exception
 			}
 			battleField.backgoundScroller.onDrawBackground(canvas);
-			UserInterface.drawUIScoresAndLife(canvas);
-			UserInterface.drawWeaponsIcons(canvas);
 			synchronized (battleField.shipLock) {
 				ArrayList<Ship> listShip = battleField.shipList;
 				for(int i = 0; i < listShip.size(); i++){
@@ -59,7 +57,8 @@ public class DrawThread extends Thread{
 					listAnimation.get(i).onDrawSprite(canvas);
 				}
 			}
-		
+			UserInterface.drawUIScoresAndLife(canvas);
+			UserInterface.drawWeaponsIcons(canvas);
 			holder.unlockCanvasAndPost(canvas);
 			battleField.backgoundScroller.verticalScroll();
 			

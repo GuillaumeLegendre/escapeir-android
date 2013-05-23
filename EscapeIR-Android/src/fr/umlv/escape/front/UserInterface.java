@@ -67,6 +67,7 @@ public class UserInterface {
 		Paint p = new Paint();
 		FrontImages fi = FrontApplication.frontImage;
 		p.setTextSize(25);
+		p.setColor(Color.GREEN);
 		
 		Bitmap bmp = fi.getImage("hearth");
 		canvas.drawBitmap(bmp, 10, 10, p);
@@ -84,6 +85,7 @@ public class UserInterface {
 		Paint p = new Paint();
 		FrontImages fi = FrontApplication.frontImage;
 		p.setStyle(Paint.Style.STROKE);
+		p.setTextSize(20);
 		Bitmap bmp;
 		
 		for(int i=0; i<weapons.size();i++){
@@ -94,6 +96,13 @@ public class UserInterface {
 			}
 			canvas.drawRect(FrontApplication.WIDTH - 60, 60+i*75, FrontApplication.WIDTH - 10, 110+i*75, p);
 			canvas.drawBitmap(bmp, FrontApplication.WIDTH - 55, 65+i*75, p);
+			p.setColor(Color.GREEN);
+			if(String.valueOf(w.getBulletQty()).length() == 1){
+				canvas.drawText(" "+w.getBulletQty(), FrontApplication.WIDTH - 30, 105+i*75, p);
+			} else {
+				canvas.drawText(String.valueOf(w.getBulletQty()), FrontApplication.WIDTH - 30, 105+i*75, p);
+			}
+			
 			p.setColor(Color.BLACK);
 		}
 	}

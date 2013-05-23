@@ -3,8 +3,13 @@ package fr.umlv.escape.bonus;
 import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.move.DownMove;
 import fr.umlv.escape.move.Movable;
@@ -63,5 +68,16 @@ public class Bonus extends Sprite{
 	@Override
 	public boolean isStillDisplayable(){
 		return this.body.isActive();
+	}
+	
+	@Override
+	public void onDrawSprite(Canvas canvas) {
+		// TODO Auto-generated method stub
+		super.onDrawSprite(canvas);
+		Paint p = new Paint();
+		p.setTextSize(15);
+		p.setColor(Color.BLUE);
+		
+		canvas.drawText(String.valueOf(quantity), getPosXCenter(), getPosYCenter()+15, p);
 	}
 }
