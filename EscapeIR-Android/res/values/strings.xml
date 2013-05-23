@@ -10,5 +10,8 @@
 	<string name="map2">Map2</string>
 	<string name="map3">Map3</string>
 	<string name="next">Next</string>
-	
+	<string name="plus">+</string>
+	<string name="moins">-</string>
+	<string name="numberWaves">"Number of waves"</string>
+	<string name="back">"Back"</string>
 </resources>

@@ -26,6 +26,7 @@
 	        android:layout_height="wrap_content"
 		  	android:layout_gravity="center"
 		    android:text="@string/map1"
+		    android:onClick="onPushButton"
 	    />
 	    <Button 
 	        android:id="@+id/map2Button"
@@ -33,6 +34,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 		    android:text="@string/map2"
+		    android:onClick="onPushButton"
 	    />
 	    <Button 
 	        android:id="@+id/map3Button"
@@ -40,6 +42,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 		    android:text="@string/map3"
+		    android:onClick="onPushButton"
 	    />
 	    <Button 
 	        android:id="@+id/nextButton"
@@ -47,7 +50,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
 		    android:text="@string/next"
-		    android:onClick="nextStep"
+		    android:onClick="onPushButton"
 	    />
     </LinearLayout>
     

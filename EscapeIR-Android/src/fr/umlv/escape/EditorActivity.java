@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
 
-public class EditorActivity extends Activity implements OnClickListener{
+public class EditorActivity extends Activity {
 	private int state = 0;
 	private String levelName;
 	private Level level;
@@ -16,12 +17,9 @@ public class EditorActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editor_map);
-		ImageView map = (ImageView)findViewById(R.id.mapImageEditor);
-		map.setImageResource(R.drawable.level1);
 	}
 
-	@Override
-	public void onClick(View v) {
+	public void onPushButton(View v) {
 		switch(state){
 		case 0 : performState0(v); break;
 		case 1 : performState1(v); break;
@@ -55,6 +53,7 @@ public class EditorActivity extends Activity implements OnClickListener{
 			case R.id.nextButton : {
 			this.level = new Level(this.levelName);
 			state= 1;
+			setContentView(R.layout.editor_waves);
 			break;
 			}
 		}
@@ -62,7 +61,22 @@ public class EditorActivity extends Activity implements OnClickListener{
 	}
 	
 	public void performState1(View v) {
-		
+		ListView waves = (ListView)findViewById(R.id.waves_list_editor);
+		switch(v.getId())
+		{
+			case R.id.backButton : {
+				state = 0;
+				setContentView(R.layout.editor_map);
+				break;
+			}
+			case R.id.plus : {
+				
+			}
+			case R.id.moins : {
+				
+			}
+		}
+		v.invalidate();
 	}
 
 	public void performState2(View v) {

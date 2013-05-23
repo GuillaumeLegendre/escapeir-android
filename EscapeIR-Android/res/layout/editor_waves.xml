@@ -1,37 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:weightSum="100">
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+   	 	android:layout_height="0dp"
+	 	android:gravity="left"
+	 	android:layout_weight="10"
+    	android:orientation="horizontal" >
+    	
+    	<Button 
+	        android:id="@+id/backButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+		    android:text="@string/back"
+		    android:onClick="onPushButton"
+	    />
+    	<TextView
+            android:layout_width="match_parent"
+	        android:layout_height="fill_parent"
+	        android:gravity="center"
+	        android:fontFamily="@style/AppBaseTheme"
+	        android:text="@string/numberWaves"
+		/>
+    </LinearLayout>
 	<LinearLayout
     	android:layout_width="fill_parent"
-   	 	android:layout_height="fill_parent"
+   	 	android:layout_height="0dp"
 	 	android:gravity="center"
-	 	android:layout_weight="1"
+	 	android:layout_weight="10"
     	android:orientation="horizontal" >
     	
 	    <Button 
-	        android:id="@+id/map1Button"
+	        android:id="@+id/moins"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 		  	android:layout_gravity="center"
-		    android:text="@string/map1"
+		    android:text="@string/moins"
+		    android:onClick="onPushButton"
 	    />
 	    <Button 
-	        android:id="@+id/map2Button"
+	        android:id="@+id/plus"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center"
-		    android:text="@string/map2"
+		    android:text="@string/plus"
+		    android:onClick="onPushButton"
 	    />
     </LinearLayout>
-    <LinearLayout
-    	android:layout_width="fill_parent"
-   	 	android:layout_height="fill_parent"
-	 	android:gravity="center"
-	 	android:layout_weight="1"
-    	android:orientation="horizontal" >
-	</LinearLayout>
-    
+    <ListView 
+        android:id="@+id/waves_list_editor"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="80"
+    >
+    </ListView>
+	
 </LinearLayout>
