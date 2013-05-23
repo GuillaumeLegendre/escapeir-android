@@ -62,7 +62,7 @@ public class BattleField {
 						    tmp.getPosYCenter()< (-LIMIT)		||
 						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							shipList.remove(i);
-							shipMap.remove(tmp);
+							shipMap.remove(tmp.body);
 						}
 					}
 				}
@@ -76,7 +76,7 @@ public class BattleField {
 						    tmp.getPosYCenter()< (-LIMIT)		||
 						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							bulletList.remove(i);
-							bulletMap.remove(tmp);
+							bulletMap.remove(tmp.body);
 						}
 					}
 				}
@@ -90,7 +90,7 @@ public class BattleField {
 						    tmp.getPosYCenter()< (-LIMIT)		||
 						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							bonusList.remove(i);
-							bonusMap.remove(tmp);
+							bonusMap.remove(tmp.getBody());
 						}
 					}
 				}
@@ -126,10 +126,10 @@ public class BattleField {
 		this.bonusList = new ArrayList<Bonus>();
 		this.animationList = new ArrayList<SpriteAnimation>();
 		this.bfCleaner = new BattleFieldCleaner();
-		this.boundPlayer = new Sprite[4];
-		
+		this.boundPlayer = new Sprite[4];		
+				
 		//Creating the bounds for the player
-		/*boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),null);	//wall bot
+		boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),null);	//wall bot
 		boundPlayer[1]= new Sprite(Bodys.createBasicRectangle(0, 0, width, 1,2),null);		//wall top
 		boundPlayer[2]= new Sprite(Bodys.createBasicRectangle(0, 0, 1, height,2),null);		//wall left
 		boundPlayer[3]= new Sprite(Bodys.createBasicRectangle(width, 0, 1, height,2),null);	//wall right
@@ -141,7 +141,7 @@ public class BattleField {
 		for(int i=0;i<boundPlayer.length;++i){
 			boundPlayer[i].body.getFixtureList().setFilterData(filter);
 			boundPlayer[i].body.getFixtureList().m_isSensor=false;
-		}*/
+		}
 	}
 	
 	public void launchBfCleaner(){
