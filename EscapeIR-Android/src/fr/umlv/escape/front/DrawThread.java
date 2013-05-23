@@ -29,9 +29,12 @@ public class DrawThread extends Thread{
 			
 			Canvas canvas = holder.lockCanvas(null); // TODO Optim ?????
 			if(canvas == null){
+				throw new AssertionError();
 				// TODO Gerer exception
 			}
 			battleField.backgoundScroller.onDrawBackground(canvas);
+			UserInterface.drawUIScoresAndLife(canvas);
+			UserInterface.drawWeaponsIcons(canvas);
 			synchronized (battleField.shipLock) {
 				ArrayList<Ship> listShip = battleField.shipList;
 				for(int i = 0; i < listShip.size(); i++){

@@ -3,9 +3,17 @@ package fr.umlv.escape.front;
 import java.util.List;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 
+import fr.umlv.escape.R;
 import fr.umlv.escape.game.Game;
+import fr.umlv.escape.game.Player;
+import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.weapon.ListWeapon;
 import fr.umlv.escape.weapon.Weapon;
 
 /**
@@ -57,5 +65,46 @@ public class UserInterface {
 			}
 		}
 		return -1;
+	}
+	
+	public static void drawUIScoresAndLife(Canvas canvas){
+		Player player = Game.getTheGame().getPlayer1();
+		String life = String.valueOf(player.getLife());
+		String health = String.valueOf(player.getShip().getHealth());
+		String score = String.valueOf(player.getScore());
+		
+		Paint p = new Paint();
+		FrontImages fi = FrontApplication.frontImage;
+		p.setTextSize(25);
+		
+		Bitmap bmp = fi.getImage("hearth");
+		canvas.drawBitmap(bmp, 10, 10, p);
+		canvas.drawText(life, 60, 40, p);
+		bmp = fi.getImage("health");
+		canvas.drawBitmap(bmp, 90, 10, p);
+		canvas.drawText(health, 130, 40, p);
+		canvas.drawText(score, 200, 40, p);
+	}
+	
+	public static void drawWeaponsIcons(Canvas canvas){
+		Ship s = Game.getTheGame().getPlayer1().getShip();
+		Weapon current_weapon = s.getCurrentWeapon();
+		List<Weapon> weapons = s.getListWeapon().getWeapons();
+		Paint p = new Paint();
+		FrontImages fi = FrontApplication.frontImage;
+		p.setStyle(Paint.Style.STROKE);
+		Bitmap bmp;
+		
+		for(int i=0; i<weapons.size();i++){
+			Weapon w = weapons.get(i);
+			bmp = fi.getImage(w.getName());
+			if(w == current_weapon){
+				p.setColor(Color.BLUE);
+			}
+			System.out.println(FrontApplication.WIDTH );
+			canvas.drawRect(FrontApplication.WIDTH, 50+i*75, FrontApplication.WIDTH, 110+i*75, p);
+			canvas.drawBitmap(bmp, FrontApplication.WIDTH, 70+i*75, p);
+			p.setColor(Color.BLACK);
+		}
 	}
 }
