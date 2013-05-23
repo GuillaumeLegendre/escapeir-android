@@ -95,8 +95,6 @@ public class CollisionMonitor implements ContactListener{
 				ListWeapon playerWeapons = shipPlayer.getListWeapon();
 				playerWeapons.addWeapon(bonus.getType(), bonus.getQuantity());
 				elemToDelete.add(body);
-			} else {
-				System.out.println("WALLLLLLLLLLLLLLLLLLLLLLLLLLL");
 			}
 		} else {
 			body=arg0.getFixtureA().getBody();
@@ -114,7 +112,7 @@ public class CollisionMonitor implements ContactListener{
 					elemToDelete.add(body);
 					impactEnemyDead(enemy,player);
 				}
-				if((!bullet.getNameLvl().equals("FireBall_3")) && (!bullet.getName().equals("XRay"))){
+				if((!bullet.getNameLvl().equals("fireball_3")) && (!bullet.getName().equals("xray"))){
 					elemToDelete.add(body2);
 				}
 			} else {
@@ -138,7 +136,7 @@ public class CollisionMonitor implements ContactListener{
 					elemToDelete.add(body2);
 					impactEnemyDead(enemy, player);
 				}
-				if((!bullet.getNameLvl().equals("FireBall_3"))&&(!bullet.getName().equals("XRay"))){
+				if((!bullet.getNameLvl().equals("fireball_3"))&&(!bullet.getName().equals("xray"))){
 					elemToDelete.add(body);
 				}
 			}
