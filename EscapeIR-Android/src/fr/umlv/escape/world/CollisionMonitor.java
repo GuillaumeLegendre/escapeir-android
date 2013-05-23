@@ -119,6 +119,12 @@ public class CollisionMonitor implements ContactListener{
 				bullet=battleField.getBullet(body);
 				enemy=battleField.getShip(body2);
 				if((bullet==null)||(enemy==null)){
+					System.out.println(body.m_fixtureList.m_filter.categoryBits);
+					System.out.println(body.m_fixtureList.m_filter.maskBits);
+					System.out.println(body.getPosition().x*50+" - "+body.getPosition().y);
+					System.out.println(body2.m_fixtureList.m_filter.categoryBits);
+					System.out.println(body2.m_fixtureList.m_filter.maskBits);
+					System.out.println(body2.getPosition().x*50+" - "+body2.getPosition().y);
 					throw new AssertionError();
 				}
 				enemy.takeDamage(bullet.getDamage());

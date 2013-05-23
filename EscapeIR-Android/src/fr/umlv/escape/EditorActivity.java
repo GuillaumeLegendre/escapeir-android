@@ -70,7 +70,8 @@ public class EditorActivity extends Activity {
 				break;
 			}
 			case R.id.plus : {
-				
+				View v2 =findViewById(R.id.backButton);
+				waves.addView(v2, v2.getWidth(), v2.getHeight());
 			}
 			case R.id.moins : {
 				
