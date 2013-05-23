@@ -145,7 +145,7 @@ public class BattleField {
 	}
 	
 	public void launchBfCleaner(){
-		this.bfCleaner.start();
+		//this.bfCleaner.start();
 	}
 	
 	/**
