@@ -10,7 +10,9 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.front.BattleField;
 import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.ship.FirstBoss;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
@@ -82,31 +84,32 @@ public class FirstBossShoot implements Shootable{
 			}
 		}
 		else if(lastState<7){
-			Bitmap newImage=FrontApplication.frontImage.getImage("FirstBoss"+(shipBoss.getState()));
+			Bitmap newImage=FrontApplication.frontImage.getImage("first_boss"+(shipBoss.getState()));
+			shipBoss.image = newImage;
 			Ship ship;
 			Bitmap newShipImage;
 			PolygonShape dynamicBox=new PolygonShape();
 			switch (lastState){
 			case 1:
-				newShipImage=FrontApplication.frontImage.getImage("DefaultShip");
-				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
+				newShipImage=FrontApplication.frontImage.getImage("default_ship");
+				ship=ShipFactory.getTheShipFactory().createShip("default_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
 				break;
 			case 2:
-				newShipImage=FrontApplication.frontImage.getImage("DefaultShip");
-				ship=ShipFactory.getTheShipFactory().createShip("DefaultShip", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
+				newShipImage=FrontApplication.frontImage.getImage("default_ship");
+				ship=ShipFactory.getTheShipFactory().createShip("default_ship", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
 				break;
 			case 3:
-				newShipImage=FrontApplication.frontImage.getImage("BatShip");
-				ship=ShipFactory.getTheShipFactory().createShip("BatShip", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
+				newShipImage=FrontApplication.frontImage.getImage("bat_ship");
+				ship=ShipFactory.getTheShipFactory().createShip("bat_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
 				break;
 			case 4:
-				newShipImage=FrontApplication.frontImage.getImage("BatShip");
-				ship=ShipFactory.getTheShipFactory().createShip("BatShip", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
+				newShipImage=FrontApplication.frontImage.getImage("bat_ship");
+				ship=ShipFactory.getTheShipFactory().createShip("bat_ship", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
 				break;
 			case 5:
 			case 6:
-				newShipImage=FrontApplication.frontImage.getImage("KamikazeShip");
-				ship=ShipFactory.getTheShipFactory().createShip("KamikazeShip", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "KamikazeMove");
+				newShipImage=FrontApplication.frontImage.getImage("kamikaze_ship");
+				ship=ShipFactory.getTheShipFactory().createShip("kamikaze_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "KamikazeMove");
 				break;
 			default:
 				throw new AssertionError();
@@ -115,6 +118,7 @@ public class FirstBossShoot implements Shootable{
 			shipBoss.getBody().getFixtureList().m_shape=dynamicBox;
 			EscapeWorld.getTheWorld().setActive(ship.getBody(),true);
 			shipCreated.add(ship);
+			Game.getTheGame().getFrontApplication().getBattleField().addShip(ship);
 			lastState++;			
 		}
 		else{
