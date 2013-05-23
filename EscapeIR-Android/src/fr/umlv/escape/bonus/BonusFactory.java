@@ -59,13 +59,13 @@ public class BonusFactory {
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(10, body,stringType,img);
 				break;
-			case 4:
+			default:
 				stringType="laser_beam";
 				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
 				bonus= new Bonus(10, body,stringType,img);
 				break;
-			default : throw new IllegalArgumentException(type+" isn't a legal type");
+//			default : throw new IllegalArgumentException(type+" isn't a legal type");
 			}
 		} else{
 			throw new IllegalArgumentException(bonusName+" isn't a legal bonus");

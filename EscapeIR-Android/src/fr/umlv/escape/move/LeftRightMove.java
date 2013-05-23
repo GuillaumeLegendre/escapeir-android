@@ -3,6 +3,7 @@ package fr.umlv.escape.move;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.world.EscapeWorld;
 
 /**
@@ -18,7 +19,7 @@ public class LeftRightMove implements Movable{
 			Vec2 v2 =new Vec2(2.0f, 0.0f);
 			body.setLinearVelocity(v2);
 		}
-		if(body.getPosition().x*EscapeWorld.SCALE>=550){
+		if(body.getPosition().x*EscapeWorld.SCALE>=FrontApplication.WIDTH-90){
 			Vec2 v2 =new Vec2(-2.0f, 0.0f);
 			body.setLinearVelocity(v2);
 		}
