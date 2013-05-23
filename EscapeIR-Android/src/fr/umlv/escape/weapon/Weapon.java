@@ -15,8 +15,6 @@ public abstract class Weapon {
 	private final String missile;
 
 	private final String name;
-	private Point highLeft;
-	private Point downRight;
 	private Bullet loadingBullet;
 
 	/**
@@ -58,30 +56,6 @@ public abstract class Weapon {
 		this.missile = missile;
 		this.name = name;
 		this.ghostShoot=0;
-	}
-	
-	/**
-	 * Position of icon of {@link UserInterface}
-	 * @param highLeft
-	 * @param downRight
-	 */
-	public void setPos(Point highLeft, Point downRight){
-		this.highLeft = highLeft;
-		this.downRight = downRight;
-	}
-	
-	/**
-	 * @return get the higher {@link Point} of the icon UI.
-	 */
-	public Point getHighLeft() {
-		return highLeft;
-	}
-
-	/**
-	 * @return get the lowest {@link Point} of the icon UI.
-	 */
-	public Point getDownRight() {
-		return downRight;
 	}
 	
 	/**
