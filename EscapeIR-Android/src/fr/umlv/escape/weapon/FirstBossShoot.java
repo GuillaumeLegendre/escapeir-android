@@ -92,24 +92,24 @@ public class FirstBossShoot implements Shootable{
 			switch (lastState){
 			case 1:
 				newShipImage=FrontApplication.frontImage.getImage("default_ship");
-				ship=ShipFactory.getTheShipFactory().createShip("default_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
+				ship=ShipFactory.getTheShipFactory().createShip("default_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 15, "SquareRight");
 				break;
 			case 2:
 				newShipImage=FrontApplication.frontImage.getImage("default_ship");
-				ship=ShipFactory.getTheShipFactory().createShip("default_ship", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
+				ship=ShipFactory.getTheShipFactory().createShip("default_ship", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 15, "SquareLeft");
 				break;
 			case 3:
 				newShipImage=FrontApplication.frontImage.getImage("bat_ship");
-				ship=ShipFactory.getTheShipFactory().createShip("bat_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareRight");
+				ship=ShipFactory.getTheShipFactory().createShip("bat_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 15, "SquareRight");
 				break;
 			case 4:
 				newShipImage=FrontApplication.frontImage.getImage("bat_ship");
-				ship=ShipFactory.getTheShipFactory().createShip("bat_ship", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "SquareLeft");
+				ship=ShipFactory.getTheShipFactory().createShip("bat_ship", shipBoss.getPosXCenter()-newShipImage.getWidth(), shipBoss.getPosYCenter(), 15, "SquareLeft");
 				break;
 			case 5:
 			case 6:
 				newShipImage=FrontApplication.frontImage.getImage("kamikaze_ship");
-				ship=ShipFactory.getTheShipFactory().createShip("kamikaze_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 50, "KamikazeMove");
+				ship=ShipFactory.getTheShipFactory().createShip("kamikaze_ship", shipBoss.getPosXCenter()+newShipImage.getWidth(), shipBoss.getPosYCenter(), 30, "KamikazeMove");
 				break;
 			default:
 				throw new AssertionError();

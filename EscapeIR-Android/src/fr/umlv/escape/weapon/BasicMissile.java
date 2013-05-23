@@ -12,7 +12,7 @@ import fr.umlv.escape.move.StraightLine;
  * Represent a basic missile who extends of {@link Bullet}
  */
 public class BasicMissile extends Bullet {
-	private static final int POWER = 9;
+	private static final int POWER = 10;
 	private static final int MAXLOAD = 1;
 
 	/**
