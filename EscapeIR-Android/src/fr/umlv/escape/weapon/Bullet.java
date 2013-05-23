@@ -6,6 +6,7 @@ import org.jbox2d.dynamics.Body;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.front.SpriteBullet;
 import fr.umlv.escape.move.Movable;
@@ -106,7 +107,6 @@ public abstract class Bullet extends SpriteBullet {
 		if(currentLoad < maxLoad && timeNow - lastTimeLoad > 2000){
 			lastTimeLoad = timeNow;
 			currentLoad = currentLoad + 1;
-			//BitmapFactory.decodeResource(getResources(), R.drawable.);
 			return true;
 		}
 		return false;
@@ -131,7 +131,8 @@ public abstract class Bullet extends SpriteBullet {
 	
 	@Override
 	public void onDrawSprite(Canvas canvas) {
-		this.setCurrentName(this.name);
+		loadPower();
+		this.setCurrentName(this.getNameLvl());
 		super.onDrawSprite(canvas);
 	}
 	

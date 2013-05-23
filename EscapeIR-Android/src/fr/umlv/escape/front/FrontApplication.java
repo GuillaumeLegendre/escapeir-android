@@ -16,6 +16,7 @@ import fr.umlv.escape.gesture.LeftCircle;
 import fr.umlv.escape.gesture.LeftDiag;
 import fr.umlv.escape.gesture.RightCircle;
 import fr.umlv.escape.gesture.RightDiag;
+import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.weapon.Weapon;
 
  public class FrontApplication extends SurfaceView{
@@ -80,11 +81,19 @@ import fr.umlv.escape.weapon.Weapon;
 		case MotionEvent.ACTION_DOWN:
 			Point p = new Point((int)arg1.getX(), (int)arg1.getY());
 			Weapon w = null;
+			Ship s = Game.getTheGame().getPlayer1().getShip();
 			if(( w = UserInterface.clickIsWeaponSelect(p)) != null){
-				Game.getTheGame().getPlayer1().getShip().getListWeapon().setCurrentWeapon(w.getName());
+				s.getListWeapon().setCurrentWeapon(w.getName());
 			}
-			gestureDetector.clear();
-			gestureDetector.addPoint(p);
+			if(p.x > s.getPosXCenter()-20 &&
+					p.x < s.getPosXCenter()+20 &&
+					p.y > s.getPosYCenter()-20 &&
+					p.y < s.getPosYCenter()+20 ){
+				s.shoot(s.getPosXCenter(), s.getPosYCenter());
+			} else {
+				gestureDetector.clear();
+				gestureDetector.addPoint(p);
+			}
 			break;
 		case MotionEvent.ACTION_MOVE:
 			Point p2 = new Point((int)arg1.getX(), (int)arg1.getY());
