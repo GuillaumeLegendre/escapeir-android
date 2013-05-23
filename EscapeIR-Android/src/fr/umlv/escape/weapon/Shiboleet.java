@@ -13,7 +13,7 @@ import fr.umlv.escape.move.StraightLine;
  * Represent a Shiboleet who extends of {@link Bullet}
  */
 public class Shiboleet extends Bullet {
-	private static final int POWER = 10;
+	private static final int POWER = 12;
 	private static final int MAXLOAD = 3;
 
 	/**
