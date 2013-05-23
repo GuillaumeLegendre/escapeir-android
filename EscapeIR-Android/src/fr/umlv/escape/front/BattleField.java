@@ -50,10 +50,16 @@ public class BattleField {
 					// Treating ships
 					for(int i = 0; i < shipList.size(); i++){
 						Ship tmp = shipList.get(i);
-						if(!tmp.isAlive()){
-							animationList.add(new SpriteAnimation(ANIMATIONSPEED, tmp.getPosXCenter(), tmp.getPosYCenter(), FrontApplication.frontImage.getImage("explosion1")));
-							if(tmp==Game.getTheGame().getPlayer1().getShip()){
+						if(tmp==Game.getTheGame().getPlayer1().getShip()){
+							if(!tmp.isAlive() && (tmp.getSprite()!=SpriteType.DEAD_SHIP)){
+								animationList.add(new SpriteAnimation(ANIMATIONSPEED, tmp.getPosXCenter(), tmp.getPosYCenter(), FrontApplication.frontImage.getImage("explosion1")));
 								tmp.setCurrentSprite(SpriteType.DEAD_SHIP);
+							} else if(tmp.isAlive() && (tmp.getSprite()==SpriteType.DEAD_SHIP)){
+								tmp.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);
+							}
+						} else{
+							if(!tmp.isAlive()){
+								animationList.add(new SpriteAnimation(ANIMATIONSPEED, tmp.getPosXCenter(), tmp.getPosYCenter(), FrontApplication.frontImage.getImage("explosion1")));
 							}
 						}
 						if( !tmp.isStillDisplayable()			||

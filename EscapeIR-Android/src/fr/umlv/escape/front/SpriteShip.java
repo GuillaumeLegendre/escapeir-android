@@ -61,6 +61,10 @@ public class SpriteShip extends Sprite{
 		this.currentImage=1;
 		this.lastSet=System.currentTimeMillis();
 	}
+	
+	public SpriteType getSprite() {
+		return sprite;
+	}
 
 	protected String getNextImageName() {
 		String imageName;
