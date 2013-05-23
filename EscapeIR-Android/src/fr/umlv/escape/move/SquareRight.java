@@ -20,8 +20,6 @@ public class SquareRight implements Movable{
 	public void move(Body body) {
 		Objects.requireNonNull(body);
 		
-		System.out.println("nbcall: "+nbCall);
-		System.out.println("x: "+body.getPosition().x*EscapeWorld.SCALE+" y: "+body.getPosition().y*EscapeWorld.SCALE);
 		Vec2 v2 =new Vec2();
 		switch(nbCall){
 		case 0:
