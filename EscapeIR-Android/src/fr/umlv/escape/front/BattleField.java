@@ -129,7 +129,7 @@ public class BattleField {
 		this.boundPlayer = new Sprite[4];
 		
 		//Creating the bounds for the player
-		boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),null);	//wall bot
+		/*boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),null);	//wall bot
 		boundPlayer[1]= new Sprite(Bodys.createBasicRectangle(0, 0, width, 1,2),null);		//wall top
 		boundPlayer[2]= new Sprite(Bodys.createBasicRectangle(0, 0, 1, height,2),null);		//wall left
 		boundPlayer[3]= new Sprite(Bodys.createBasicRectangle(width, 0, 1, height,2),null);	//wall right
@@ -141,7 +141,7 @@ public class BattleField {
 		for(int i=0;i<boundPlayer.length;++i){
 			boundPlayer[i].body.getFixtureList().setFilterData(filter);
 			boundPlayer[i].body.getFixtureList().m_isSensor=false;
-		}
+		}*/
 	}
 	
 	public void launchBfCleaner(){
@@ -165,7 +165,6 @@ public class BattleField {
 	 */
 	public void addShip(Ship ship){
 		synchronized(shipLock){
-			System.out.println(ship.toString()+" added");
 			shipList.add(ship);
 			shipMap.put(ship.getBody(), ship);
 		}
