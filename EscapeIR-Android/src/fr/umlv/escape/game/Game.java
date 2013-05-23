@@ -89,6 +89,8 @@ public class Game {
 								//TODO Game Over
 								return;
 							} else {
+								player1.setLife(player1.getLife()-1);
+								player1.ship.setHealth(99);
 								EscapeWorld.getTheWorld().setActive(player1.ship.body, false);
 								lastDeath=elapsedStep;
 							}

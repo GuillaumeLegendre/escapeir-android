@@ -97,13 +97,6 @@ public class CollisionMonitor implements ContactListener{
 				playerWeapons.addWeapon(bonus.getType(), bonus.getQuantity());
 				elemToDelete.add(body);
 			}
-			if(!shipPlayer.isAlive()){
-				if(player.getLife()>=1){
-					player.setLife(player.getLife()-1);
-					shipPlayer.setHealth(99);
-				}
-				//elemToDelete.add(shipPlayer.getBody());
-			}
 		} else {
 			body=arg0.getFixtureA().getBody();
 			body2=arg0.getFixtureB().getBody();
@@ -120,9 +113,9 @@ public class CollisionMonitor implements ContactListener{
 					elemToDelete.add(body);
 					impactEnemyDead(enemy,player);
 				}
-				if((!bullet.getNameLvl().equals("FireBall_3")) && (!bullet.getName().equals("XRay"))){
+				/*if((!bullet.getNameLvl().equals("FireBall_3")) && (!bullet.getName().equals("XRay"))){
 					elemToDelete.add(body2);
-				}
+				}*/
 			} else {
 				bullet=battleField.getBullet(body);
 				enemy=battleField.getShip(body2);
