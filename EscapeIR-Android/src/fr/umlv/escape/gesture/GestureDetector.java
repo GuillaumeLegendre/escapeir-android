@@ -16,7 +16,7 @@ public class GestureDetector {
 	private final ArrayList<Gesture> gestureList;
 	private final Ship playerShip;
 	Vec2 lastForce;
-	private final float SHOOT_SENSIBILITY = 10;
+	private final float SHOOT_SENSIBILITY = 30;
 	private boolean mustShoot;
 	
 	/**
@@ -295,7 +295,6 @@ public class GestureDetector {
 				force.x > -SHOOT_SENSIBILITY &&
 				force.y > -SHOOT_SENSIBILITY)
 			{
-				System.out.println(force.x+" - "+force.y);
 				this.playerShip.body.setLinearVelocity(force);
 			} else {
 				this.mustShoot = true;

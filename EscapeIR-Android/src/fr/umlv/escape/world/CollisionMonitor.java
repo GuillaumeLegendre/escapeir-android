@@ -95,6 +95,8 @@ public class CollisionMonitor implements ContactListener{
 				ListWeapon playerWeapons = shipPlayer.getListWeapon();
 				playerWeapons.addWeapon(bonus.getType(), bonus.getQuantity());
 				elemToDelete.add(body);
+			} else {
+				System.out.println("WALLLLLLLLLLLLLLLLLLLLLLLLLLL");
 			}
 		} else {
 			body=arg0.getFixtureA().getBody();
