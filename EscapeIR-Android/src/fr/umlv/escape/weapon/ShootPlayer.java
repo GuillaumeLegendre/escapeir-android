@@ -36,6 +36,7 @@ public class ShootPlayer implements Shootable, Gesture{
 			filter.maskBits=4;
 			bullet.getBody().getFixtureList().setFilterData(filter);*/
 			bullet.getBody().setActive(true);
+			bullet.getBody().setLinearDamping(3);
 			weapon.setLoadingBullet(bullet);
 			return true;
 		}
@@ -51,6 +52,7 @@ public class ShootPlayer implements Shootable, Gesture{
 			if(force == null){
 				force = new Vec2(0,-2);
 			}
+			b.getBody().setLinearDamping(0);
 			b.fire(force);
 			weapon.setLoadingBullet(null);
 			force = null;
