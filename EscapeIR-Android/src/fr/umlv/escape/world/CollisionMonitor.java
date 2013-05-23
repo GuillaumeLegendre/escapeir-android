@@ -26,7 +26,7 @@ public class CollisionMonitor implements ContactListener{
 	private final ArrayList<Body> elemToDelete;
 	private boolean createBonus;
 	private final Random random = new Random(0);
-	private final static int PROBABILITY_NEW_BONUS = 20;
+	private final static int PROBABILITY_NEW_BONUS = 30;
 	private final BonusFactory bonusFactory;
 	private final BattleField battleField;
 	
