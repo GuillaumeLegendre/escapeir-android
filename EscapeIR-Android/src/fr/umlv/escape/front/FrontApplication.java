@@ -82,11 +82,12 @@ import fr.umlv.escape.weapon.Weapon;
 			Point p = new Point((int)arg1.getX(), (int)arg1.getY());
 			Weapon w = null;
 			Ship s = Game.getTheGame().getPlayer1().getShip();
-			if(( w = UserInterface.clickIsWeaponSelect(p)) != null){
+			if(( w = UserInterface.clickIsWeaponSelect(p)) != null && s.getCurrentWeapon().getLoadingBullet() == null){
 				s.getListWeapon().setCurrentWeapon(w.getName());
+			} else {
+				gestureDetector.clear();
+				gestureDetector.addPoint(p);
 			}
-			gestureDetector.clear();
-			gestureDetector.addPoint(p);
 			break;
 		case MotionEvent.ACTION_MOVE:
 			Point p2 = new Point((int)arg1.getX(), (int)arg1.getY());

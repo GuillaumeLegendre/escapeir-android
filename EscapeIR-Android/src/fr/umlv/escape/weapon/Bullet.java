@@ -9,6 +9,7 @@ import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.front.Sprite;
 import fr.umlv.escape.front.SpriteBullet;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.move.Movable;
 
 /**
@@ -131,7 +132,8 @@ public abstract class Bullet extends SpriteBullet {
 	
 	@Override
 	public void onDrawSprite(Canvas canvas) {
-		loadPower();
+		if(Game.getTheGame().getPlayer1().getShip().getCurrentWeapon().getLoadingBullet() == this)
+			loadPower();
 		this.setCurrentName(this.getNameLvl());
 		super.onDrawSprite(canvas);
 	}
