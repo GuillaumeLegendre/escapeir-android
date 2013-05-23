@@ -19,7 +19,7 @@ public class BattleField {
 	private Sprite[] boundPlayer;
 	private int WIDTH;
 	private int HEIGHT;
-	private final int LIMIT = 500;
+	private final int LIMIT = 1000;
 	private final int ANIMATIONSPEED = 50;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
@@ -30,14 +30,14 @@ public class BattleField {
 	final Hashtable<Body,Bullet> bulletMap=new Hashtable<Body,Bullet>(50);
 	final Hashtable<Body,Bonus> bonusMap=new Hashtable<Body,Bonus>(10);
 
-	
+
 	private final BattleFieldCleaner bfCleaner;
-	
+
 	Object shipLock = new Object();
 	Object bonusLock = new Object();
 	Object bulletLock = new Object();
 	Object animationLock = new Object();
-	
+
 	/**
 	 * Thread that remove all elements of the {@link Battlefield} that should not be
 	 * drawn anymore at fixed rate
@@ -62,11 +62,15 @@ public class BattleField {
 								animationList.add(new SpriteAnimation(ANIMATIONSPEED, tmp.getPosXCenter(), tmp.getPosYCenter(), FrontApplication.frontImage.getImage("explosion1")));
 							}
 						}
-						if( !tmp.isStillDisplayable()			||
-							tmp.getPosXCenter()< (-LIMIT) 		|| 
-						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
-						    tmp.getPosYCenter()< (-LIMIT)		||
-						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+						if(	tmp.getPosXCenter()< (-LIMIT) 		|| 
+							tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+							tmp.getPosYCenter()< (-LIMIT)		||
+							tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+							EscapeWorld.getTheWorld().setActive(tmp.getBody(), false);
+							EscapeWorld.getTheWorld().destroyBody(tmp.getBody());
+							tmp.setAlive(false);
+						}
+						if( !tmp.isStillDisplayable()){
 							shipList.remove(i);
 							shipMap.remove(tmp.body);
 						}
@@ -76,11 +80,14 @@ public class BattleField {
 					// Treating bullets
 					for(int i = 0; i < bulletList.size(); i++){
 						Bullet tmp = bulletList.get(i);
-						if( !tmp.isStillDisplayable()			||
-							tmp.getPosXCenter()< (-LIMIT) 		|| 
-						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
-						    tmp.getPosYCenter()< (-LIMIT)		||
-						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+						if(	tmp.getPosXCenter()< (-LIMIT) 		|| 
+							tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+							tmp.getPosYCenter()< (-LIMIT)		||
+							tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+							EscapeWorld.getTheWorld().setActive(tmp.getBody(), false);
+							EscapeWorld.getTheWorld().destroyBody(tmp.getBody());
+						}
+						if( !tmp.isStillDisplayable()){
 							bulletList.remove(i);
 							bulletMap.remove(tmp.body);
 						}
@@ -90,11 +97,14 @@ public class BattleField {
 					// Treating bonus
 					for(int i = 0; i < bonusList.size(); i++){
 						Bonus tmp = bonusList.get(i);
-						if( !tmp.isStillDisplayable()			||
-							tmp.getPosXCenter()< (-LIMIT) 		|| 
-						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
-						    tmp.getPosYCenter()< (-LIMIT)		||
-						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+						if(	tmp.getPosXCenter()< (-LIMIT) 		|| 
+							tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+							tmp.getPosYCenter()< (-LIMIT)		||
+							tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+							EscapeWorld.getTheWorld().setActive(tmp.getBody(), false);
+							EscapeWorld.getTheWorld().destroyBody(tmp.getBody());
+						}
+						if( !tmp.isStillDisplayable()){
 							bonusList.remove(i);
 							bonusMap.remove(tmp.getBody());
 						}
@@ -106,14 +116,14 @@ public class BattleField {
 						SpriteAnimation tmp = animationList.get(i);
 						if( !tmp.isStillDisplayable()			||
 							tmp.getPosXCenter()< (-LIMIT) 		|| 
-						    tmp.getPosXCenter()> (WIDTH+LIMIT)	||
-						    tmp.getPosYCenter()< (-LIMIT)		||
-						    tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
+							tmp.getPosXCenter()> (WIDTH+LIMIT)	||
+							tmp.getPosYCenter()< (-LIMIT)		||
+							tmp.getPosYCenter()> (HEIGHT+LIMIT) ){
 							animationList.remove(i);
 						}
 					}
 				}
-				
+
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
@@ -122,7 +132,7 @@ public class BattleField {
 			}
 		}	
 	}
-	
+
 	public BattleField(int width, int height, Bitmap background) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
@@ -133,27 +143,27 @@ public class BattleField {
 		this.animationList = new ArrayList<SpriteAnimation>();
 		this.bfCleaner = new BattleFieldCleaner();
 		this.boundPlayer = new Sprite[4];		
-				
+
 		//Creating the bounds for the player
 		boundPlayer[0]= new Sprite(Bodys.createBasicRectangle(0, height, width, 1,2),null);	//wall bot
 		boundPlayer[1]= new Sprite(Bodys.createBasicRectangle(0, 0, width, 1,2),null);		//wall top
 		boundPlayer[2]= new Sprite(Bodys.createBasicRectangle(0, 0, 1, height,2),null);		//wall left
 		boundPlayer[3]= new Sprite(Bodys.createBasicRectangle(width, 0, 1, height,2),null);	//wall right
-		
+
 		Filter filter=new Filter();
 		filter.categoryBits=EscapeWorld.CATEGORY_DECOR;
 		filter.maskBits=EscapeWorld.CATEGORY_PLAYER;
-		
+
 		for(int i=0;i<boundPlayer.length;++i){
 			boundPlayer[i].body.getFixtureList().setFilterData(filter);
 			boundPlayer[i].body.getFixtureList().m_isSensor=false;
 		}
 	}
-	
+
 	public void launchBfCleaner(){
 		this.bfCleaner.start();
 	}
-	
+
 	/**
 	 * Add a bullet to the battlefield. This method is ThreadSafe.
 	 * @param bullet the bullet to add to the battlefield.
@@ -164,7 +174,7 @@ public class BattleField {
 			bulletMap.put(bullet.getBody(), bullet);
 		}
 	}
-	
+
 	/**
 	 * Add a ship to the battlefield. This method is ThreadSafe.
 	 * @param ship the ship to add to the battlefield.
@@ -176,7 +186,7 @@ public class BattleField {
 			shipMap.put(ship.getBody(), ship);
 		}
 	}
-	
+
 	/**
 	 * Add a bonus to the battlefield. This method is ThreadSafe.
 	 * @param bonus the bonus to add to the battlefield.
@@ -187,7 +197,7 @@ public class BattleField {
 			bonusMap.put(bonus.getBody(), bonus);
 		}
 	}
-	
+
 	/**
 	 * Delete all sprite in the battlefield except the player sprite. This method is ThreadSafe.
 	 */
@@ -205,7 +215,7 @@ public class BattleField {
 			bonusMap.clear();
 		}
 	}
-	
+
 	/**
 	 * Return a ship associated to a body in O(1).
 	 * @param body the body of the ship to get.
@@ -214,7 +224,7 @@ public class BattleField {
 	public Ship getShip(Body body){
 		return shipMap.get(body);
 	}
-	
+
 	/**
 	 * Return a bullet associated to a body in O(1).
 	 * @param body the body of the bullet to get.
@@ -223,7 +233,7 @@ public class BattleField {
 	public Bullet getBullet(Body body){
 		return bulletMap.get(body);
 	}
-	
+
 	/**
 	 * Return a bonus associated to a body in O(1).
 	 * @param body the body of the bonus to get.
@@ -232,13 +242,13 @@ public class BattleField {
 	public Bonus getBonus(Body body){
 		return bonusMap.get(body);
 	}
-	
+
 	public void updateSreenSize(int width, int height){
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		backgoundScroller.updateScreenSizes(width, height);
 	}
-	
+
 	public int getWIDTH() {
 		return WIDTH;
 	}

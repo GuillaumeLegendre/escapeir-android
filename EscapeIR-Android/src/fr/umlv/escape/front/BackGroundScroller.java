@@ -14,6 +14,7 @@ public class BackGroundScroller {
 	Rect screenRect;
 	Rect backgroundRect;
 	private final int backgroundHeight; // Optimization for not using getter
+	private float scaleBackground;		// To adapt different ratio screen
 	
 	/**Constructor
 	 * @param heightScreen The height of the screen.
@@ -27,6 +28,7 @@ public class BackGroundScroller {
 		
 		this.backgroundImage=backGroundImage;
 		this.backgroundHeight = backGroundImage.getHeight();
+		this.scaleBackground = heightScreen/widthScreen;
 		this.screenRect = new Rect(0,0,widthScreen,heightScreen);
 		this.backgroundRect = new Rect(0, backgroundHeight-heightScreen, backGroundImage.getWidth(), backgroundHeight);
 	}

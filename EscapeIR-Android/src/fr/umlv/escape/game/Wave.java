@@ -29,8 +29,10 @@ public class Wave {
 	 */
 	public void startWave(){
 		Iterator<Ship> iterShip=this.shipList.iterator();
+		System.out.println("launching wave");
 		while(iterShip.hasNext()){
 			Ship ship=iterShip.next();
+			System.out.println(ship + " added");
 			Game.getTheGame().getFrontApplication().getBattleField().addShip(ship);
 			ship.body.setActive(true);
 			ship.move();

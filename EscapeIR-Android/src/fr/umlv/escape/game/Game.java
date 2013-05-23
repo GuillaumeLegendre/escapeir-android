@@ -35,6 +35,7 @@ public class Game {
 	private CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
 	private GameRoutine gameRoutine;
+	private final int LIMIT = 1000;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier
@@ -82,7 +83,6 @@ public class Game {
 						
 						escapeWorld.step();
 						collisionMonitor.performPostStepCollision(); // Process post collision treatment
-						//TODO supprimer vaisseau en dehors du jeu
 						
 						if(lastDeath==0 && (!player1.getShip().isAlive())){
 							if(player1.getLife()==0){
@@ -103,6 +103,7 @@ public class Game {
 						shipList=currentLevel.waveList.get(currentLevel.currentWave).shipList;
 						for(int i=0; i<shipList.size();++i){
 							Ship ship=shipList.get(i);
+							
 							if(ship.isAlive()){
 								ship.move();			// Move all ship of the wave
 								if(ship.shoot(ship.getPosXCenter(),ship.getPosYCenter())){

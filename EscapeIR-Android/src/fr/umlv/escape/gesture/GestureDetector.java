@@ -295,7 +295,11 @@ public class GestureDetector {
 				force.x > -SHOOT_SENSIBILITY &&
 				force.y > -SHOOT_SENSIBILITY)
 			{
+				//this.playerShip.move(force);
 				this.playerShip.body.setLinearVelocity(force);
+				if(this.playerShip.getCurrentWeapon().getLoadingBullet()!=null){
+					this.playerShip.getCurrentWeapon().getLoadingBullet().getBody().setLinearVelocity(force);
+				}
 			} else {
 				this.mustShoot = true;
 			}
