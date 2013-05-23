@@ -289,7 +289,12 @@ public class GestureDetector {
 			Vec2 force = new Vec2(point.x-last.x,point.y-last.y);
 			
 			//If the distance between two point is too high it is a shoot
-			if(!mustShoot && force.x < SHOOT_SENSIBILITY && force.y < SHOOT_SENSIBILITY){
+			if(!mustShoot 					 &&
+				force.x < SHOOT_SENSIBILITY  && 
+				force.y < SHOOT_SENSIBILITY  &&
+				force.x > -SHOOT_SENSIBILITY &&
+				force.y > -SHOOT_SENSIBILITY)
+			{
 				System.out.println(force.x+" - "+force.y);
 				this.playerShip.body.setLinearVelocity(force);
 			} else {
