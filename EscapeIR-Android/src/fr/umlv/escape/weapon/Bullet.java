@@ -105,7 +105,7 @@ public abstract class Bullet extends SpriteBullet {
 	 */
 	public boolean loadPower() {
 		long timeNow = System.currentTimeMillis();
-		if(currentLoad < maxLoad && timeNow - lastTimeLoad > 2000){
+		if(currentLoad < maxLoad && timeNow - lastTimeLoad > 500){
 			lastTimeLoad = timeNow;
 			currentLoad = currentLoad + 1;
 			return true;
