@@ -164,6 +164,7 @@ public class BattleField {
 	 * @param ship the ship to add to the battlefield.
 	 */
 	public void addShip(Ship ship){
+		System.out.println(ship);
 		synchronized(shipLock){
 			shipList.add(ship);
 			shipMap.put(ship.getBody(), ship);

@@ -28,13 +28,13 @@ public class Wave {
 	 * Active and launch all {@link Ship} containing in the wave.
 	 */
 	public void startWave(){
-		Iterator<Ship> iterShip=this.shipList.iterator();
+		/*Iterator<Ship> iterShip=this.shipList.iterator();
 		while(iterShip.hasNext()){
 			Ship ship=iterShip.next();
 			Game.getTheGame().getFrontApplication().getBattleField().addShip(ship);
 			ship.body.setActive(true);
 			ship.move();
-		}
+		}*/
 	}
 
 	@Override
