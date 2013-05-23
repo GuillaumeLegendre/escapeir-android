@@ -16,6 +16,7 @@ import fr.umlv.escape.gesture.LeftCircle;
 import fr.umlv.escape.gesture.LeftDiag;
 import fr.umlv.escape.gesture.RightCircle;
 import fr.umlv.escape.gesture.RightDiag;
+import fr.umlv.escape.weapon.Weapon;
 
  public class FrontApplication extends SurfaceView{
 	private SurfaceHolder holder;
@@ -77,8 +78,12 @@ import fr.umlv.escape.gesture.RightDiag;
 	public boolean onTouchEvent(MotionEvent arg1) {
 		switch (arg1.getAction()) {
 		case MotionEvent.ACTION_DOWN:
-			gestureDetector.clear();
 			Point p = new Point((int)arg1.getX(), (int)arg1.getY());
+			Weapon w = null;
+			if(( w = UserInterface.clickIsWeaponSelect(p)) != null){
+				System.out.println(Game.getTheGame().getPlayer1().getShip().getListWeapon().setCurrentWeapon(w.getName()));
+			}
+			gestureDetector.clear();
 			gestureDetector.addPoint(p);
 			break;
 		case MotionEvent.ACTION_MOVE:

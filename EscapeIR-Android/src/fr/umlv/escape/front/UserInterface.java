@@ -3,17 +3,14 @@ package fr.umlv.escape.front;
 import java.util.List;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-import fr.umlv.escape.R;
 import fr.umlv.escape.game.Game;
 import fr.umlv.escape.game.Player;
 import fr.umlv.escape.ship.Ship;
-import fr.umlv.escape.weapon.ListWeapon;
 import fr.umlv.escape.weapon.Weapon;
 
 /**
@@ -29,19 +26,13 @@ public class UserInterface {
 	 * @return the weapon or null if click isn't on icon's weapon
 	 */
 	public static Weapon clickIsWeaponSelect(Point p){
-		List<Weapon> weaponList = Game.getTheGame().getPlayer1().getShip().getListWeapon().getWeapons();
-		for(Weapon w : weaponList){
-			Point highLeft = w.getHighLeft();
-			Point downRight = w.getDownRight();
-
-			if(
-					highLeft != null &&
-					downRight != null &&
-					p.y > highLeft.y && //up
-					p.x < downRight.x &&//right
-					p.y < downRight.y &&//bottom
-					p.x > highLeft.x //left
-					){
+		List<Weapon> weapons = Game.getTheGame().getPlayer1().getShip().getListWeapon().getWeapons();
+		for(int i=0; i<weapons.size();i++){
+			Weapon w = weapons.get(i);
+			if(p.x >FrontApplication.WIDTH - 60 &&
+					p.y > 60+i*75 &&
+					p.x < FrontApplication.WIDTH - 10 &&
+					p.y < 110+i*75 ) {
 				return w;
 			}
 		}

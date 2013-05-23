@@ -26,9 +26,9 @@ public class ListWeapon {
 		weapons = new Hashtable<String, Weapon>();
 		weaponsList = new ArrayList<Weapon>();
 		current = addWeapon(BASIC_WEAPON, 0);
-		addWeapon("flame_thrower", 0);
-		addWeapon("shiboleet_thrower", 0);
-		addWeapon("laser_beam", 0);
+		addWeapon("flame_thrower", 10);
+		addWeapon("shiboleet_thrower", 10);
+		addWeapon("laser_beam", 1);
 	}
 
 	/**
