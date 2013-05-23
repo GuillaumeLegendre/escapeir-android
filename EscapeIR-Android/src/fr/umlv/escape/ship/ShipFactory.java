@@ -151,6 +151,7 @@ public class ShipFactory {
 			ship.getListWeapon().setCurrentWeapon("missile_launcher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);
+			body.getFixtureList().setSensor(false);
 			body.setActive(true);
 			break;
 		case kamikaze_ship:
