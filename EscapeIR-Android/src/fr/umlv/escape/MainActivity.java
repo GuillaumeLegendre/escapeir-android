@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			//setContentView(frontApplication);
 			setContentView(R.layout.main_menu);
 			//setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 		}
