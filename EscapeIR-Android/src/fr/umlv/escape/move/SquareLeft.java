@@ -20,7 +20,7 @@ public class SquareLeft implements Movable{
 	public void move(Body body) {
 		Objects.requireNonNull(body);
 		
-		Vec2 v2 =new Vec2();
+		Vec2 v2 =new Vec2(0,0);
 		switch(nbCall){
 		case 0:
 			if(body.getPosition().y*EscapeWorld.SCALE>(FrontApplication.WIDTH/3-120)){
@@ -48,6 +48,9 @@ public class SquareLeft implements Movable{
 			break;
 		default:
 			throw new AssertionError();
+		}
+		if(v2.x==0 && v2.y==0){
+			v2.set(-2f,0);
 		}
 		body.setLinearVelocity(v2);
 		nbCall=(nbCall+1)%4;
