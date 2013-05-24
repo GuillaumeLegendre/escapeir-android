@@ -1,10 +1,14 @@
 package fr.umlv.escape;
 
+import java.util.ArrayList;
+
 import fr.umlv.escape.game.Level;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -12,6 +16,8 @@ public class EditorActivity extends Activity {
 	private int state = 0;
 	private String levelName;
 	private Level level;
+	ArrayAdapter adapter;
+	ArrayList<Button> listWaves=new ArrayList<Button>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +39,16 @@ public class EditorActivity extends Activity {
 		switch(v.getId())
 		{
 			case R.id.map1Button : {
-			System.out.println("button1");
 			map.setImageResource(R.drawable.level1);
 			this.levelName = "level1";
 			break;
 			}
 			case R.id.map2Button : {
-			System.out.println("button1");
 			map.setImageResource(R.drawable.level2);
 			this.levelName = "level2";
 			break;
 			}
 			case R.id.map3Button : {
-			System.out.println("button1");
 			map.setImageResource(R.drawable.level3);
 			this.levelName = "level3";
 			break;
@@ -53,6 +56,7 @@ public class EditorActivity extends Activity {
 			case R.id.nextButton : {
 			this.level = new Level(this.levelName);
 			state= 1;
+			adapter=new ArrayAdapter<Button>(this,android.R.layout.simple_list_item_1,listWaves);
 			setContentView(R.layout.editor_waves);
 			break;
 			}
@@ -61,8 +65,8 @@ public class EditorActivity extends Activity {
 	}
 	
 	public void performState1(View v) {
-		ListView waves = (ListView)findViewById(R.id.waves_list_editor);
-		switch(v.getId())
+	
+	    switch(v.getId())
 		{
 			case R.id.backButton : {
 				state = 0;
@@ -70,11 +74,14 @@ public class EditorActivity extends Activity {
 				break;
 			}
 			case R.id.plus : {
-				View v2 =findViewById(R.id.backButton);
-				waves.addView(v2, v2.getWidth(), v2.getHeight());
+				listWaves.add(new Button(this));
+				adapter.notifyDataSetChanged();
 			}
 			case R.id.moins : {
-				
+				if(listWaves.size()>0){					
+					listWaves.remove(listWaves.size()-1);
+				}
+				adapter.notifyDataSetChanged();
 			}
 		}
 		v.invalidate();

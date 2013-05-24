@@ -42,6 +42,7 @@ public class ThirdBoss extends Ship{
 				this.image = FrontApplication.frontImage.getImage(getName()+""+state);
 		}
 		if(state>6){
+			this.setAlive(false);
 			state=6;
 		}
 	}

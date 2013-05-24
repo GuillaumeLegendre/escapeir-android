@@ -38,6 +38,7 @@ public class FirstBoss extends Ship {
 			this.state++;
 		}
 		if(state>8){
+			this.setAlive(false);
 			state=8;
 		}
 	}
