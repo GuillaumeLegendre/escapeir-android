@@ -10,8 +10,8 @@ import fr.umlv.escape.move.XRayMove;
  * Represent a XRay who extends of {@link Bullet}
  */
 public class XRay extends Bullet{
-	private static final int POWER = 50;
-	private static final int MAXLOAD = 1;
+	private static final int POWER = 30;
+	private static final int MAXLOAD = 2;
 
 	/**
 	 * Constructor of XRay

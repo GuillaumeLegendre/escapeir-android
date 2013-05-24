@@ -69,6 +69,7 @@ public class SpriteBullet extends Sprite{
 		BASIC_MISSILE_PLAYER,
 		BASIC_MISSILE,
 		XRAY,
+		XRAY_2,
 		FIREBALL,
 		FIREBALL_2,
 		FIREBALL_3,
@@ -94,12 +95,13 @@ public class SpriteBullet extends Sprite{
 			}
 			return FrontApplication.frontImage.getImage("basic_missile");
 		case XRAY:
+		case XRAY_2:
 			if(xRay==1){
 				xRay=0;
 				return FrontApplication.frontImage.getImage("xray");
 			}
 			xRay=1;
-			return FrontApplication.frontImage.getImage("xray2");
+			return FrontApplication.frontImage.getImage("xray_2");
 		case FIREBALL: 
 		case FIREBALL_2: 
 		case FIREBALL_3: 

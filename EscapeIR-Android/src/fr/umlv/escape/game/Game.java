@@ -36,7 +36,7 @@ public class Game {
 	private final EscapeWorld escapeWorld;
 	private GameRoutine gameRoutine;
 	private final int LIMIT = 1000;
-	private final static int LIFE_NUMBER = 5;
+	private final static int LIFE_NUMBER = 3;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier

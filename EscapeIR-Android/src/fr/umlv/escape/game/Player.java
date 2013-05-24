@@ -11,6 +11,7 @@ public class Player {
 	Ship ship;
 	int life;
 	int score;
+	int next_life_with_score = 1;
 	
 	/**
 	 * Constructor.
@@ -66,6 +67,10 @@ public class Player {
 	 */
 	public void addScore(int score) {
 		this.score = this.score + score;
+		if(this.score > 2000 * next_life_with_score){
+			this.life++;
+			next_life_with_score++;
+		}
 	}
 	
 	/**

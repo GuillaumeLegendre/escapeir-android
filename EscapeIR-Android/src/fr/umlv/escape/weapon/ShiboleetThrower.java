@@ -7,7 +7,7 @@ import fr.umlv.escape.game.Game;
  * Represent a shiboleet thrower who are an extend of {@link weapon}
  */
 public class ShiboleetThrower extends Weapon {
-	private static final int MAXQTY = 20;
+	private static final int MAXQTY = 30;
 	private static final int FREQUENCY = 500;
 	private static final String MISSILE = "shiboleet";
 	private static final String NAME = "shiboleet_thrower";
