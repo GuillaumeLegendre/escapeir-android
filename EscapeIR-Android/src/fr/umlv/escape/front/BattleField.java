@@ -21,6 +21,7 @@ public class BattleField {
 	private int HEIGHT;
 	private final int LIMIT = 1000;
 	private final int ANIMATIONSPEED = 50;
+	boolean stats = false;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
 	final ArrayList<Bullet> bulletList;
@@ -223,6 +224,10 @@ public class BattleField {
 	 */
 	public Ship getShip(Body body){
 		return shipMap.get(body);
+	}
+	
+	public void changeStats() {
+		this.stats = !(this.stats);
 	}
 
 	/**

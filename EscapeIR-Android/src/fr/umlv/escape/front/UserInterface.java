@@ -106,4 +106,23 @@ public class UserInterface {
 			p.setColor(Color.BLACK);
 		}
 	}
+	
+	/**
+	 * Put in buffer the performance menu to print
+	 * @param fps
+	 */
+	public static void drawPerformanceMenu(Canvas canvas, int fps, BattleField battleflied) {
+		int height = FrontApplication.HEIGHT - 100;
+		Paint p = new Paint();
+		p.setStyle(Paint.Style.STROKE);
+		p.setTextSize(20);
+		
+		canvas.drawText("Ship : "+battleflied.shipList.size(), 10, height - 10,p);
+		canvas.drawText("Bullet : "+battleflied.bulletList.size(), 10, height - 20,p);
+		canvas.drawText("Bonus : "+battleflied.bonusList.size(), 10, height - 30,p);
+		canvas.drawText("Animation : "+battleflied.animationList.size(), 10, height - 40,p);
+		canvas.drawText("fps:"+fps, 10, height -50,p);
+		
+		p.setColor(Color.BLACK);
+	}
 }
