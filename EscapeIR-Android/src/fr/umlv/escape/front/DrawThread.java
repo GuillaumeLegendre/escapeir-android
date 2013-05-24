@@ -3,6 +3,7 @@ package fr.umlv.escape.front;
 import java.util.ArrayList;
 
 import fr.umlv.escape.bonus.Bonus;
+import fr.umlv.escape.game.Game;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.weapon.Bullet;
 import android.graphics.Canvas;
@@ -23,6 +24,7 @@ public class DrawThread extends Thread{
 	public void run() {
 		long begin;
 		long elapsed;
+		int fps=0;
 
 		while(!Thread.currentThread().isInterrupted()){
 			begin = System.currentTimeMillis();
@@ -61,15 +63,20 @@ public class DrawThread extends Thread{
 			UserInterface.drawWeaponsIcons(canvas);
 			holder.unlockCanvasAndPost(canvas);
 			battleField.backgoundScroller.verticalScroll();
-			
+						
 			try {
 				elapsed = System.currentTimeMillis() - begin;
-				if(elapsed>50) elapsed = 50;
+				fps = (int)(1000/elapsed);
+				if(elapsed>15) elapsed = 15;
 				
-				Thread.sleep(50-elapsed);
+				Thread.sleep(15-elapsed);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
+			if(battleField.stats){
+				UserInterface.drawPerformanceMenu(canvas, fps, battleField);
+			}
+
 		}
 	}
 }

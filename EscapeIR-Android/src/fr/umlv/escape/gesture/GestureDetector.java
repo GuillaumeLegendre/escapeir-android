@@ -102,6 +102,7 @@ public class GestureDetector {
 //		
 //		Point previous;
 //		int stateOfDetection=0;
+	
 //		
 //		previous=iterPoint.next();
 //		Point firstPoint=previous;
@@ -179,76 +180,7 @@ public class GestureDetector {
 //	 * @return True if the gesture is recognized else false.
 //	 */
 //	private boolean isStats(){
-//		Iterator<Point> iterPoint=pointList.iterator();	
-//		Point previous;
-//		int stateOfDetection=0;
 //		
-//		previous=iterPoint.next();
-//		Point firsPoint=previous;
-//		int numOfPoint=1;
-//		int badPoint=0;
-//		Point tmp;
-//	
-//		while(iterPoint.hasNext()){
-//			tmp=iterPoint.next();
-//			switch (stateOfDetection){
-//			case 0:  // detect straight line to the right
-//				if(numOfPoint<5){
-//					if(tmp.y>firsPoint.y + marginErrorBack){
-//						return false;
-//					}
-//				}
-//				if((tmp.x<previous.x)||(tmp.y<firsPoint.y - marginErrorBack)){
-//					badPoint++;
-//					if(badPoint>10){
-//						return false;
-//					}
-//				}
-//				if(tmp.y>firsPoint.y + marginErrorBack){
-//					stateOfDetection++;
-//					firsPoint=previous;
-//					numOfPoint=0;
-//				}
-//				break;
-//			case 1:  // detect back off
-//				if(numOfPoint<5){
-//					if(tmp.x<(firsPoint.x-marginErrorBack)){
-//						return false;
-//					}
-//				}
-//				if(tmp.y<previous.y || tmp.x>(firsPoint.x+marginErrorBack)){
-//					badPoint++;
-//					if(badPoint>10){
-//						return false;
-//					}
-//				}
-//				if(tmp.x<(firsPoint.x-marginErrorBack)){
-//					stateOfDetection++;
-//					numOfPoint=0;
-//					firsPoint=previous;
-//				}
-//				break;
-//			case 2:  // detect straight line to the left
-//				if((tmp.x>previous.x)||(tmp.y<firsPoint.y - marginErrorBack)||(tmp.y>firsPoint.y + marginErrorBack)){
-//					badPoint++;
-//					if(badPoint>10){
-//						return false;
-//					}
-//				}
-//				break;
-//			default:
-//				return false;
-//			}
-//			previous=tmp;
-//			numOfPoint++;
-//		}
-//		if(stateOfDetection==2 && numOfPoint>5){
-//			lastDetected=GestureType.STATS;
-//			setLastForce(0f,0f);
-//			return true;
-//		}
-//		return false;
-//	}
 	
 	/**
 	 * Try to detect a gesture. You can get the gesture detected by calling {@link #getLastGestureDetected()}.

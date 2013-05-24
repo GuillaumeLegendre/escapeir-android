@@ -16,6 +16,7 @@ import fr.umlv.escape.gesture.LeftCircle;
 import fr.umlv.escape.gesture.LeftDiag;
 import fr.umlv.escape.gesture.RightCircle;
 import fr.umlv.escape.gesture.RightDiag;
+import fr.umlv.escape.gesture.Stats;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.weapon.Weapon;
 
@@ -58,6 +59,7 @@ import fr.umlv.escape.weapon.Weapon;
 				gestureDetector.addGesture(new Horizontal());
 				gestureDetector.addGesture(new LeftCircle());
 				gestureDetector.addGesture(new RightCircle());
+				gestureDetector.addGesture(new Stats());
 				
 				drawThread = new DrawThread(holder, battleField);
 				drawThread.start();
