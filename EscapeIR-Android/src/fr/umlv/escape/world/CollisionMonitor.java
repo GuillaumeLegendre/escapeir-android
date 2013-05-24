@@ -166,12 +166,12 @@ public class CollisionMonitor implements ContactListener{
 	private void impactEnemyDead(Ship enemy, Player player){
 		int score=0;
 		String name = enemy.getName();
-		if(name.equals("DefaultShip"))	score=25;
-		if(name.equals("KamikazeShip"))	score=25;
-		if(name.equals("BatShip"))		score=50;
-		if( name.equals("FirstBoss")  ||
-			name.equals("SecondBoss") ||
-			name.equals("ThirdBoss")) 	score=1000;
+		if(name.equals("default_ship"))	score=25;
+		if(name.equals("kamikaze_ship"))	score=25;
+		if(name.equals("bat_ship"))		score=50;
+		if( name.equals("first_boss")  ||
+			name.equals("second_boss") ||
+			name.equals("third_boss")) 	score=1000;
 		player.addScore(score);
 		
 		if(random.nextInt(100) <= PROBABILITY_NEW_BONUS){

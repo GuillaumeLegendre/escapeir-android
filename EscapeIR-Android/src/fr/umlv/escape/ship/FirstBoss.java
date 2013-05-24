@@ -25,7 +25,7 @@ public class FirstBoss extends Ship {
 	 * @param shootBehaviour How the ship shoot.
 	 */
 	public FirstBoss( int health,Body body, Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
-		super("FirstBoss",health, body, image, moveBehaviour,shootBehaviour);
+		super("first_boss",health, body, image, moveBehaviour,shootBehaviour);
 		this.state=1;
 		this.fullHealth=health;
 	}

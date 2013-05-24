@@ -147,7 +147,7 @@ public class ShipFactory {
 			ghostShoot=(ghostShoot+1)%7;
 			break;
 		case default_ship_player:
-			ship= new PlayerShip("DefaultShipPlayer",health,body,img,move,new ShootPlayer());
+			ship= new PlayerShip("default_ship_player",health,body,img,move,new ShootPlayer());
 			ship.getListWeapon().setCurrentWeapon("missile_launcher");
 			ship.getCurrentWeapon().addQte(ListWeapon.BASIC_QTY_BULLET);
 			ship.setCurrentSprite(SpriteType.BASIC_IMAGE_PLAYER);
@@ -155,11 +155,11 @@ public class ShipFactory {
 			body.setActive(true);
 			break;
 		case kamikaze_ship:
-			ship = new Ship("KamikazeShip",health,body,img,move,new DoNotShoot());
+			ship = new Ship("kamikaze_ship",health,body,img,move,new DoNotShoot());
 			ship.getCurrentWeapon().addQte(Integer.MIN_VALUE);
 			break;
 		case bat_ship:
-			ship = new Ship("BatShip",health,body,img,move,new BatShipShoot());
+			ship = new Ship("bat_ship",health,body,img,move,new BatShipShoot());
 			ship.getListWeapon().addWeapon("flame_thrower",Integer.MIN_VALUE);
 			ship.getListWeapon().setCurrentWeapon("flame_thrower");
 			break;
