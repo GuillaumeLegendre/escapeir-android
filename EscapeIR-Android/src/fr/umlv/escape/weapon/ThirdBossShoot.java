@@ -51,6 +51,8 @@ public class ThirdBossShoot implements Shootable{
 		int state=bossShip.getState();
 		if(state>5){
 			bossShip.setAlive(false);
+			if(weapon.getLoadingBullet() != null)
+				EscapeWorld.getTheWorld().setActive(weapon.getLoadingBullet().getBody(),false);
 			EscapeWorld.getTheWorld().setActive(bossShip.getBody(),false);
 			return false;
 		}
@@ -83,7 +85,7 @@ public class ThirdBossShoot implements Shootable{
 				case 0:
 					if(state<=3){
 						positionShip.x=x-50;
-						bossShip.getListWeapon().setCurrentWeapon("MissileLauncher");					
+						bossShip.getListWeapon().setCurrentWeapon("missile_launcher");					
 					}
 					else{
 						if(currentTime-lastShoot<1000){
@@ -96,7 +98,7 @@ public class ThirdBossShoot implements Shootable{
 				case 1:
 					if(state<=1){
 						positionShip.x=x-20;
-						bossShip.getListWeapon().setCurrentWeapon("MissileLauncher");					
+						bossShip.getListWeapon().setCurrentWeapon("missile_launcher");					
 					}
 					else{
 						if(currentTime-lastShoot<1000){
@@ -109,7 +111,7 @@ public class ThirdBossShoot implements Shootable{
 				case 2:
 					if(state<=4){
 						positionShip.x=x+50;
-						bossShip.getListWeapon().setCurrentWeapon("MissileLauncher");
+						bossShip.getListWeapon().setCurrentWeapon("missile_launcher");
 					}
 					else{
 						if(currentTime-lastShoot<1000){
@@ -122,7 +124,7 @@ public class ThirdBossShoot implements Shootable{
 				case 3:
 					if(state<=2){
 						positionShip.x=x+20;
-						bossShip.getListWeapon().setCurrentWeapon("ShiboleetThrower");
+						bossShip.getListWeapon().setCurrentWeapon("shiboleet_thrower");
 					}
 					else{
 						if(currentTime-lastShoot<1000){

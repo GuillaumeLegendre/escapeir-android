@@ -125,6 +125,8 @@ public class FirstBossShoot implements Shootable{
 			shipBoss.setAlive(false);
 			EscapeWorld.getTheWorld().setActive(shipBoss.getBody(),false);
 			iterShip=shipCreated.iterator();
+			if(weapon.getLoadingBullet() != null)
+				EscapeWorld.getTheWorld().setActive(weapon.getLoadingBullet().getBody(),false);
 			while(iterShip.hasNext()){
 				Ship ship=iterShip.next();
 				EscapeWorld.getTheWorld().setActive(ship.getBody(),false);

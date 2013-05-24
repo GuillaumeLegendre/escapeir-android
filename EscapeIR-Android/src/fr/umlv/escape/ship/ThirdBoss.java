@@ -4,6 +4,8 @@ import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
 
+import fr.umlv.escape.front.FrontApplication;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.Shootable;
 import fr.umlv.escape.world.EscapeWorld;
@@ -25,7 +27,7 @@ public class ThirdBoss extends Ship{
 	 * @param shootBehaviour How the ship shoot.
 	 */
 	public ThirdBoss(int health, Body body,Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
-		super("ThirdBoss",health,body,image,moveBehaviour,shootBehaviour);
+		super("third_boss",health,body,image,moveBehaviour,shootBehaviour);
 		this.state=1;
 		this.fullHealth=health;
 	}
@@ -36,7 +38,8 @@ public class ThirdBoss extends Ship{
 		if(this.getHealth()<=0){
 			this.setHealth(fullHealth);
 			this.state++;
-			//TODO changer image ici
+			if(state<=5)
+				this.image = FrontApplication.frontImage.getImage(getName()+""+state);
 		}
 		if(state>6){
 			state=6;

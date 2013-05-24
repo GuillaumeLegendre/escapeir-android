@@ -67,7 +67,7 @@ public class Player {
 	 */
 	public void addScore(int score) {
 		this.score = this.score + score;
-		if(this.score > 2000 * next_life_with_score){
+		if(this.score > 2500 * next_life_with_score){
 			this.life++;
 			next_life_with_score++;
 		}

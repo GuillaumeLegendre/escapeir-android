@@ -106,7 +106,9 @@ public class CollisionMonitor implements ContactListener{
 					throw new AssertionError();
 				}
 				enemy.takeDamage(bullet.getDamage());
-				if(bullet == player.getShip().getCurrentWeapon().getLoadingBullet()){
+				if(bullet == player.getShip().getCurrentWeapon().getLoadingBullet() && 
+						!bullet.getName().equals("xray") &&
+						!bullet.getNameLvl().equals("fireball_3") ){
 					player.getShip().getCurrentWeapon().setLoadingBullet(null);
 				}
 				if(!enemy.isAlive()){

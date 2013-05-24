@@ -36,7 +36,9 @@ public class ShootPlayer implements Shootable, Gesture{
 			filter.maskBits=4;
 			bullet.getBody().getFixtureList().setFilterData(filter);*/
 			bullet.getBody().setActive(true);
-			bullet.getBody().setLinearDamping(3);
+			if(!bullet.getName().equals("xray") ){
+				bullet.getBody().setLinearDamping(3);
+			}
 			weapon.setLoadingBullet(bullet);
 			return true;
 		}

@@ -7,6 +7,7 @@ import java.util.List;
 import org.jbox2d.common.Vec2;
 import fr.umlv.escape.Objects;
 import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.weapon.Bullet;
 import fr.umlv.escape.weapon.ShootPlayer;
 
 /** Static class that allow to detect gestures and calculate forces that they represent
@@ -297,7 +298,8 @@ public class GestureDetector {
 			{
 				//this.playerShip.move(force);
 				this.playerShip.body.setLinearVelocity(force);
-				if(this.playerShip.getCurrentWeapon().getLoadingBullet()!=null){
+				Bullet b = this.playerShip.getCurrentWeapon().getLoadingBullet();
+				if(b != null && !b.getName().equals("xray")){
 					this.playerShip.getCurrentWeapon().getLoadingBullet().getBody().setLinearVelocity(force);
 				}
 			} else {

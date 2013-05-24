@@ -4,6 +4,7 @@ import org.jbox2d.dynamics.Body;
 
 import android.graphics.Bitmap;
 
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.move.Movable;
 import fr.umlv.escape.weapon.Shootable;
 import fr.umlv.escape.world.EscapeWorld;
@@ -25,7 +26,7 @@ public class SecondBoss extends Ship {
 	 * @param shootBehaviour How the ship shoot.
 	 */
 	public SecondBoss(int health, Body body, Bitmap image, Movable moveBehaviour,Shootable shootBehaviour){
-		super("SecondBoss",health,body,image,moveBehaviour,shootBehaviour);
+		super("second_boss",health,body,image,moveBehaviour,shootBehaviour);
 		this.invisible = false;
 		this.lvlInvisible=1;
 	}
@@ -44,7 +45,7 @@ public class SecondBoss extends Ship {
 	public void incLvlInvisible() {
 		if(this.lvlInvisible<7){
 			this.lvlInvisible++;
-			//TODO changer image
+			this.image = FrontApplication.frontImage.getImage(fullName());
 		}
 		if(lvlInvisible==7){
 			this.invisible=true;
@@ -57,7 +58,7 @@ public class SecondBoss extends Ship {
 	public void decLvlInvisible() {
 		if(this.lvlInvisible>1){
 			this.lvlInvisible--;
-			//TODO changer image
+			this.image = FrontApplication.frontImage.getImage(fullName());
 		}
 		if(lvlInvisible==1){
 			this.invisible=false;
@@ -70,5 +71,11 @@ public class SecondBoss extends Ship {
 	 */
 	public boolean isInvisible() {
 		return invisible;
+	}
+	
+	public String fullName(){
+		if(lvlInvisible != 1)
+			return getName()+""+lvlInvisible;
+		return getName();
 	}
 }

@@ -57,13 +57,13 @@ public class BonusFactory {
 				stringType="shiboleet_thrower";
 				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
-				bonus= new Bonus(10, body,stringType,img);
+				bonus= new Bonus(15, body,stringType,img);
 				break;
 			default:
 				stringType="laser_beam";
 				img=frontImages.getImage(bonusName+"_"+stringType);
 				body=Bodys.createBasicRectangle(posX, posY, img.getWidth(), img.getHeight(), 0);
-				bonus= new Bonus(10, body,stringType,img);
+				bonus= new Bonus(1, body,stringType,img);
 				break;
 //			default : throw new IllegalArgumentException(type+" isn't a legal type");
 			}
