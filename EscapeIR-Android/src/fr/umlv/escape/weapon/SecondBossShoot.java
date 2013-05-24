@@ -85,7 +85,7 @@ public class SecondBossShoot implements Shootable{
 		
 		if(weapon == null) throw new IllegalArgumentException("Weapon can't be Null");
 		Bullet b = weapon.getLoadingBullet();
-		if(b == null) throw new IllegalStateException("Bullet can't be Null");
+		if(b == null) return;
 		b.fire(new Vec2(0f,2f));
 		weapon.setLoadingBullet(null);
 	}

@@ -36,6 +36,7 @@ public class Game {
 	private final EscapeWorld escapeWorld;
 	private GameRoutine gameRoutine;
 	private final int LIMIT = 1000;
+	private final static int LIFE_NUMBER = 5;
 	
 	private Game(){
 		this.nbLevel=3; //TODO chercher dans fichier
@@ -44,7 +45,7 @@ public class Game {
 	}
 	
 	private class GameRoutine extends Thread {
-		private final long TIME_TO_RESPAWN = 4000;
+		private final long TIME_TO_RESPAWN = 3000;
 		Context context;
 		private GameRoutine(Context context){
 			this.context = context;
@@ -145,7 +146,7 @@ public class Game {
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
 		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player",width/2, height/3*2, 99, "PlayerMove");
 		Game.getTheGame().getFrontApplication().getBattleField().addShip(playerShip);
-		player1=new Player("Marc",playerShip,3);
+		player1=new Player("Marc",playerShip,LIFE_NUMBER);
 	}
 
 	/**

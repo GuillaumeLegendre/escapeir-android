@@ -23,6 +23,7 @@ public abstract class Bullet extends SpriteBullet {
 	private final String name;
 	private long lastTimeLoad;
 	protected final boolean playerBullet;
+	private final static int TIME_LOAD_UP = 250;
 	
 	/**
 	 * Constructor of bullet
@@ -105,7 +106,7 @@ public abstract class Bullet extends SpriteBullet {
 	 */
 	public boolean loadPower() {
 		long timeNow = System.currentTimeMillis();
-		if(currentLoad < maxLoad && timeNow - lastTimeLoad > 500){
+		if(currentLoad < maxLoad && timeNow - lastTimeLoad > TIME_LOAD_UP){
 			lastTimeLoad = timeNow;
 			currentLoad = currentLoad + 1;
 			return true;
