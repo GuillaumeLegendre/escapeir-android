@@ -60,7 +60,7 @@ public class Game {
 			long lastDeath=0; //TODO gerer mort du joueur
 			
 			//Process all levels
-			while(currentNbLv<=nbLevel){
+			while(currentNbLv<=nbLevel && !Thread.currentThread().isInterrupted()){
 				try {
 					currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, "level"+currentNbLv);
 				} catch (IOException e1) {
@@ -70,14 +70,14 @@ public class Game {
 				}
 
 				System.out.println("launching wave");
-				while(currentLevel.launchNextWave()){
+				while(currentLevel.launchNextWave() && !Thread.currentThread().isInterrupted()){
 					System.out.println("wave launched");
 					ArrayList<Ship> shipList;
 					begin=System.currentTimeMillis();
 					elapsedWave=0;
 					
 					isWaveFinished=false;
-					while(!isWaveFinished){
+					while(!isWaveFinished && !Thread.currentThread().isInterrupted()){
 						//world step every 15ms
 						elapsedStep=System.currentTimeMillis();
 						elapsedWave=elapsedStep-begin;
@@ -180,5 +180,9 @@ public class Game {
 	
 	public void setFrontApplication(FrontApplication frontApplication) {
 		this.frontApplication = frontApplication;
+	}
+	
+	public void stop(){
+		gameRoutine.interrupt();
 	}
 }

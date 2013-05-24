@@ -42,6 +42,7 @@ import fr.umlv.escape.weapon.Weapon;
 			@Override
 			public void surfaceDestroyed(SurfaceHolder holder) {
 				drawThread.interrupt();
+				battleField.stop();
 			}
 
 			@Override

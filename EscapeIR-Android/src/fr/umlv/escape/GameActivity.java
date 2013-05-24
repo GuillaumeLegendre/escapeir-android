@@ -43,6 +43,13 @@ public class GameActivity extends Activity{
 		}		
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		game.stop();
+	}
+	
 	/**
 	 * Asynchronous task that initialize the application at the launching
 	 * and set the content view with the main menu

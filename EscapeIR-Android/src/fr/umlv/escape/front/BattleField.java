@@ -256,4 +256,8 @@ public class BattleField {
 	public int getHEIGHT() {
 		return HEIGHT;
 	}
+	
+	public void stop(){
+		bfCleaner.interrupt();
+	}
 }
