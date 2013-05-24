@@ -173,7 +173,7 @@ public class CollisionMonitor implements ContactListener{
 			name.equals("second_boss") ||
 			name.equals("third_boss")) 	score=1000;
 		player.addScore(score);
-		
+		System.out.println(name);
 		if(random.nextInt(100) <= PROBABILITY_NEW_BONUS){
 			this.createBonus=true;
 		}

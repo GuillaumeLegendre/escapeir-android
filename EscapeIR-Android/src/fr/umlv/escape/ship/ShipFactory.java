@@ -141,7 +141,7 @@ public class ShipFactory {
 		EnumShipName enumShipName = EnumShipName.valueOf(shipName);
 		switch (enumShipName){
 		case default_ship:
-			ship = new Ship("DefaultShip",health,body,img,move,new ShootDown());
+			ship = new Ship("default_ship",health,body,img,move,new ShootDown());
 			ship.getCurrentWeapon().setInfinityQty();
 			ship.getCurrentWeapon().setGhostShoot(ghostShoot);
 			ghostShoot=(ghostShoot+1)%7;

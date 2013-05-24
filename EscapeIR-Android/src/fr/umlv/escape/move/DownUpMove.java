@@ -17,12 +17,12 @@ public class DownUpMove implements Movable{
 
 		if(body.getLinearVelocity().y==0){
 			Vec2 v2 =new Vec2(0.0f, 8.0f);
-			body.setLinearDamping(1f);
+			body.setLinearDamping(0f);
 			body.setLinearVelocity(v2);
 		}
 		if(body.getPosition().y*EscapeWorld.SCALE<10){
 			Vec2 v2 =new Vec2(0.0f, 8.0f);
-			body.setLinearDamping(1f);
+			body.setLinearDamping(0f);
 			body.setLinearVelocity(v2);
 		}
 		if(body.getPosition().y*EscapeWorld.SCALE>FrontApplication.HEIGHT-240){
