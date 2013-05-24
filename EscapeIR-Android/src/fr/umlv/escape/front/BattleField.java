@@ -20,9 +20,9 @@ public class BattleField {
 	private Sprite[] boundPlayer;
 	private int WIDTH;
 	private int HEIGHT;
-	private final int LIMIT = 1000;
+	private final int LIMIT = 500;
 	private final int ANIMATIONSPEED = 50;
-	boolean stats = false;
+	boolean stats = true;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
 	final ArrayList<Bullet> bulletList;

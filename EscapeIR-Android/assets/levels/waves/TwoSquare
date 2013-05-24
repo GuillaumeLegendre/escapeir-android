@@ -32,7 +32,7 @@ SquareRight
 -
 default_ship
 rightwall
-50
+0
 topwall
 0
 10
@@ -40,7 +40,7 @@ SquareLeft
 -
 default_ship
 rightwall
-170
+120
 topwall
 0
 10
@@ -48,7 +48,7 @@ SquareLeft
 -
 default_ship
 rightwall
-290
+240
 topwall
 0
 10
@@ -56,7 +56,7 @@ SquareLeft
 -
 default_ship
 rightwall
-410
+360
 topwall
 0
 10

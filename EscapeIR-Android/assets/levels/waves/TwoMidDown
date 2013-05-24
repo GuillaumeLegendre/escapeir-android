@@ -1,6 +1,6 @@
 default_ship
 middle
--50
+-75
 topwall
 -40
 10
@@ -8,7 +8,7 @@ DownMove
 -
 default_ship
 middle
--50
+-75
 topwall
 -80
 10
@@ -16,7 +16,7 @@ DownMove
 -
 default_ship
 middle
--100
+-75
 topwall
 -120
 10
@@ -24,7 +24,7 @@ DownMove
 -
 default_ship
 middle
--100
+-75
 topwall
 -160
 10
@@ -32,7 +32,7 @@ DownMove
 -
 default_ship
 middle
--50
+-75
 topwall
 -200
 10
@@ -40,7 +40,7 @@ DownMove
 -
 default_ship
 middle
--50
+-75
 topwall
 -240
 10
@@ -48,7 +48,7 @@ DownMove
 -
 default_ship
 middle
-50
+25
 topwall
 -40
 10
@@ -56,7 +56,7 @@ DownMove
 -
 default_ship
 middle
-50
+25
 topwall
 -80
 10
@@ -64,7 +64,7 @@ DownMove
 -
 default_ship
 middle
-50
+25
 topwall
 -120
 10
@@ -72,7 +72,7 @@ DownMove
 -
 default_ship
 middle
-50
+25
 topwall
 -160
 10
@@ -80,7 +80,7 @@ DownMove
 -
 default_ship
 middle
-50
+25
 topwall
 -200
 10
@@ -88,7 +88,7 @@ DownMove
 -
 default_ship
 middle
-50
+25
 topwall
 -240
 10

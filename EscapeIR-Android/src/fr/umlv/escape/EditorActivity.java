@@ -6,10 +6,12 @@ import fr.umlv.escape.game.Wave;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-public class EditorActivity extends Activity {
+public class EditorActivity extends Activity implements OnItemClickListener{
 	private int state = 0;
 	private String backgroundName;
 	private Level level;
@@ -59,6 +61,7 @@ public class EditorActivity extends Activity {
 			setContentView(R.layout.editor_waves);
 			ListView list = (ListView) findViewById(R.id.waves_list_editor);
 			list.setAdapter(levelAdapter);
+			list.setOnItemClickListener(this);
 			break;
 			}
 		}
@@ -79,6 +82,7 @@ public class EditorActivity extends Activity {
 				level.getDelayWaveList().add((long) 0);
 				levelAdapter.notifyDataSetChanged();
 				System.out.println("addedddd : "+level.getWaveList().size());
+				break;
 			}
 			case R.id.moins : {
 				if(level.getWaveList().size()>1){					
@@ -86,6 +90,7 @@ public class EditorActivity extends Activity {
 					level.getDelayWaveList().remove(level.getWaveList().size()-1);
 				}
 				levelAdapter.notifyDataSetChanged();
+				break;
 			}
 		}
 		v.invalidate();
@@ -97,5 +102,10 @@ public class EditorActivity extends Activity {
 
 	public void performState3(View v) {
 	
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		System.out.println(arg0.getItemAtPosition(arg2));
 	}
 }

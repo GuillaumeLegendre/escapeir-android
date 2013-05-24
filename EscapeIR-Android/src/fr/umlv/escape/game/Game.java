@@ -37,7 +37,6 @@ public class Game {
 	private CollisionMonitor collisionMonitor;
 	private final EscapeWorld escapeWorld;
 	private GameRoutine gameRoutine;
-	private final int LIMIT = 1000;
 	private final static int LIFE_NUMBER = 3;
 	//public volatile boolean isStarted;
 	private boolean isLevelLoaded = false;

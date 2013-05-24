@@ -1,6 +1,6 @@
 bat_ship
 rightwall
-0
+-50
 topwall
 30
 10
@@ -8,7 +8,7 @@ LeftDampedMove
 -
 bat_ship
 rightwall
-40
+-10
 topwall
 90
 10
@@ -16,7 +16,7 @@ LeftDampedMove
 -
 bat_ship
 rightwall
-80
+30
 topwall
 150
 10
@@ -24,7 +24,7 @@ LeftDampedMove
 -
 bat_ship
 rightwall
-120
+70
 topwall
 210
 10
