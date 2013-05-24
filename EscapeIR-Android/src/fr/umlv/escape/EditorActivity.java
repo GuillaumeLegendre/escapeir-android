@@ -33,19 +33,16 @@ public class EditorActivity extends Activity {
 		switch(v.getId())
 		{
 			case R.id.map1Button : {
-			System.out.println("button1");
 			map.setImageResource(R.drawable.level1);
 			this.levelName = "level1";
 			break;
 			}
 			case R.id.map2Button : {
-			System.out.println("button1");
 			map.setImageResource(R.drawable.level2);
 			this.levelName = "level2";
 			break;
 			}
 			case R.id.map3Button : {
-			System.out.println("button1");
 			map.setImageResource(R.drawable.level3);
 			this.levelName = "level3";
 			break;

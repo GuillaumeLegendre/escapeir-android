@@ -34,6 +34,7 @@ public class Shiboleet extends Bullet {
 			Point startPos = new Point(this.getPosXCenter(), this.getPosYCenter());
 			Bullet bRight = bf.createBullet(this.getName(), startPos, this.isPlayerBullet());
 			Bullet bLeft = bf.createBullet(this.getName(), startPos, this.isPlayerBullet());
+			if(this.getBody()==null) return;
 			Filter filter=this.getBody().getFixtureList().getFilterData();
 			if(bRight != null && bLeft != null){
 				bRight.getBody().getFixtureList().setFilterData(filter);
