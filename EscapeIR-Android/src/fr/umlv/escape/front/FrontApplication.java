@@ -31,8 +31,10 @@ import fr.umlv.escape.weapon.Weapon;
 	public FrontApplication(Context context,int width, int height) {
 		super(context);
 		this.holder = getHolder();
+		FrontApplication.HEIGHT=height;
+		FrontApplication.WIDTH=width;
 		frontImage = new FrontImages(getResources());
-		battleField = new BattleField(width,height,frontImage.getImage("level1"));
+		battleField = new BattleField(width,height);
 		callback();
 	}
 
@@ -44,6 +46,8 @@ import fr.umlv.escape.weapon.Weapon;
 			public void surfaceDestroyed(SurfaceHolder holder) {
 				drawThread.interrupt();
 				battleField.stop();
+				battleField.deleteAll();
+				frontImage.clearMap();
 			}
 
 			@Override

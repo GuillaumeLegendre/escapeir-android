@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:background="@drawable/main_menu"
+    android:weightSum="60" >
+    
+	<ImageButton
+        android:id="@+id/level1Button"
+        android:contentDescription="@string/levelButton"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_weight="20"
+		android:src="@drawable/jupiter"
+		android:background="@null"
+		android:onClick="launchLevel"
+	/>
+    <ImageButton
+        android:id="@+id/level2Button"
+        android:contentDescription="@string/levelButton"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="20"
+		android:layout_gravity="center"
+		android:src="@drawable/moon"
+		android:background="@null"
+		android:onClick="launchLevel"
+	/>
+    <ImageButton
+        android:id="@+id/level3Button"
+        android:contentDescription="@string/levelButton"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_weight="20"
+		android:layout_gravity="center"
+		android:src="@drawable/earth"
+		android:background="@null"
+		android:onClick="launchLevel"
+	/>
+    
+</LinearLayout>

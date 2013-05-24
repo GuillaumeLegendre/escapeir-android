@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Filter;
 
+import fr.umlv.escape.R;
 import fr.umlv.escape.bonus.Bonus;
 import fr.umlv.escape.front.SpriteShip.SpriteType;
 import fr.umlv.escape.game.Game;
@@ -134,10 +135,10 @@ public class BattleField {
 		}	
 	}
 
-	public BattleField(int width, int height, Bitmap background) {
+	public BattleField(int width, int height) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
-		this.backgoundScroller = new BackGroundScroller(width,height,background);
+		this.backgoundScroller = new BackGroundScroller(width,height);
 		this.shipList = new ArrayList<Ship>();
 		this.bulletList = new ArrayList<Bullet>();
 		this.bonusList = new ArrayList<Bonus>();
@@ -202,7 +203,7 @@ public class BattleField {
 	/**
 	 * Delete all sprite in the battlefield except the player sprite. This method is ThreadSafe.
 	 */
-	public void deleteAllBonus(){
+	public void deleteAll(){
 		synchronized(bulletLock){
 			bulletList.clear();
 			bulletMap.clear();
@@ -217,6 +218,10 @@ public class BattleField {
 		}
 	}
 
+	public void setBackground(Bitmap image){
+		backgoundScroller.changeBackground(image);
+	}
+	
 	/**
 	 * Return a ship associated to a body in O(1).
 	 * @param body the body of the ship to get.

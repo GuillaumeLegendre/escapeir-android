@@ -38,6 +38,10 @@ public class Wave {
 			ship.move();
 		}
 	}
+	
+	public String getName() {
+		return name;
+	}
 
 	@Override
 	public String toString(){

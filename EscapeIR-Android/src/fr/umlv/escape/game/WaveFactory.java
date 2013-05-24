@@ -8,6 +8,7 @@ import fr.umlv.escape.Objects;
 import fr.umlv.escape.bonus.BonusFactory;
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.file.ParseFile;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.ship.ShipFactory;
 
 /**This class supplies methods to create properly a {@link Wave}.
@@ -36,12 +37,31 @@ public class WaveFactory {
 		String shipName;
 		String trajectory;
 		int posX,posY,health;
+		String wallReference;
 
 		//Get all the ships of the wave
 		while((shipName=this.parseWave.getNextLine())!=null){
 			try{
-				posX=Integer.parseInt(this.parseWave.getNextLine());
-				posY=Integer.parseInt(this.parseWave.getNextLine());
+				wallReference = this.parseWave.getNextLine();
+				if(wallReference.equals("leftwall")){
+					posX=Integer.parseInt(this.parseWave.getNextLine());	
+				} else if(wallReference.equals("rightwall")){
+					posX=FrontApplication.WIDTH+Integer.parseInt(this.parseWave.getNextLine());
+				} else if(wallReference.equals("middle")){
+					posX=FrontApplication.WIDTH/2+Integer.parseInt(this.parseWave.getNextLine());
+				} else {
+					throw new IllegalFormatContentFile("the file "+parseWave.getFileName()+" is corrupted");
+				}
+				wallReference = this.parseWave.getNextLine();
+				if(wallReference.equals("topwall")){
+					posY=Integer.parseInt(this.parseWave.getNextLine());	
+				} else if(wallReference.equals("botwall")){
+					posY=FrontApplication.HEIGHT+Integer.parseInt(this.parseWave.getNextLine());
+				} else if(wallReference.equals("middle")){
+					posY=FrontApplication.HEIGHT/2+Integer.parseInt(this.parseWave.getNextLine());
+				} else {
+					throw new IllegalFormatContentFile("the file "+parseWave.getFileName()+" is corrupted");
+				}
 				health=Integer.parseInt(this.parseWave.getNextLine());
 				trajectory=this.parseWave.getNextLine();
 				if(!this.parseWave.getNextLine().equals("-")){

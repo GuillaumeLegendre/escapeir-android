@@ -1,28 +1,28 @@
 package fr.umlv.escape;
 
-import java.util.ArrayList;
-
+import fr.umlv.escape.editor.LevelAdapter;
 import fr.umlv.escape.game.Level;
+import fr.umlv.escape.game.Wave;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 public class EditorActivity extends Activity {
 	private int state = 0;
-	private String levelName;
+	private String backgroundName;
 	private Level level;
-	ArrayAdapter adapter;
-	ArrayList<Button> listWaves=new ArrayList<Button>();
-	
+	LevelAdapter levelAdapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editor_map);
+		this.backgroundName = "level1";
+		this.level = new Level("edited_level");
+		level.addWaveList(new Wave("empty_wave"));
+		level.addDelayList(0);
 	}
 
 	public void onPushButton(View v) {
@@ -40,24 +40,25 @@ public class EditorActivity extends Activity {
 		{
 			case R.id.map1Button : {
 			map.setImageResource(R.drawable.level1);
-			this.levelName = "level1";
+			this.backgroundName = "level1";
 			break;
 			}
 			case R.id.map2Button : {
 			map.setImageResource(R.drawable.level2);
-			this.levelName = "level2";
+			this.backgroundName = "level2";
 			break;
 			}
 			case R.id.map3Button : {
 			map.setImageResource(R.drawable.level3);
-			this.levelName = "level3";
+			this.backgroundName = "level3";
 			break;
 			}
 			case R.id.nextButton : {
-			this.level = new Level(this.levelName);
 			state= 1;
-			adapter=new ArrayAdapter<Button>(this,android.R.layout.simple_list_item_1,listWaves);
+			levelAdapter=new LevelAdapter(this,level);
 			setContentView(R.layout.editor_waves);
+			ListView list = (ListView) findViewById(R.id.waves_list_editor);
+			list.setAdapter(levelAdapter);
 			break;
 			}
 		}
@@ -65,7 +66,6 @@ public class EditorActivity extends Activity {
 	}
 	
 	public void performState1(View v) {
-	
 	    switch(v.getId())
 		{
 			case R.id.backButton : {
@@ -74,14 +74,18 @@ public class EditorActivity extends Activity {
 				break;
 			}
 			case R.id.plus : {
-				listWaves.add(new Button(this));
-				adapter.notifyDataSetChanged();
+				System.out.println("addedddd : "+level.getWaveList().size());
+				level.getWaveList().add(new Wave("empty_wave"));
+				level.getDelayWaveList().add((long) 0);
+				levelAdapter.notifyDataSetChanged();
+				System.out.println("addedddd : "+level.getWaveList().size());
 			}
 			case R.id.moins : {
-				if(listWaves.size()>0){					
-					listWaves.remove(listWaves.size()-1);
+				if(level.getWaveList().size()>1){					
+					level.getWaveList().remove(level.getWaveList().size()-1);
+					level.getDelayWaveList().remove(level.getWaveList().size()-1);
 				}
-				adapter.notifyDataSetChanged();
+				levelAdapter.notifyDataSetChanged();
 			}
 		}
 		v.invalidate();

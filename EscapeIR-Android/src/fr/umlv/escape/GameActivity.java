@@ -29,18 +29,7 @@ public class GameActivity extends Activity{
 		
 		frontApplication = new FrontApplication(this,width,height);
 		this.game = Game.getTheGame();
-		try {
-			this.game.initializeGame(frontApplication,height,width);	
-			setContentView(frontApplication);
-			this.game.startGame(getApplicationContext());
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalFormatContentFile e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		setContentView(R.layout.levels_menu);			
 	}
 	
 	@Override
@@ -78,6 +67,44 @@ public class GameActivity extends Activity{
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 		}
+	}
+	
+	public void launchLevel(View view){
+		String[] levelsNames=null;
+		
+		switch(view.getId())
+		{
+		case R.id.level1Button:{
+			levelsNames = new String[3];
+			levelsNames[0]="level1";
+			levelsNames[1]="level2";
+			levelsNames[2]="level3"; 
+			break;
+		}
+		case R.id.level2Button: {
+			levelsNames = new String[2];
+			levelsNames[0]="level2";
+			levelsNames[1]="level3"; 
+			break;
+		}
+		case R.id.level3Button: {
+			levelsNames = new String[1];
+			levelsNames[0]="level3"; 
+			break;
+		}
+		default:
+			return;
+		}
+		
+		try {
+			this.game.initializeGame(this,frontApplication,levelsNames);	
+			this.game.startGame(getApplicationContext());
+			setContentView(frontApplication);
+		} catch (IOException e) {
+			onDestroy();
+		} catch (IllegalFormatContentFile e) {
+			onDestroy();
+		}	
 	}
 
 }

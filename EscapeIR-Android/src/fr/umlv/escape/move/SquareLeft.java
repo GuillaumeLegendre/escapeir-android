@@ -14,14 +14,15 @@ import fr.umlv.escape.world.EscapeWorld;
  * @implements {@link Movable}
  */
 public class SquareLeft implements Movable{
-	private int nbCall=0;
+	private int nbCall=-1;
 
 	@Override
 	public void move(Body body) {
 		Objects.requireNonNull(body);
 		
-		Vec2 v2 =new Vec2(0,0);
+		Vec2 v2 =new Vec2(-2f,0f);
 		switch(nbCall){
+		case -1: nbCall++; break;
 		case 0:
 			if(body.getPosition().y*EscapeWorld.SCALE>(FrontApplication.WIDTH/3-120)){
 				return;
@@ -49,9 +50,7 @@ public class SquareLeft implements Movable{
 		default:
 			throw new AssertionError();
 		}
-		if(v2.x==0 && v2.y==0){
-			v2.set(-2f,0);
-		}
+		
 		body.setLinearVelocity(v2);
 		nbCall=(nbCall+1)%4;
 	}

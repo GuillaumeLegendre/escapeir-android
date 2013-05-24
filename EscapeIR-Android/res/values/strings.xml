@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="playButton">Button that launch the Game</string>
 	<string name="editorButton">Button that launch the Editor</string>
+	<string name="levelButton">Button that launch the level</string>
 	<string name="loading">Loading . . .</string>
 	<string name="map1">Map1</string>
 	<string name="map2">Map2</string>
@@ -12,6 +13,7 @@
 	<string name="next">Next</string>
 	<string name="plus">+</string>
 	<string name="moins">-</string>
-	<string name="numberWaves">"Number of waves"</string>
+	<string name="setWaves">"Set your waves"</string>
+	<string name="chooseMap">"Chose your map"</string>
 	<string name="back">"Back"</string>
 </resources>

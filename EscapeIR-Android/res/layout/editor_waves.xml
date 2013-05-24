@@ -24,7 +24,7 @@
 	        android:layout_height="fill_parent"
 	        android:gravity="center"
 	        android:fontFamily="@style/AppBaseTheme"
-	        android:text="@string/numberWaves"
+	        android:text="@string/setWaves"
 		/>
     </LinearLayout>
 	<LinearLayout
@@ -34,19 +34,21 @@
 	 	android:layout_weight="10"
     	android:orientation="horizontal" >
     	
-	    <Button 
+	    <Button
 	        android:id="@+id/moins"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-		  	android:layout_gravity="center"
-		    android:text="@string/moins"
-		    android:onClick="onPushButton"
-	    />
+	        android:layout_weight="5"
+	        android:layout_gravity="left"
+	        android:onClick="onPushButton"
+	        android:text="@string/moins" />
+
 	    <Button 
 	        android:id="@+id/plus"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:layout_gravity="center"
+	        android:layout_gravity="right"
+	        android:layout_weight="5"
 		    android:text="@string/plus"
 		    android:onClick="onPushButton"
 	    />

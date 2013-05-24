@@ -85,4 +85,12 @@ public class Level {
 	public void changeWave(){
 		this.currentWave++;
 	}
+	
+	public List<Wave> getWaveList() {
+		return waveList;
+	}
+	
+	public List<Long> getDelayWaveList() {
+		return delayWaveList;
+	}
 }

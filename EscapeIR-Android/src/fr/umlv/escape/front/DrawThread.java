@@ -26,6 +26,15 @@ public class DrawThread extends Thread{
 		long elapsed;
 		int fps=0;
 
+		/*while(!Game.getTheGame().isStarted){
+			synchronized (battleField) {
+				try {
+					battleField.wait();
+				} catch (InterruptedException e) {
+				}	
+			}
+		}*/
+		
 		while(!Thread.currentThread().isInterrupted()){
 			begin = System.currentTimeMillis();
 			

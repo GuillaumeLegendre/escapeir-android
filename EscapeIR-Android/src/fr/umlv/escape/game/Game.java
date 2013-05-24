@@ -2,6 +2,7 @@ package fr.umlv.escape.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import org.jbox2d.dynamics.Body;
@@ -28,7 +29,8 @@ import fr.umlv.escape.world.EscapeWorld;
 public class Game {
 	private Level currentLevel;
 	private int currentNbLv;
-	private final int nbLevel;
+	private int nbLevel;
+	private String[] levelsNames;
 	private static Game TheGame;
 	Player player1;
 	private FrontApplication frontApplication;
@@ -37,15 +39,16 @@ public class Game {
 	private GameRoutine gameRoutine;
 	private final int LIMIT = 1000;
 	private final static int LIFE_NUMBER = 3;
+	//public volatile boolean isStarted;
+	private boolean isLevelLoaded = false;
 	
 	private Game(){
-		this.nbLevel=3; //TODO chercher dans fichier
-		this.currentNbLv=1;
 		this.escapeWorld = EscapeWorld.getTheWorld();
 	}
 	
 	private class GameRoutine extends Thread {
 		private final long TIME_TO_RESPAWN = 3000;
+
 		Context context;
 		private GameRoutine(Context context){
 			this.context = context;
@@ -60,18 +63,25 @@ public class Game {
 			long lastDeath=0; //TODO gerer mort du joueur
 			
 			//Process all levels
-			while(currentNbLv<=nbLevel && !Thread.currentThread().isInterrupted()){
-				try {
-					currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, "level"+currentNbLv);
-				} catch (IOException e1) {
-					Thread.currentThread().interrupt();
-				} catch (IllegalFormatContentFile e) {
-					Thread.currentThread().interrupt();
+			while(currentNbLv<nbLevel && !Thread.currentThread().isInterrupted()){
+				System.out.println("CREATING LEVEL");
+				System.out.println(Arrays.toString(levelsNames));
+				if(!isLevelLoaded){
+					try {
+						currentLevel=LevelFactory.getTheLevelFactory().createLevel(context, levelsNames[currentNbLv]);
+						//isStarted = true;
+					} catch (IOException e1) {
+						Thread.currentThread().interrupt();
+					} catch (IllegalFormatContentFile e) {
+						Thread.currentThread().interrupt();
+					}	
 				}
-
-				System.out.println("launching wave");
+				/*synchronized (frontApplication.getBattleField()) {
+					frontApplication.getBattleField().notifyAll();
+				}*/
+				System.out.println(currentNbLv);
+				System.out.println(currentLevel);
 				while(currentLevel.launchNextWave() && !Thread.currentThread().isInterrupted()){
-					System.out.println("wave launched");
 					ArrayList<Ship> shipList;
 					begin=System.currentTimeMillis();
 					elapsedWave=0;
@@ -131,6 +141,7 @@ public class Game {
 					currentLevel.changeWave();
 				}
 				currentNbLv+=1;
+				isLevelLoaded = false;
 			}
 		}
 		
@@ -141,12 +152,18 @@ public class Game {
 	 * @throws IOException
 	 * @throws IllegalFormatContentFile
 	 */
-	public void initializeGame(FrontApplication frontAplication, int height, int width) throws IOException, IllegalFormatContentFile{	
+	public void initializeGame(Context context, FrontApplication frontAplication, String[] levelsNames) throws IOException, IllegalFormatContentFile{	
+		this.levelsNames = levelsNames;
+		this.nbLevel = levelsNames.length;
+		//this.isStarted = false;
+		this.currentNbLv=0;
 		this.frontApplication = frontAplication;
 		this.collisionMonitor=new CollisionMonitor(frontApplication.getBattleField());
-		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player",width/2, height/3*2, 99, "PlayerMove");
+		Ship playerShip=ShipFactory.getTheShipFactory().createShip("default_ship_player",FrontApplication.WIDTH/2, FrontApplication.HEIGHT/3*2, 99, "PlayerMove");
 		Game.getTheGame().getFrontApplication().getBattleField().addShip(playerShip);
-		player1=new Player("Marc",playerShip,LIFE_NUMBER);
+		player1=new Player("Marc",playerShip,LIFE_NUMBER); 
+		this.currentLevel = LevelFactory.getTheLevelFactory().createLevel(context, levelsNames[currentNbLv]);
+		this.isLevelLoaded = true;
 	}
 
 	/**

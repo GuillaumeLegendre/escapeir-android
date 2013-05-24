@@ -41,7 +41,8 @@ public class FrontImages {
 	 * @return the image associated to the key given
 	 */
 	public Bitmap getImage(String key){
-		if(!imagesMap.containsKey(key)){		
+		if(!imagesMap.containsKey(key)){
+			System.out.println(key);
 			Bitmap image = BitmapFactory.decodeResource(this.resources, this.resources.getIdentifier(key, "drawable", "fr.umlv.escape"));
 			if(image == null){
 				throw new IllegalArgumentException("String key: '"+ key +"' don't match with any name drawable");

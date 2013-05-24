@@ -6,6 +6,7 @@ import android.content.Context;
 
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.file.ParseFile;
+import fr.umlv.escape.front.FrontApplication;
 
 /**This class supplies methods to create properly a {@link Level}.
  */
@@ -27,9 +28,16 @@ public class LevelFactory {
 		Level newLevel = new Level(levelName);
 		this.parseLevel=new ParseFile(context, "levels/"+levelName);
 		
-		//Get all the wave
+		String backgroundName=this.parseLevel.getNextLine();;
+		//Get the background of the level
+		if(backgroundName==null){
+			throw new IllegalFormatContentFile("The file "+parseLevel.getFileName()+" is corrupted");
+		}
+		Game.getTheGame().getFrontApplication().getBattleField().setBackground(FrontApplication.frontImage.getImage(backgroundName));
+		
 		String waveName=this.parseLevel.getNextLine();
-		long delay;
+		long delay;		
+		//Get all the wave
 		if(waveName==null){
 			throw new IllegalFormatContentFile("The file "+parseLevel.getFileName()+" is corrupted");
 		}
