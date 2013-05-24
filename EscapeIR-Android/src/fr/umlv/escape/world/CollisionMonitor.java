@@ -50,7 +50,7 @@ public class CollisionMonitor implements ContactListener{
 			EscapeWorld.getTheWorld().setActive(body, false);
 			EscapeWorld.getTheWorld().destroyBody(body);
 			if(this.createBonus){
-				int rand = (((int)(Math.random()*279))%8);
+				int rand = (((int)(Math.random()*279))%6);
 				Bonus bonus=bonusFactory.createBonus("weapon_reloader", (int)((body.getPosition().x*EscapeWorld.SCALE)), (int)((body.getPosition().y*EscapeWorld.SCALE)), rand);
 				bonus.move();
 				battleField.addBonus(bonus);
