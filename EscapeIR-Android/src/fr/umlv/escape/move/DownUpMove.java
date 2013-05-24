@@ -3,6 +3,7 @@ package fr.umlv.escape.move;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import fr.umlv.escape.Objects;
+import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.world.EscapeWorld;
 
 /**
@@ -24,7 +25,7 @@ public class DownUpMove implements Movable{
 			body.setLinearDamping(1f);
 			body.setLinearVelocity(v2);
 		}
-		if(body.getPosition().y*EscapeWorld.SCALE>400){
+		if(body.getPosition().y*EscapeWorld.SCALE>FrontApplication.HEIGHT-240){
 			Vec2 v2 =new Vec2(0.0f, -4.0f);
 			body.setLinearDamping(0);
 			body.setLinearVelocity(v2);
