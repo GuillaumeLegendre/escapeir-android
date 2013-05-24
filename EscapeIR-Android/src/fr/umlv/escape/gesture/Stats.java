@@ -16,6 +16,8 @@ public class Stats implements Gesture {
 		Point previous;
 		int stateOfDetection=0;
 		
+		if(pointList.size()==0)return false;
+		
 		previous=pointList.get(0);
 		Point firsPoint=previous;
 		int numOfPoint=1;
