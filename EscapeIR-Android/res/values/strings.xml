@@ -18,4 +18,6 @@
 	<string name="setWaves">"Set your waves"</string>
 	<string name="chooseMap">"Chose your map"</string>
 	<string name="back">"Back"</string>
+	<string name="hint_enter_the_name">"Enter the name"</string>
+	<string name="hint_enter_the_value">"Enter the value (0=infini)"</string>
 </resources>
