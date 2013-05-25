@@ -1,10 +1,6 @@
 package fr.umlv.escape;
 
-import java.lang.reflect.Array;
-
-import fr.umlv.escape.editor.FrontBuilder;
 import fr.umlv.escape.editor.LevelAdapter;
-import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.game.Level;
 import fr.umlv.escape.game.Wave;
 import android.app.Activity;
