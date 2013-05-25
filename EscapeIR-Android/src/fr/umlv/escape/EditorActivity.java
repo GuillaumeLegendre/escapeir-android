@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,13 +24,9 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 	ArrayAdapter<String> arrayAdapter;
 	//private FrontBuilder frontBuilder;
 	ImageView map;
-	private final String[] listMove = {"DownMove","DownUpMove","KamikazeMove",
-										"LeftDampedMove","LeftMove","LeftRightMove",
-										"RightDampedMove","RightMove","SquareLeft",
-										"SquareRight","StraightLine","UpMove"};
-	private final String[] listShoot = {"DoNotShoot","ShootDown","BatShipShoot",
-										"FirstBossShoot","SecondBossShoot","ThirdBossShoot"};
-
+	int HEIGHT;
+	int WIDTH;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +36,9 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 		this.level = new Level("edited_level");
 		level.addWaveList(new Wave("empty_wave"));
 		level.addDelayList(0);
+		Display display = getWindowManager().getDefaultDisplay();
+		WIDTH = display.getWidth();  // deprecated
+		HEIGHT = display.getHeight();
 		//this.frontBuilder = new FrontBuilder(this);
 	}
 
@@ -51,6 +51,7 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 	
 	public void performState0(View v) {
 		map = (ImageView)findViewById(R.id.mapImageEditor);
+		
 		switch(v.getId())
 		{
 			case R.id.map1Button : {
@@ -76,7 +77,7 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 				return;
 			}
 			state= 1;
-			levelAdapter=new LevelAdapter(this,level);
+			levelAdapter = new LevelAdapter(this,level);
 			setContentView(R.layout.editor_waves);
 			ListView list = (ListView) findViewById(R.id.waves_list_editor);
 			list.setAdapter(levelAdapter);
@@ -121,7 +122,7 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		//setContentView(frontBuilder);
 		//frontBuilder.buildWave(background,(Wave)arg0.getItemAtPosition(arg2));
-		setContentView(R.layout.builder_wave);
-		performState2(findViewById(R.layout.builder_wave));
+		setContentView(R.layout.wave_builder);
+		performState2(findViewById(R.layout.wave_builder));
 	}
 }
