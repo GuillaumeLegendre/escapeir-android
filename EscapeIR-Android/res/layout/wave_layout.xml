@@ -13,12 +13,13 @@
 	        android:id="@+id/waveName"
 	        android:layout_width="0dp"
 	        android:layout_weight="25"
-	    	android:layout_height="wrap_content" />
+	    	android:layout_height="wrap_content"
+	    	android:textIsSelectable="false" />
 	    <EditText 
 	        android:layout_weight="25"
-	        android:text="Enter the name"
 	        android:layout_width="0dp"
-        	android:layout_height="wrap_content" />
+        	android:layout_height="wrap_content"
+        	android:hint="@string/hint_enter_the_name" />
 	</LinearLayout>
 	<LinearLayout
 	    android:layout_width="fill_parent"
@@ -30,12 +31,13 @@
 	        android:id="@+id/waveDelay"
 	        android:layout_weight="25"
 	        android:layout_width="0dp"
-	        android:layout_height="wrap_content" />
+	        android:layout_height="wrap_content"
+	        android:textIsSelectable="false" />
 	    <EditText
-	        android:text="Enter the value (0=infiny)"
 	        android:layout_width="0dp"
 	        android:layout_weight="25"
-	        android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        android:hint="@string/hint_enter_the_value" />
 	</LinearLayout>
 	<Button 
         android:id="@+id/build"
