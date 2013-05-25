@@ -34,7 +34,7 @@ import fr.umlv.escape.weapon.Weapon;
 		FrontApplication.HEIGHT=height;
 		FrontApplication.WIDTH=width;
 		frontImage = new FrontImages(getResources());
-		battleField = new BattleField(width,height);
+		battleField = new BattleField(width,height,true);
 		callback();
 	}
 
@@ -65,7 +65,7 @@ import fr.umlv.escape.weapon.Weapon;
 				gestureDetector.addGesture(new RightCircle());
 				gestureDetector.addGesture(new Stats());
 				
-				drawThread = new DrawThread(holder, battleField);
+				drawThread = new DrawThread(holder, battleField,true,true);
 				drawThread.start();
 				battleField.launchBfCleaner();
 			}

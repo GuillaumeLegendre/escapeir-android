@@ -14,10 +14,14 @@ import android.view.SurfaceHolder;
 public class DrawThread extends Thread{
 	private SurfaceHolder holder;
 	private final BattleField battleField;
-
-	public DrawThread(SurfaceHolder holder, BattleField battleField) {
+	private final boolean drawUserInterface;
+	private final boolean autoScroll;
+	
+	public DrawThread(SurfaceHolder holder, BattleField battleField, boolean drawUserInterface, boolean autoScroll) {
 		this.battleField = battleField;
 		this.holder = holder;
+		this.drawUserInterface=drawUserInterface;
+		this.autoScroll = autoScroll;
 	}
 	
 	@Override
@@ -68,10 +72,15 @@ public class DrawThread extends Thread{
 					listAnimation.get(i).onDrawSprite(canvas);
 				}
 			}
-			UserInterface.drawUIScoresAndLife(canvas);
-			UserInterface.drawWeaponsIcons(canvas);
+			
+			if(drawUserInterface){
+				UserInterface.drawUIScoresAndLife(canvas);
+				UserInterface.drawWeaponsIcons(canvas);
+			}
 			holder.unlockCanvasAndPost(canvas);
-			battleField.backgoundScroller.verticalScroll();
+			if(autoScroll){
+				battleField.backgoundScroller.verticalScroll(battleField.scrollingSpeed);
+			}
 						
 			try {
 				elapsed = System.currentTimeMillis() - begin;

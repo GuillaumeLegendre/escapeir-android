@@ -1,6 +1,8 @@
 package fr.umlv.escape;
 
+import fr.umlv.escape.editor.FrontBuilder;
 import fr.umlv.escape.editor.LevelAdapter;
+import fr.umlv.escape.front.FrontImages;
 import fr.umlv.escape.game.Level;
 import fr.umlv.escape.game.Wave;
 import android.app.Activity;
@@ -16,6 +18,8 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 	private String backgroundName;
 	private Level level;
 	LevelAdapter levelAdapter;
+	private FrontBuilder frontBuilder;
+	ImageView map;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +29,18 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 		this.level = new Level("edited_level");
 		level.addWaveList(new Wave("empty_wave"));
 		level.addDelayList(0);
+		this.frontBuilder = new FrontBuilder(this);
 	}
 
 	public void onPushButton(View v) {
 		switch(state){
 		case 0 : performState0(v); break;
 		case 1 : performState1(v); break;
-		case 2 : performState2(v); break;
-		case 3 : performState3(v); break;
 		}
 	}
 	
 	public void performState0(View v) {
-		ImageView map = (ImageView)findViewById(R.id.mapImageEditor);
+		map = (ImageView)findViewById(R.id.mapImageEditor);
 		switch(v.getId())
 		{
 			case R.id.map1Button : {
@@ -77,11 +80,9 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 				break;
 			}
 			case R.id.plus : {
-				System.out.println("addedddd : "+level.getWaveList().size());
 				level.getWaveList().add(new Wave("empty_wave"));
 				level.getDelayWaveList().add((long) 0);
 				levelAdapter.notifyDataSetChanged();
-				System.out.println("addedddd : "+level.getWaveList().size());
 				break;
 			}
 			case R.id.moins : {
@@ -96,16 +97,10 @@ public class EditorActivity extends Activity implements OnItemClickListener{
 		v.invalidate();
 	}
 
-	public void performState2(View v) {
-	
-	}
-
-	public void performState3(View v) {
-	
-	}
-
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		System.out.println(arg0.getItemAtPosition(arg2));
+		setContentView(frontBuilder);
+		map.buildDrawingCache();
+		frontBuilder.buildWave(map.getDrawingCache(),(Wave)arg0.getItemAtPosition(arg2));
 	}
 }

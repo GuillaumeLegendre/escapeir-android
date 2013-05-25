@@ -14,29 +14,52 @@ public class BackGroundScroller {
 	Rect screenRect;
 	Rect backgroundRect;
 	private int backgroundHeight; // Optimization for not using getter
+	private boolean isLooping;
 	
 	/**Constructor
 	 * @param heightScreen The height of the screen.
 	 * @param backGroundName The name of the background
 	 */
-	public BackGroundScroller(int widthScreen, int heightScreen){
+	public BackGroundScroller(int widthScreen, int heightScreen, boolean isLooping){
+		this(new Rect(0,0,widthScreen,heightScreen),isLooping);
 		if(heightScreen<0){
 			throw new IllegalArgumentException("height screen can't be negative");
 		}
-		
-		this.screenRect = new Rect(0,0,widthScreen,heightScreen);
+	}
+	
+	public BackGroundScroller(Rect screenRect, boolean isLooping){
+		Objects.requireNonNull(screenRect);
+		this.isLooping = isLooping;
+		this.screenRect = screenRect;
 	}
 
 	/** Applies a vertical scroll step to the backGround.
 	  */
-	public void verticalScroll(){
-		backgroundRect.top-=2;
-		backgroundRect.bottom-=2;
-
-		if(backgroundRect.top<=0){
-			backgroundRect.top+=backgroundHeight-screenRect.bottom;
-			backgroundRect.bottom=backgroundHeight;
+	public void verticalScroll(int nbPixel){
+		if(backgroundRect.top<=0 && nbPixel<0){
+			System.out.println(1);
+			if(isLooping){
+				System.out.println(2);
+				backgroundRect.top=backgroundHeight-screenRect.bottom;
+				backgroundRect.bottom=backgroundHeight;
+			} else {
+				System.out.println(3);
+				return;
+			}
 		}
+		if(backgroundRect.bottom>=backgroundHeight && nbPixel>0){
+			System.out.println(4);
+			if(isLooping){
+				System.out.println(5);
+				backgroundRect.top=0;
+				backgroundRect.bottom=backgroundHeight-screenRect.bottom;
+			} else {
+				System.out.println(6);
+				return;
+			}
+		}
+		backgroundRect.top+=nbPixel;
+		backgroundRect.bottom+=nbPixel;
 	}
 	
 	public void onDrawBackground(Canvas canvas){
@@ -45,9 +68,15 @@ public class BackGroundScroller {
 	}
 	
 	public void updateScreenSizes(int width, int height){
-		this.screenRect = new Rect(0,0,width,height);
-		this.backgroundRect = new Rect(0, backgroundHeight-height, this.backgroundImage.getWidth(), this.backgroundHeight);
+		updateScreenSizes(0, 0, width, height);
 	}
+	
+	public void updateScreenSizes(int left, int top, int right, int bottom){
+		System.out.println(left+" - "+top+" - "+right+" - "+bottom);
+		this.screenRect = new Rect(left,top,right,bottom);
+		this.backgroundRect = new Rect(0, backgroundHeight-bottom, this.backgroundImage.getWidth(), this.backgroundHeight);
+	}
+
 	
 	public void changeBackground(Bitmap image) {
 		this.backgroundImage=image;

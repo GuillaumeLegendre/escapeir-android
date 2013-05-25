@@ -22,6 +22,7 @@ public class BattleField {
 	private int HEIGHT;
 	private final int LIMIT = 500;
 	private final int ANIMATIONSPEED = 50;
+	final int scrollingSpeed = -2;
 	boolean stats = true;
 	BackGroundScroller backgoundScroller;
 	final ArrayList<Ship> shipList;
@@ -135,10 +136,10 @@ public class BattleField {
 		}	
 	}
 
-	public BattleField(int width, int height) {
+	public BattleField(int width, int height, boolean autoScroll) {
 		this.HEIGHT = height;
 		this.WIDTH = width;
-		this.backgoundScroller = new BackGroundScroller(width,height);
+		this.backgoundScroller = new BackGroundScroller(width,height,autoScroll);
 		this.shipList = new ArrayList<Ship>();
 		this.bulletList = new ArrayList<Bullet>();
 		this.bonusList = new ArrayList<Bonus>();
@@ -254,9 +255,21 @@ public class BattleField {
 	}
 
 	public void updateSreenSize(int width, int height){
-		this.WIDTH = width;
-		this.HEIGHT = height;
-		backgoundScroller.updateScreenSizes(width, height);
+		updateSreenSize(0,0,width,height);
+	}
+	
+	public void updateSreenSize(int left, int top, int right, int bottom){
+		this.WIDTH = right-left;
+		this.HEIGHT = bottom-top;
+		backgoundScroller.updateScreenSizes(left,top,right,bottom);
+	}
+	
+	public BackGroundScroller getBackgoundScroller() {
+		return backgoundScroller;
+	}
+
+	public void setBackgoundScroller(BackGroundScroller backgoundScroller) {
+		this.backgoundScroller = backgoundScroller;
 	}
 
 	public int getWIDTH() {
