@@ -52,8 +52,8 @@ public class LevelAdapter extends BaseAdapter{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.waveName.setText("Name of the wave");
-		holder.waveDelay.setText("Delay befor next wave's launching");
+		holder.waveName.setText("Name of the wave: " + level.getWaveList().get(position).getName());
+		holder.waveDelay.setText("Delay befor next wave's launching: "+String.valueOf(level.getDelayWaveList().get(position)));
 		
 		return convertView;
 	}

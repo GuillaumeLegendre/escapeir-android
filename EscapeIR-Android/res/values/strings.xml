@@ -14,6 +14,7 @@
 	<string name="next">Next</string>
 	<string name="plus">+</string>
 	<string name="moins">-</string>
+	<string name="build">Build</string>
 	<string name="setWaves">"Set your waves"</string>
 	<string name="chooseMap">"Chose your map"</string>
 	<string name="back">"Back"</string>
