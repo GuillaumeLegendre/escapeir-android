@@ -82,5 +82,6 @@ public class BackGroundScroller {
 		this.backgroundImage=image;
 		this.backgroundHeight = image.getHeight();
 		this.backgroundRect = new Rect(0, backgroundHeight-screenRect.bottom, image.getWidth(), backgroundHeight);
+		System.out.println("background: "+backgroundRect);
 	}
 }

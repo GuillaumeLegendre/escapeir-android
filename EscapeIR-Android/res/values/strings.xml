@@ -6,6 +6,7 @@
     <string name="playButton">Button that launch the Game</string>
 	<string name="editorButton">Button that launch the Editor</string>
 	<string name="levelButton">Button that launch the level</string>
+	<string name="shipButton">Button that select a ship</string>
 	<string name="loading">Loading . . .</string>
 	<string name="map1">Map1</string>
 	<string name="map2">Map2</string>

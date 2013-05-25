@@ -4,13 +4,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/waveName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/waveDelay"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="50"
+	    android:orientation="horizontal" >
+	    <TextView
+	        android:id="@+id/waveName"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" />
+	    <EditText 
+	        android:text="Enter the name"
+	        android:layout_width="fill_parent"
+        	android:layout_height="fill_parent" />
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+  	    android:layout_weight="50"
+	    android:orientation="horizontal" >
+	    
+	    <TextView
+	        android:id="@+id/waveDelay"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" />
+	    <EditText
+	        android:text="Enter the value (0=infiny)"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"/>
+	</LinearLayout>
 </LinearLayout>

@@ -22,7 +22,7 @@ public class FrontBuilder extends SurfaceView{
 	public FrontBuilder(Context context) {
 		super(context);
 		this.holder = getHolder();
-		battleField = new BattleField(0,0,false);
+		battleField = new BattleField(480,800,false);
 		callback();
 	}
 	
@@ -36,8 +36,7 @@ public class FrontBuilder extends SurfaceView{
 			public void surfaceCreated(SurfaceHolder arg0) {
 				HEIGHT=getHeight();
 				WIDTH=getWidth();
-				battleField.updateSreenSize(0,0,WIDTH,HEIGHT);				
-				//battleField.updateSreenSize((WIDTH/8),(HEIGHT/8),7*(WIDTH/8),7*(HEIGHT/8));				
+				battleField.updateSreenSize((WIDTH/4),(HEIGHT/4),3*(WIDTH/4),3*(HEIGHT/4));				
 				drawThread = new DrawThread(holder, battleField,false,false);
 				drawThread.start();
 				battleField.launchBfCleaner();
@@ -67,7 +66,7 @@ public class FrontBuilder extends SurfaceView{
 			break;
 		default: break;
 		}
-			
+		System.out.println(point);
 		point=new Point((int)arg1.getX(),(int)arg1.getY());
 		return true;
 	}
