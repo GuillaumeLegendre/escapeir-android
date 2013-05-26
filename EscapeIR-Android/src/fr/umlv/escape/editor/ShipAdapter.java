@@ -1,5 +1,7 @@
 package fr.umlv.escape.editor;
 
+import java.util.ArrayList;
+
 import fr.umlv.escape.R;
 import fr.umlv.escape.game.Level;
 import fr.umlv.escape.ship.Ship;
@@ -8,33 +10,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ShipAdapter extends BaseAdapter{
-	Ship ship;
+	ArrayList<Ship> shipList;
 	LayoutInflater inflater;
-
-	public ShipAdapter(Context context, Ship ship) {
+	
+	public ShipAdapter(Context context, ArrayList<Ship> shipList) {
 		inflater = LayoutInflater.from(context);
-		this.ship = ship;
+		this.shipList = shipList;
 	}
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return shipList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return null;
+		return shipList.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return 0;
+		return position;
+	}
+	
+	private class ViewHolder {
+		Spinner selectShip;
+		EditText life;
+		//TextView shipName;
+		Button putShip;
+		Button removeShip;
 	}
 
 	@Override
@@ -44,14 +54,14 @@ public class ShipAdapter extends BaseAdapter{
 		if(convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.wave_layout, null);
-			holder.waveName = (TextView)convertView.findViewById(R.id.waveName);
-			holder.waveDelay = (TextView)convertView.findViewById(R.id.waveDelay);
+			holder.selectShip = (Spinner)convertView.findViewById(R.id.select_ship);
+			holder.life = (EditText)convertView.findViewById(R.id.life_ship);
+			holder.putShip = (Button)convertView.findViewById(R.id.button_put_ship);
+			holder.removeShip = (Button)convertView.findViewById(R.id.moins);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.waveName.setText("Name of the wave: " + level.getWaveList().get(position).getName());
-		holder.waveDelay.setText("Delay before next wave's launching: "+String.valueOf(level.getDelayWaveList().get(position)));
 		
 		return convertView;
 	}
