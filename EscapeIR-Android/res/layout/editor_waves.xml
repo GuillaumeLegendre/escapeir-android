@@ -15,7 +15,7 @@
     <ListView
         android:id="@+id/waves_list_editor"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom" >
     </ListView>
 

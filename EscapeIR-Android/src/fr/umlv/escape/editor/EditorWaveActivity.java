@@ -27,7 +27,6 @@ public class EditorWaveActivity extends Activity {
 		setContentView(R.layout.editor_waves);
 
 		final EditText wave_name = (EditText) findViewById(R.id.wave_name);
-		
 		final Button button_wave_builder = (Button) findViewById(R.id.plus);
 		
 		list_ship = new ArrayList<Ship>();
