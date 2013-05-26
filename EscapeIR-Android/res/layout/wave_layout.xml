@@ -2,11 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+    <Spinner
+        android:id="@+id/select_ship"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/life_ship"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/select_ship"
         android:fontFamily="@style/AppBaseTheme"
         android:hint="@string/life_ship"
         android:inputType="numberDecimal" />
