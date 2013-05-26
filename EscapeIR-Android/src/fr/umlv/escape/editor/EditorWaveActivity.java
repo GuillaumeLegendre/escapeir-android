@@ -22,6 +22,7 @@ import fr.umlv.escape.ship.Ship;
 
 public class EditorWaveActivity extends Activity implements OnItemClickListener{
 	ArrayList<Ship> list_ship;
+	ShipAdapter shipAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 		
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 		lv.setItemsCanFocus(true);
-		ShipAdapter shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
+		shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
 		lv.setAdapter(shipAdapter);
 		
 		button_wave_builder.setOnClickListener(new OnClickListener() {
@@ -44,6 +45,7 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 			@Override
 			public void onClick(View v) {
 				list_ship.add(new Ship("default_ship", 0, null, null, null, null));
+				shipAdapter.notifyDataSetChanged();
 			}
 		});
 	}

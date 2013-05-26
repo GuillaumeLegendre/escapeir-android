@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 public class EditorLevelActivity extends Activity {
 	Level level;
+	LevelAdapter levelAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class EditorLevelActivity extends Activity {
 		final Button button_level_builder = (Button) findViewById(R.id.plus);
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 
-		LevelAdapter levelAdapter=new LevelAdapter(getApplicationContext(),level);
+		levelAdapter=new LevelAdapter(getApplicationContext(),level);
 		lv.setAdapter(levelAdapter);
 
 		button_level_builder.setOnClickListener(new OnClickListener() {
@@ -35,6 +36,7 @@ public class EditorLevelActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				level.addWaveList(new Wave("empty_wave"));
+				levelAdapter.notifyDataSetChanged();
 			}
 		});
 	}
