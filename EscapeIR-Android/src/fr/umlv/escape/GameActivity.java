@@ -46,6 +46,7 @@ public class GameActivity extends Activity implements OnItemSelectedListener{
 		File[] editedlevels = dir.listFiles(new FileFilter() {
 			@Override
 			public boolean accept(File pathname) {
+				if(pathname.getAbsolutePath().contains(".wave")) return false;
 				return true;
 			}
 		});

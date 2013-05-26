@@ -189,6 +189,9 @@ public class Game {
 	}
 	
 	public void stop(){
+		if(gameRoutine == null)
+			return;
+	
 		gameRoutine.interrupt();
 	}
 }
