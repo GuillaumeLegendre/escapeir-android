@@ -34,7 +34,7 @@ public class EditorLevelActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				
+				level.addWaveList(new Wave("empty_wave"));
 			}
 		});
 	}

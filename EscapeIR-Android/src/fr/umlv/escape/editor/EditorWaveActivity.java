@@ -35,6 +35,7 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 		list_ship.add(new Ship("default_ship", 0, null, null, null, null));
 		
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
+		lv.setItemsCanFocus(true);
 		ShipAdapter shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
 		lv.setAdapter(shipAdapter);
 		
@@ -42,7 +43,7 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 
 			@Override
 			public void onClick(View v) {
-				
+				list_ship.add(new Ship("default_ship", 0, null, null, null, null));
 			}
 		});
 	}
@@ -81,5 +82,4 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 			break;
 		}
 	}
-	
 }

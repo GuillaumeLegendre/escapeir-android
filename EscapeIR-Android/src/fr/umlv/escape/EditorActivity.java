@@ -72,7 +72,6 @@ public class EditorActivity extends Activity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.button_level_builder:
-			System.out.println("LEVEL BUTTON");
 			intent = new Intent(this, EditorMapActivity.class);
 			startActivity(intent);
 			break;

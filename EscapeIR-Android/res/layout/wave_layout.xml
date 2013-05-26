@@ -21,9 +21,9 @@
         android:id="@+id/button_put_ship"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onPushButton"
         android:text="@string/button_put_ship"
-        android:layout_below="@id/life_ship" />
+        android:layout_below="@id/life_ship"
+        />
     
     <Button
         android:id="@+id/moins"
@@ -33,5 +33,4 @@
         android:text="@string/moins"
         android:layout_alignParentRight="true"
         android:layout_below="@id/life_ship" />
-
 </RelativeLayout>
