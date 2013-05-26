@@ -19,7 +19,7 @@ import fr.umlv.escape.R;
 import fr.umlv.escape.ship.Ship;
 
 public class EditorWaveActivity extends Activity {
-	List<Ship> list_ship;
+	ArrayList<Ship> list_ship;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,8 @@ public class EditorWaveActivity extends Activity {
 		list_ship.add(new Ship("default_ship", 0, null, null, null, null));
 		
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
-		ShipAdapter shipAdapter=new ShipAdapter(this,ship);
-		list_ship.setAdapter(shipAdapter);
+		ShipAdapter shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
+		lv.setAdapter(shipAdapter);
 //		list.setOnItemClickListener(this);
 		
 		button_wave_builder.setOnClickListener(new OnClickListener() {
