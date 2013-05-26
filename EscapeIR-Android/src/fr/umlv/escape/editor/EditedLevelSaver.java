@@ -36,4 +36,31 @@ public class EditedLevelSaver {
 		
 		fw.close();
 	}
+	
+	public static void saveWave(Context context, String fileName, ArrayList<ShipEditor> listShip) throws IOException{
+		File file = new File(context.getFilesDir(), fileName+".wave");
+		FileWriter fw = new FileWriter(file);
+		ArrayList<Wave> waveList = EditedLevel.level.getWaveList();
+		ArrayList<Long> delayList = EditedLevel.level.getDelayWaveList();
+		
+		for(int i =0; i<listShip.size();++i){
+			ShipEditor ship = listShip.get(i);
+			String name = ship.name;
+			int posx = ship.x;
+			int posy = ship.y;
+			int health = ship.health;
+			String trajectory = ship.trajectory;
+			
+			fw.write(name+'\n');
+			fw.write("leftwall"+'\n');
+			fw.write(posx);
+			fw.write("topwall"+'\n');
+			fw.write(posy);
+			fw.write(health);
+			fw.write(trajectory+'\n');
+			fw.write('-'+'\n');
+		}
+		
+		fw.close();
+	}
 }
