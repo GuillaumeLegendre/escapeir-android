@@ -68,7 +68,7 @@
         </activity>
         <activity
             android:name="fr.umlv.escape.editor.EditWaveActivity"
-            android:label="@string/title_activity_edit_wave" >
+            android:label="@string/app_name" >
         </activity>
     </application>
 
