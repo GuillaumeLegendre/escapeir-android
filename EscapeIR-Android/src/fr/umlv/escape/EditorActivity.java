@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-public class EditorActivity extends Activity {
+public class EditorActivity extends Activity implements OnClickListener{
 //	private int state = 0;
 //	private String backgroundName;
 //	private Bitmap background;
@@ -27,17 +27,19 @@ public class EditorActivity extends Activity {
 	int WIDTH;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.choose_builder);
 		
 		final Button button_wave_builder = (Button) findViewById(R.id.button_wave_builder);
 		final Button button_level_builder = (Button) findViewById(R.id.button_level_builder);
+		button_wave_builder.setOnClickListener(this);
+		button_level_builder.setOnClickListener(this);
 		
-		button_wave_builder.setOnClickListener(new OnClickListener() {
+		/*button_wave_builder.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getBaseContext(), EditorWaveActivity.class);
+				Intent intent = new Intent(getApplicationContext(), EditorWaveActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -49,7 +51,7 @@ public class EditorActivity extends Activity {
 				startActivity(intent);
 
 			}
-		});
+		});*/
 		
 //		this.backgroundName = "level1";
 //		this.level = new Level("edited_level");
@@ -58,6 +60,25 @@ public class EditorActivity extends Activity {
 //		WIDTH = display.getWidth();  // deprecated
 //		HEIGHT = display.getHeight();
 		//this.frontBuilder = new FrontBuilder(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent;
+		switch (v.getId()) {
+		case R.id.button_wave_builder:
+			System.out.println("WAVE BUTTON");
+			 intent = new Intent(this, EditorWaveActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.button_level_builder:
+			System.out.println("LEVEL BUTTON");
+			intent = new Intent(this, EditorLevelActivity.class);
+			startActivity(intent);
+			break;
+		default:
+			break;
+		}
 	}
 
 //	public void onPushButton(View v) {
