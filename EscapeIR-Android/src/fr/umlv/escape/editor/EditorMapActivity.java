@@ -31,7 +31,7 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 		
 		spinner_map = (Spinner) findViewById(R.id.wave_list_select);
 		image_map = (ImageView)findViewById(R.id.mapImageEditor);
-		editedLevel = new EditedLevel(new Level("empty_level"),BitmapFactory.decodeResource(this.getResources(), R.drawable.level1));
+		editedLevel = new EditedLevel(new Level("empty_level"),BitmapFactory.decodeResource(this.getResources(), R.drawable.level1),"level");
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.maps_array, android.R.layout.simple_spinner_item);
 		
@@ -65,6 +65,7 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 		map = (String) parent.getItemAtPosition(pos);
 		background = BitmapFactory.decodeResource(this.getResources(), getResources().getIdentifier(map, "drawable", "fr.umlv.escape"));
 		EditedLevel.background = background;
+		EditedLevel.backgroundName = map;
 		image_map.setImageBitmap(background);
 		view.invalidate();
 	}
