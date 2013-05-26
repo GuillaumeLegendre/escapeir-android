@@ -31,13 +31,12 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 		
 		spinner_map = (Spinner) findViewById(R.id.wave_list_select);
 		image_map = (ImageView)findViewById(R.id.mapImageEditor);
-		
 		editedLevel = new EditedLevel(new Level("empty_level"),BitmapFactory.decodeResource(this.getResources(), R.drawable.level1));
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.maps_array, android.R.layout.simple_spinner_item);
+		
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner_map.setAdapter(adapter);
-		
 		spinner_map.setOnItemSelectedListener(this);
 	}
 	

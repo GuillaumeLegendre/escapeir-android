@@ -9,8 +9,8 @@ import fr.umlv.escape.Objects;
  */
 public class Level {
 	private final String name;
-	final List<Wave> waveList;
-	final List<Long> delayWaveList;
+	final ArrayList<Wave> waveList;
+	final ArrayList<Long> delayWaveList;
 	int currentWave;
 	
 	/**
@@ -86,11 +86,11 @@ public class Level {
 		this.currentWave++;
 	}
 	
-	public List<Wave> getWaveList() {
+	public ArrayList<Wave> getWaveList() {
 		return waveList;
 	}
 	
-	public List<Long> getDelayWaveList() {
+	public ArrayList<Long> getDelayWaveList() {
 		return delayWaveList;
 	}
 }
