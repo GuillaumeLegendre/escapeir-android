@@ -38,9 +38,8 @@ public class ParseFile {
 		try{
 			this.in=new BufferedReader(new InputStreamReader(context.getAssets().open(fileName)));
 		} catch (Exception e) {
-			File sdCard = Environment.getExternalStorageDirectory();
-			File dir = new File(sdCard.getAbsolutePath() + "/EscapeIR");
-			File file = new File(dir, fileName);
+			File appDir = context.getCacheDir();
+			File file = new File(appDir, fileName);
 			this.in=new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 		}
 		this.fileContent=new ArrayList<String>();

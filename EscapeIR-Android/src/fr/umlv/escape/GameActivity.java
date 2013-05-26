@@ -1,25 +1,34 @@
 package fr.umlv.escape;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 
+import fr.umlv.escape.editor.EditedLevel;
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
 import fr.umlv.escape.game.Game;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.Display;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
-public class GameActivity extends Activity{
+public class GameActivity extends Activity implements OnItemSelectedListener{
 	FrontApplication frontApplication;
 	Game game;
 	public static Context context;
-
+	Spinner spinner_level;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,13 +38,30 @@ public class GameActivity extends Activity{
 		
 		frontApplication = new FrontApplication(this,width,height);
 		this.game = Game.getTheGame();
-		setContentView(R.layout.levels_menu);			
+		setContentView(R.layout.levels_menu);
+		
+		spinner_level = (Spinner) findViewById(R.id.edited_level_select);
+		
+		File dir = getCacheDir();
+		File[] editedlevels = dir.listFiles(new FileFilter() {
+			@Override
+			public boolean accept(File pathname) {
+				if(pathname.getAbsolutePath().contains(".wave")) return false;
+				return true;
+			}
+		});
+		System.out.println(editedlevels.length);
+
+		ArrayAdapter<File> adapter = new ArrayAdapter<File>(this, android.R.layout.simple_spinner_dropdown_item,editedlevels);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner_level.setAdapter(adapter);
+		spinner_level.setOnItemSelectedListener(this);
 	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		
+		if(game == null) return;
 		game.stop();
 	}
 	
@@ -107,4 +133,24 @@ public class GameActivity extends Activity{
 		}	
 	}
 
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		String[] levelsNames=new String[0]; 
+		levelsNames[0] = (String) parent.getItemAtPosition(pos);
+		try {
+			this.game.initializeGame(this,frontApplication,levelsNames);	
+			this.game.startGame(getApplicationContext());
+			setContentView(frontApplication);
+		} catch (IOException e) {
+			onDestroy();
+		} catch (IllegalFormatContentFile e) {
+			onDestroy();
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub	
+	}
 }
