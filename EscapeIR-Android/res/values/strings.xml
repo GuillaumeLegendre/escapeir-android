@@ -23,7 +23,7 @@
 	<string name="wave_name">Wave name</string>
 	<string name="hint_launching_wave">Delay before next wave (0=infini)</string>
 	<string name="button_put_ship">Determine ship\'s position</string>
-	<string name="life_ship">Life\'s ship</string>
+	<string name="life_ship">Ship\'s life</string>
 	<string name="level_name">Level name</string>
 	<string name="action_save">Save</string>
 	
