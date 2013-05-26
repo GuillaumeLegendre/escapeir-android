@@ -3,23 +3,13 @@ package fr.umlv.escape.game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
-
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.Filter;
 
 import android.content.Context;
 
 import fr.umlv.escape.file.IllegalFormatContentFile;
 import fr.umlv.escape.front.FrontApplication;
-import fr.umlv.escape.front.SpriteShip.SpriteType;
-import fr.umlv.escape.gesture.Gesture;
-import fr.umlv.escape.gesture.GestureDetector;
-import fr.umlv.escape.move.PlayerMove;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
-import fr.umlv.escape.weapon.ShootPlayer;
-import fr.umlv.escape.world.Bodys;
 import fr.umlv.escape.world.CollisionMonitor;
 import fr.umlv.escape.world.EscapeWorld;
 
