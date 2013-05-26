@@ -1,5 +1,7 @@
 package fr.umlv.escape.editor;
 
+import java.io.IOException;
+
 import fr.umlv.escape.R;
 import fr.umlv.escape.game.Level;
 import fr.umlv.escape.game.Wave;
@@ -16,9 +18,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class EditorLevelActivity extends Activity implements OnItemClickListener {
 	Level level;
+	EditText level_name;
 	ArrayAdapter<Wave> arrayAdapter;
 	//LevelAdapter levelAdapter;
 
@@ -29,7 +33,8 @@ public class EditorLevelActivity extends Activity implements OnItemClickListener
 		this.level = new Level("edited_level");
 		level.addWaveList(new Wave("LeftRight"));
 
-		final EditText level_name = (EditText) findViewById(R.id.level_name);	
+		level_name = (EditText) findViewById(R.id.level_name);
+		level_name.setText("edited_level");
 		final Button button_level_builder = (Button) findViewById(R.id.plus);
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 
@@ -60,7 +65,11 @@ public class EditorLevelActivity extends Activity implements OnItemClickListener
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_save:
-
+			try {
+				EditedLevelSaver.saveLevel(level_name.getText().toString());
+			} catch (IOException e) {
+				Toast.makeText(this, "Couln't Save on your SDCard", Toast.LENGTH_LONG).show();
+			}
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
