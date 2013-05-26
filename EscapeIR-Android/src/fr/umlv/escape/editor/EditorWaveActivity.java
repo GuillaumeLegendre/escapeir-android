@@ -12,13 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import fr.umlv.escape.R;
 import fr.umlv.escape.ship.Ship;
 
-public class EditorWaveActivity extends Activity {
+public class EditorWaveActivity extends Activity implements OnItemClickListener{
 	ArrayList<Ship> list_ship;
 
 	@Override
@@ -35,7 +37,6 @@ public class EditorWaveActivity extends Activity {
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 		ShipAdapter shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
 		lv.setAdapter(shipAdapter);
-//		list.setOnItemClickListener(this);
 		
 		button_wave_builder.setOnClickListener(new OnClickListener() {
 
@@ -63,6 +64,22 @@ public class EditorWaveActivity extends Activity {
 //		default:
 			return super.onOptionsItemSelected(item);
 //		}	
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		Intent intent;
+		System.out.println("ITEM SELECTED");
+		switch (arg1.getId()) {
+		case R.id.button_put_ship:
+			intent = new Intent(this, EditorShipActivity.class);
+			intent.putExtra("ShipToCreate", arg0.getItemIdAtPosition(arg2));
+			startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
 	}
 	
 }

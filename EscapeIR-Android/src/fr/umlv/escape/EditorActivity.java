@@ -68,8 +68,7 @@ public class EditorActivity extends Activity implements OnClickListener{
 		Intent intent;
 		switch (v.getId()) {
 		case R.id.button_wave_builder:
-			System.out.println("WAVE BUTTON");
-			 intent = new Intent(this, EditorWaveActivity.class);
+			intent = new Intent(this, EditorWaveActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.button_level_builder:
