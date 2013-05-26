@@ -3,6 +3,8 @@ package fr.umlv.escape.editor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jbox2d.dynamics.Body;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +16,19 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import fr.umlv.escape.R;
+import fr.umlv.escape.game.Wave;
 import fr.umlv.escape.ship.Ship;
+import fr.umlv.escape.ship.ShipFactory;
 
 public class EditorWaveActivity extends Activity implements OnItemClickListener{
 	ArrayList<Ship> list_ship;
-	ShipAdapter shipAdapter;
+//	ShipAdapter shipAdapter;
+	ArrayAdapter<Ship> arrayAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +43,16 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 		
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 		lv.setItemsCanFocus(true);
-		shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
-		lv.setAdapter(shipAdapter);
+		//shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
+		arrayAdapter=new ArrayAdapter<Ship>(getApplicationContext(), android.R.layout.simple_list_item_1, list_ship);
+		lv.setAdapter(arrayAdapter);
 		
 		button_wave_builder.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				list_ship.add(new Ship("default_ship", 0, null, null, null, null));
-				shipAdapter.notifyDataSetChanged();
+				list_ship.add(ShipFactory.getTheShipFactory().createShip("default_ship", 10, -10, 100, "LeftMove"));
+				arrayAdapter.notifyDataSetChanged();
 			}
 		});		
 	}
