@@ -20,9 +20,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class EditorLevelActivity extends Activity implements OnItemClickListener {
+
+public class EditorLevelActivity extends Activity {
 	Level level;
 	EditText level_name;
+
 	ArrayAdapter<Wave> arrayAdapter;
 	//LevelAdapter levelAdapter;
 
@@ -30,8 +32,13 @@ public class EditorLevelActivity extends Activity implements OnItemClickListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editor_level);
-		this.level = new Level("edited_level");
-		level.addWaveList(new Wave("LeftRight"));
+		if(EditedLevel.level == null){
+			EditedLevel.level = new Level("edited_level");
+		}
+		if(EditedLevel.level.getWaveList().size() == 0){
+			EditedLevel.level.addWaveList(new Wave("LeftRight"));
+			EditedLevel.level.addDelayList(0);
+		}
 
 		level_name = (EditText) findViewById(R.id.level_name);
 		level_name.setText("edited_level");
@@ -39,15 +46,25 @@ public class EditorLevelActivity extends Activity implements OnItemClickListener
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 
 		//levelAdapter=new LevelAdapter(getApplicationContext(),level);
-		arrayAdapter=new ArrayAdapter<Wave>(getApplicationContext(), android.R.layout.simple_list_item_1, level.getWaveList());
+		arrayAdapter=new ArrayAdapter<Wave>(getApplicationContext(), android.R.layout.simple_list_item_1, EditedLevel.level.getWaveList());
 		lv.setAdapter(arrayAdapter);
-		
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent intent = new Intent(getApplicationContext(), EditWaveActivity.class);
+				intent.putExtra("pos", arg2);
+				startActivity(intent);
+			}
+		});
 
 		button_level_builder.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				level.addWaveList(new Wave("LeftRight"));
+				EditedLevel.level.getWaveList().add(new Wave("LeftRight"));
+				EditedLevel.level.addDelayList(0);
 				arrayAdapter.notifyDataSetChanged();
 			}
 		});
@@ -76,10 +93,4 @@ public class EditorLevelActivity extends Activity implements OnItemClickListener
 		}
 	}
 
-	@Override
-	public void onItemClick(AdapterView<?> lv, View v, int pos, long id) {
-		Intent intent = new Intent(this, EditWaveActivity.class);
-		intent.putExtra("pos", pos);
-		startActivity(intent);
-	}
 }
