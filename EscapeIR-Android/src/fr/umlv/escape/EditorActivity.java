@@ -1,6 +1,7 @@
 package fr.umlv.escape;
 
 import fr.umlv.escape.editor.EditorLevelActivity;
+import fr.umlv.escape.editor.EditorMapActivity;
 import fr.umlv.escape.editor.EditorWaveActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -72,7 +73,7 @@ public class EditorActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.button_level_builder:
 			System.out.println("LEVEL BUTTON");
-			intent = new Intent(this, EditorLevelActivity.class);
+			intent = new Intent(this, EditorMapActivity.class);
 			startActivity(intent);
 			break;
 		default:
