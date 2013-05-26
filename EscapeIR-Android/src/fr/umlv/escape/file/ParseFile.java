@@ -1,6 +1,8 @@
 package fr.umlv.escape.file;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.os.Environment;
 
 import fr.umlv.escape.Objects;
 
@@ -18,7 +21,7 @@ import fr.umlv.escape.Objects;
  */
 public class ParseFile {
 	private final String fileName;
-	private final BufferedReader in;
+	private BufferedReader in;
 	private final ArrayList<String> fileContent;
 	private int currentLine;
 	private boolean isInitialased;
@@ -32,7 +35,14 @@ public class ParseFile {
 	public ParseFile(Context context, String fileName) throws IOException{
 		Objects.requireNonNull(fileName);
 		this.fileName=fileName;
-		this.in=new BufferedReader(new InputStreamReader(context.getAssets().open(fileName)));
+		try{
+			this.in=new BufferedReader(new InputStreamReader(context.getAssets().open(fileName)));
+		} catch (Exception e) {
+			File sdCard = Environment.getExternalStorageDirectory();
+			File dir = new File(sdCard.getAbsolutePath() + "/EscapeIR");
+			File file = new File(dir, fileName);
+			this.in=new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+		}
 		this.fileContent=new ArrayList<String>();
 		this.isInitialased=false;
 		this.context = context;

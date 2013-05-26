@@ -1,5 +1,6 @@
 package fr.umlv.escape.editor;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
