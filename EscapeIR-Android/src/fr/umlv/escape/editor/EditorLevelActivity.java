@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 public class EditorLevelActivity extends Activity {
 	Level level;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
