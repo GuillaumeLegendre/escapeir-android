@@ -5,9 +5,11 @@ import fr.umlv.escape.editor.EditorWaveActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -19,14 +21,10 @@ public class EditorActivity extends Activity {
 //	LevelAdapter levelAdapter;
 //	ArrayAdapter<String> arrayAdapter;
 	//private FrontBuilder frontBuilder;
-//	ImageView map;
-//	private final String[] listMove = {"DownMove","DownUpMove","KamikazeMove",
-//										"LeftDampedMove","LeftMove","LeftRightMove",
-//										"RightDampedMove","RightMove","SquareLeft",
-//										"SquareRight","StraightLine","UpMove"};
-//	private final String[] listShoot = {"DoNotShoot","ShootDown","BatShipShoot",
-//										"FirstBossShoot","SecondBossShoot","ThirdBossShoot"};
 
+	ImageView map;
+	int HEIGHT;
+	int WIDTH;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +47,7 @@ public class EditorActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(getBaseContext(), EditorLevelActivity.class);
 				startActivity(intent);
+
 			}
 		});
 		
@@ -56,6 +55,8 @@ public class EditorActivity extends Activity {
 //		this.level = new Level("edited_level");
 //		level.addWaveList(new Wave("empty_wave"));
 //		level.addDelayList(0);
+//		WIDTH = display.getWidth();  // deprecated
+//		HEIGHT = display.getHeight();
 		//this.frontBuilder = new FrontBuilder(this);
 	}
 
@@ -68,38 +69,39 @@ public class EditorActivity extends Activity {
 //	
 //	public void performState0(View v) {
 //		map = (ImageView)findViewById(R.id.mapImageEditor);
+//
 //		switch(v.getId())
 //		{
-//			case R.id.map1Button : {
+//		case R.id.map1Button : {
 //			background = BitmapFactory.decodeResource(this.getResources(), R.drawable.level1);
 //			map.setImageBitmap(background);
 //			this.backgroundName = "level1";
 //			break;
-//			}
-//			case R.id.map2Button : {
+//		}
+//		case R.id.map2Button : {
 //			background = BitmapFactory.decodeResource(this.getResources(), R.drawable.level2);
 //			map.setImageBitmap(background);
 //			this.backgroundName = "level2";
 //			break;
-//			}
-//			case R.id.map3Button : {
+//		}
+//		case R.id.map3Button : {
 //			background = BitmapFactory.decodeResource(this.getResources(), R.drawable.level3);
 //			map.setImageBitmap(background);
 //			this.backgroundName = "level3";
 //			break;
-//			}
-//			case R.id.nextButton : {
+//		}
+//		case R.id.nextButton : {
 //			if(background==null){
 //				return;
 //			}
 //			state= 1;
-//			levelAdapter=new LevelAdapter(this,level);
+//			levelAdapter = new LevelAdapter(this,level);
 //			setContentView(R.layout.editor_waves);
 //			ListView list = (ListView) findViewById(R.id.waves_list_editor);
 //			list.setAdapter(levelAdapter);
 //			list.setOnItemClickListener(this);
 //			break;
-//			}
+//		}
 //		}
 //		v.invalidate();
 //	}
@@ -141,4 +143,5 @@ public class EditorActivity extends Activity {
 //		setContentView(R.layout.builder_wave);
 //		performState2(findViewById(R.layout.builder_wave));
 //	}
+
 }
