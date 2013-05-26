@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class EditorLevelActivity extends Activity {
-	Level level;
 	ArrayAdapter<Wave> arrayAdapter;
 	//LevelAdapter levelAdapter;
 
@@ -27,22 +26,26 @@ public class EditorLevelActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editor_level);
-		this.level = new Level("edited_level");
-		level.addWaveList(new Wave("LeftRight"));
+		if(EditedLevel.level == null){
+			EditedLevel.level = new Level("edited_level");
+		}
+		if(EditedLevel.level.getWaveList().size() == 0){
+			EditedLevel.level.addWaveList(new Wave("LeftRight"));
+			EditedLevel.level.addDelayList(0);
+		}
 
 		final EditText level_name = (EditText) findViewById(R.id.level_name);	
 		final Button button_level_builder = (Button) findViewById(R.id.plus);
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 
 		//levelAdapter=new LevelAdapter(getApplicationContext(),level);
-		arrayAdapter=new ArrayAdapter<Wave>(getApplicationContext(), android.R.layout.simple_list_item_1, level.getWaveList());
+		arrayAdapter=new ArrayAdapter<Wave>(getApplicationContext(), android.R.layout.simple_list_item_1, EditedLevel.level.getWaveList());
 		lv.setAdapter(arrayAdapter);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(getApplicationContext(), EditWaveActivity.class);
 				intent.putExtra("pos", arg2);
 				startActivity(intent);
@@ -53,7 +56,8 @@ public class EditorLevelActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				level.addWaveList(new Wave("LeftRight"));
+				EditedLevel.level.getWaveList().add(new Wave("LeftRight"));
+				EditedLevel.level.addDelayList(0);
 				arrayAdapter.notifyDataSetChanged();
 			}
 		});
