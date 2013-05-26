@@ -49,8 +49,10 @@ public class GameActivity extends Activity implements OnItemSelectedListener{
 				return true;
 			}
 		});
-		System.out.println(spinner_level);
+		System.out.println(editedlevels.length);
+
 		ArrayAdapter<File> adapter = new ArrayAdapter<File>(this, android.R.layout.simple_spinner_dropdown_item,editedlevels);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner_level.setAdapter(adapter);
 		spinner_level.setOnItemSelectedListener(this);
 	}
