@@ -1,5 +1,8 @@
 package fr.umlv.escape.editor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import fr.umlv.escape.R;
+import fr.umlv.escape.ship.Ship;
 
 public class EditorWaveActivity extends Activity {
+	List<Ship> list_ship;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +30,12 @@ public class EditorWaveActivity extends Activity {
 		
 		final Button button_wave_builder = (Button) findViewById(R.id.plus);
 		
-//		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
-//		ShipAdapter shipAdapter=new ShipAdapter(this,ship);
-//		ListView list = (ListView) findViewById(R.id.waves_list_editor);
-//		list.setAdapter(shipAdapter);
+		list_ship = new ArrayList<Ship>();
+		list_ship.add(new Ship("default_ship", 0, null, null, null, null));
+		
+		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
+		ShipAdapter shipAdapter=new ShipAdapter(this,ship);
+		list_ship.setAdapter(shipAdapter);
 //		list.setOnItemClickListener(this);
 		
 		button_wave_builder.setOnClickListener(new OnClickListener() {
