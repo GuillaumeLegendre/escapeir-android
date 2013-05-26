@@ -58,6 +58,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.umlv.escape.EditorMapActivity" />
         </activity>
+        <activity
+            android:name="fr.umlv.escape.editor.EditorShipActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="fr.umlv.escape.EditorWaveActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.umlv.escape.EditorWaveActivity" />
+        </activity>
     </application>
 
 </manifest>

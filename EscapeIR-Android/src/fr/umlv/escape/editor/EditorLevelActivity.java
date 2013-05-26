@@ -2,6 +2,7 @@ package fr.umlv.escape.editor;
 
 import fr.umlv.escape.R;
 import fr.umlv.escape.game.Level;
+import fr.umlv.escape.game.Wave;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +21,7 @@ public class EditorLevelActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editor_level);
 		this.level = new Level("edited_level");
+		level.addWaveList(new Wave("empty_wave"));
 
 		final EditText level_name = (EditText) findViewById(R.id.level_name);	
 		final Button button_level_builder = (Button) findViewById(R.id.plus);
