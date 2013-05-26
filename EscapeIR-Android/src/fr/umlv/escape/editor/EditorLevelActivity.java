@@ -9,13 +9,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 public class EditorLevelActivity extends Activity {
 	Level level;
-	LevelAdapter levelAdapter;
+	ArrayAdapter<Wave> arrayAdapter;
+	//LevelAdapter levelAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,20 +25,24 @@ public class EditorLevelActivity extends Activity {
 		setContentView(R.layout.editor_level);
 		this.level = new Level("edited_level");
 		level.addWaveList(new Wave("empty_wave"));
+		level.addWaveList(new Wave("empty_wave"));
+		level.addWaveList(new Wave("empty_wave"));
+		level.addWaveList(new Wave("empty_wave"));
 
 		final EditText level_name = (EditText) findViewById(R.id.level_name);	
 		final Button button_level_builder = (Button) findViewById(R.id.plus);
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 
-		levelAdapter=new LevelAdapter(getApplicationContext(),level);
-		lv.setAdapter(levelAdapter);
+		//levelAdapter=new LevelAdapter(getApplicationContext(),level);
+		arrayAdapter=new ArrayAdapter<Wave>(getApplicationContext(), android.R.layout.simple_list_item_1, level.getWaveList());
+		lv.setAdapter(arrayAdapter);
 
 		button_level_builder.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				level.addWaveList(new Wave("empty_wave"));
-				levelAdapter.notifyDataSetChanged();
+				arrayAdapter.notifyDataSetChanged();
 			}
 		});
 	}
