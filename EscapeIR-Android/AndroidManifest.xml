@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fr.umlv.escape.EditorActivity"
+            android:name="fr.umlv.escape.editor.EditorActivity"
             android:label="@string/app_name" >
             <intent-filter>
             </intent-filter>
@@ -37,7 +37,7 @@
         <activity
             android:name="fr.umlv.escape.editor.EditorMapActivity"
             android:label="@string/app_name"
-            android:parentActivityName="fr.umlv.escape.EditorActivity" >
+            android:parentActivityName="fr.umlv.escape.editor.EditorActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.umlv.escape.EditorActivity" />
@@ -45,7 +45,7 @@
         <activity
             android:name="fr.umlv.escape.editor.EditorWaveActivity"
             android:label="@string/app_name"
-            android:parentActivityName="fr.umlv.escape.EditorActivity" >
+            android:parentActivityName="fr.umlv.escape.editor.EditorActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.umlv.escape.EditorActivity" />
@@ -65,6 +65,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.umlv.escape.EditorWaveActivity" />
+        </activity>
+        <activity
+            android:name="fr.umlv.escape.editor.EditWaveActivity"
+            android:label="@string/title_activity_edit_wave" >
         </activity>
     </application>
 
