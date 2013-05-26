@@ -35,6 +35,11 @@ public class GameActivity extends Activity implements OnItemSelectedListener{
 		Display display = getWindowManager().getDefaultDisplay();
 		int width = display.getWidth();  // deprecated
 		int height = display.getHeight();
+		
+		frontApplication = new FrontApplication(this,width,height);
+		this.game = Game.getTheGame();
+		setContentView(R.layout.levels_menu);
+		
 		spinner_level = (Spinner) findViewById(R.id.edited_level_select);
 		
 		File dir = getCacheDir();
@@ -44,14 +49,10 @@ public class GameActivity extends Activity implements OnItemSelectedListener{
 				return true;
 			}
 		});
-
+		System.out.println(spinner_level);
 		ArrayAdapter<File> adapter = new ArrayAdapter<File>(this, android.R.layout.simple_spinner_dropdown_item,editedlevels);
 		spinner_level.setAdapter(adapter);
 		spinner_level.setOnItemSelectedListener(this);
-		
-		frontApplication = new FrontApplication(this,width,height);
-		this.game = Game.getTheGame();
-		setContentView(R.layout.levels_menu);		
 	}
 	
 	@Override
