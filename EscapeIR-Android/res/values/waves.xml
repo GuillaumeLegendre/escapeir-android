@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="waves_array">
+        <item>DampedLeftRight</item>
+        <item>DampedLeftRightBat</item>
+        <item>FirstBoss</item>
+        <item>KamikazeDown</item>
+        <item>LeftRight</item>
+        <item>LeftRightBat</item>
+        <item >OneMidDown</item>
+        <item >OneMidDwonBat</item>
+        <item >SecondBoss</item>
+        <item >ThirdBoss</item>
+        <item >TwoMidDown</item>
+        <item >TwoMidDownBat</item>
+        <item >TwoSquare</item>
+        <item >TwoSquareBat</item>
+    </string-array>
+</resources>
