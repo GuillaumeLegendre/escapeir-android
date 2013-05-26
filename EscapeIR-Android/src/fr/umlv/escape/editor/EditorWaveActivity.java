@@ -25,10 +25,9 @@ import fr.umlv.escape.game.Wave;
 import fr.umlv.escape.ship.Ship;
 import fr.umlv.escape.ship.ShipFactory;
 
-public class EditorWaveActivity extends Activity implements OnItemClickListener{
-	ArrayList<Ship> list_ship;
+public class EditorWaveActivity extends Activity {
 //	ShipAdapter shipAdapter;
-	ArrayAdapter<Ship> arrayAdapter;
+	ArrayAdapter<ShipEditor> arrayAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +37,32 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 		final EditText wave_name = (EditText) findViewById(R.id.wave_name);
 		final Button button_wave_builder = (Button) findViewById(R.id.plus);
 		
-		list_ship = new ArrayList<Ship>();
-		list_ship.add(new Ship("default_ship", 0, null, null, null, null));
+		if(WaveObject.ships.size() == 0){
+			WaveObject.ships.add(new ShipEditor());
+		}
 		
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
 		lv.setItemsCanFocus(true);
 		//shipAdapter=new ShipAdapter(getApplicationContext(),list_ship);
-		arrayAdapter=new ArrayAdapter<Ship>(getApplicationContext(), android.R.layout.simple_list_item_1, list_ship);
+		arrayAdapter=new ArrayAdapter<ShipEditor>(getApplicationContext(), android.R.layout.simple_list_item_1, WaveObject.ships);
 		lv.setAdapter(arrayAdapter);
+		
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent intent = new Intent(getApplicationContext(), EditLevelActivity.class);
+				intent.putExtra("pos", arg2);
+				startActivity(intent);
+			}
+		});
 		
 		button_wave_builder.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				list_ship.add(ShipFactory.getTheShipFactory().createShip("default_ship", 10, -10, 100, "LeftMove"));
+				WaveObject.ships.add(new ShipEditor());
 				arrayAdapter.notifyDataSetChanged();
 			}
 		});		
@@ -76,19 +87,4 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 //		}	
 	}
 
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Intent intent;
-		System.out.println("ITEM SELECTED");
-		switch (arg1.getId()) {
-		case R.id.button_put_ship:
-			intent = new Intent(this, EditorShipActivity.class);
-			intent.putExtra("ShipToCreate", arg0.getItemIdAtPosition(arg2));
-			startActivity(intent);
-			break;
-
-		default:
-			break;
-		}
-	}
 }

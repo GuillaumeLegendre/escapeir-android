@@ -19,13 +19,10 @@ public class ShipPlacerActivity extends Activity implements OnTouchListener{
 	int HEIGHT;
 	int WIDTH;
 	ArrayAdapter<String> moveAdapter;
-	ArrayAdapter<String> shootAdapter;
 	private final String[] listMove = {"DownMove","DownUpMove","KamikazeMove",
 										"LeftDampedMove","LeftMove","LeftRightMove",
 										"RightDampedMove","RightMove","SquareLeft",
 										"SquareRight","StraightLine","UpMove"};
-	private final String[] listShoot = {"DoNotShoot","ShootDown","BatShipShoot",
-										"FirstBossShoot","SecondBossShoot","ThirdBossShoot"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +32,14 @@ public class ShipPlacerActivity extends Activity implements OnTouchListener{
 		
 		moveAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listMove);
 		elv.setAdapter(moveAdapter);
-		shootAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listShoot);
-		elv.setAdapter(shootAdapter);
 		img = (ImageView)findViewById(R.id.mini_map_builder);
-		//img.setMaxHeight(HEIGHT/2);
-		//img.setMaxWidth(WIDTH/2);
 	}
 	
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		switch (v.getId()) {
-		case R.id.default_ship_button:break;
-		case R.id.bat_ship_button:break;
-		case R.id.kamikaze_ship_button:break;
-		case R.id.first_boss_button:break;
-		case R.id.second_boss_button:break;
-		case R.id.third_boss_button:break;
-
-		default:
-			event.getX();
-			event.getY();
-		}
+		//ShipEditor s = WaveObject.ships.get(index);
+		//s.x = (int)event.getX();
+		//s.y = (int)event.getY();
 		return true;
 	}
 }
