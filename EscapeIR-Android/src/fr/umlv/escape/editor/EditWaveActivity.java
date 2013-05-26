@@ -8,13 +8,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 public class EditWaveActivity extends Activity {
 	Spinner spinner_wave;
 	EditText edit_text_launch;
+	Button button_delete;
 	int pos_wave;
 
 	@Override
@@ -45,11 +49,24 @@ public class EditWaveActivity extends Activity {
 		
 		spinner_wave = (Spinner) findViewById(R.id.wave_list_select);
 		edit_text_launch = (EditText) findViewById(R.id.launching_wave);
+		button_delete = (Button) findViewById(R.id.moins);
+		
 		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.waves_array, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner_wave.setAdapter(adapter);
+		
+		button_delete.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				EditedLevel.level.getWaveList().remove(pos_wave);
+				EditedLevel.level.getDelayWaveList().remove(pos_wave);
+				Intent intent = new Intent(getApplicationContext(), EditorLevelActivity.class);
+				startActivity(intent);
+			}
+		});
 
 	}
 
@@ -68,7 +85,8 @@ public class EditWaveActivity extends Activity {
 			
 			EditedLevel.level.getWaveList().set(pos_wave,w);
 			Long l = (long) 0;
-			if(edit_text_launch.getText() != null)
+			Editable t = edit_text_launch.getText();
+			if(t != null && !t.toString().equals(""))
 				l = Long.valueOf(edit_text_launch.getText().toString());
 			EditedLevel.level.getDelayWaveList().set(pos_wave, l);
 			Intent intent = new Intent(getApplicationContext(), EditorLevelActivity.class);
