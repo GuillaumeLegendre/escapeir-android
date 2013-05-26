@@ -29,6 +29,7 @@ public class EditedLevelSaver {
 			int delay2 = delay.intValue();
 			
 			fw.write(wave.getName()+'\n');
+			System.out.println(wave.getName());
 			fw.write(delay2);
 			fw.write('\n');
 		}

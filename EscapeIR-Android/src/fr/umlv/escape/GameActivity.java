@@ -60,7 +60,7 @@ public class GameActivity extends Activity implements OnItemSelectedListener{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		
+		if(game == null) return;
 		game.stop();
 	}
 	
