@@ -3,6 +3,8 @@ package fr.umlv.escape.editor;
 import fr.umlv.escape.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,11 +12,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class EditorMapActivity extends Activity implements OnItemSelectedListener{
 	Spinner spinner_map;
 	String map = "level1";
+	Bitmap background;
+    ImageView image_map;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +27,11 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 		setContentView(R.layout.editor_map);
 		
 		spinner_map = (Spinner) findViewById(R.id.wave_list_select);
+		image_map = (ImageView)findViewById(R.id.mapImageEditor);
 		
-		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.maps_array, android.R.layout.simple_spinner_item);
-		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// Apply the adapter to the spinner
 		spinner_map.setAdapter(adapter);
 		
 		spinner_map.setOnItemSelectedListener(this);
@@ -58,6 +61,8 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		map = (String) parent.getItemAtPosition(pos);
+		background = BitmapFactory.decodeResource(this.getResources(), getResources().getIdentifier(map, "drawable", "fr.umlv.escape"));
+		image_map.setImageBitmap(background);
 	}
 
 	@Override

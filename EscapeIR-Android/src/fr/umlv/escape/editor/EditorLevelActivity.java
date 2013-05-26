@@ -26,10 +26,10 @@ public class EditorLevelActivity extends Activity {
 		final EditText level_name = (EditText) findViewById(R.id.level_name);	
 		final Button button_level_builder = (Button) findViewById(R.id.plus);
 		final ListView lv = (ListView) findViewById(R.id.waves_list_editor);
-		
+
 		LevelAdapter levelAdapter=new LevelAdapter(getApplicationContext(),level);
 		lv.setAdapter(levelAdapter);
-		
+
 		button_level_builder.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -38,23 +38,22 @@ public class EditorLevelActivity extends Activity {
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.save, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-//		LayoutInflater li = getLayoutInflater(); 
-//		switch (item.getItemId()) {
-//		case R.id.grid:
-//			fl.addView(li.inflate(R.layout.grid_layout, null));
-//			return true;
-//		default:
+		switch (item.getItemId()) {
+		case R.id.action_save:
+
+			return true;
+		default:
 			return super.onOptionsItemSelected(item);
-//		}	
+		}
 	}
 }
