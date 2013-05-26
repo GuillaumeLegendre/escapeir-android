@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fr.umlv.escape.editor.EditorActivity"
+            android:name="fr.umlv.escapet.EditorActivity"
             android:label="@string/app_name" >
             <intent-filter>
             </intent-filter>
