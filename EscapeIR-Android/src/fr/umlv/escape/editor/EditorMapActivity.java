@@ -1,6 +1,7 @@
 package fr.umlv.escape.editor;
 
 import fr.umlv.escape.R;
+import fr.umlv.escape.game.Level;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -20,6 +22,7 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 	String map = "level1";
 	Bitmap background;
     ImageView image_map;
+    EditedLevel editedLevel;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 		spinner_map = (Spinner) findViewById(R.id.wave_list_select);
 		image_map = (ImageView)findViewById(R.id.mapImageEditor);
 		
+		editedLevel = new EditedLevel(new Level("empty_level"),BitmapFactory.decodeResource(this.getResources(), R.drawable.level1));
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.maps_array, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,7 +53,6 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 		switch (item.getItemId()) {
 		case R.id.action_save:
 			Intent intent = new Intent(this, EditorLevelActivity.class);
-			intent.putExtra("map", map);
 			startActivity(intent);
 			return true;
 		default:
@@ -62,12 +65,13 @@ public class EditorMapActivity extends Activity implements OnItemSelectedListene
 			long id) {
 		map = (String) parent.getItemAtPosition(pos);
 		background = BitmapFactory.decodeResource(this.getResources(), getResources().getIdentifier(map, "drawable", "fr.umlv.escape"));
+		EditedLevel.background = background;
 		image_map.setImageBitmap(background);
+		view.invalidate();
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		// TODO Auto-generated method stub
 		
 	}
 }

@@ -47,7 +47,7 @@ public class EditorWaveActivity extends Activity implements OnItemClickListener{
 				list_ship.add(new Ship("default_ship", 0, null, null, null, null));
 				shipAdapter.notifyDataSetChanged();
 			}
-		});
+		});		
 	}
 	
 	@Override
