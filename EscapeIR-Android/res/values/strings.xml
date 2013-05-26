@@ -12,12 +12,19 @@
 	<string name="map2">Map2</string>
 	<string name="map3">Map3</string>
 	<string name="next">Next</string>
-	<string name="plus">+</string>
-	<string name="moins">-</string>
+	<string name="plus">Add</string>
+	<string name="moins">X</string>
 	<string name="build">Build</string>
 	<string name="setWaves">"Set your waves"</string>
 	<string name="chooseMap">"Chose your map"</string>
 	<string name="back">"Back"</string>
-	<string name="hint_enter_the_name">"Enter the name"</string>
-	<string name="hint_enter_the_value">"Enter the value (0=infini)"</string>
+	<string name="wave_builder">Wave Builder</string>
+	<string name="level_builder">Level Builder</string>
+	<string name="wave_name">Wave name</string>
+	<string name="hint_launching_wave">Delay before next wave (0=infini)</string>
+	<string name="button_put_ship">Determine ship\'s position</string>
+	<string name="life_ship">Life\'s ship</string>
+	<string name="level_name">Level name</string>
+	<string name="action_save">Save</string>
+	
 </resources>
