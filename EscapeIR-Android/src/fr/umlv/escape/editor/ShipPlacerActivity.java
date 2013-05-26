@@ -14,10 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.Toast;
 
 public class ShipPlacerActivity extends Activity implements OnTouchListener{
 	int HEIGHT;
 	int WIDTH;
+	int pos_wave;
 	ArrayAdapter<String> moveAdapter;
 	private final String[] listMove = {"DownMove","DownUpMove","KamikazeMove",
 										"LeftDampedMove","LeftMove","LeftRightMove",
@@ -27,19 +29,30 @@ public class ShipPlacerActivity extends Activity implements OnTouchListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ExpandableListView elv = (ExpandableListView)findViewById(R.id.shoot_list_editor);
+		setContentView(R.layout.builder_wave);
+		
+		if (savedInstanceState == null) {
+			Bundle extras = getIntent().getExtras();
+			if(extras == null) {
+				throw new IllegalArgumentException();
+			}
+			pos_wave = extras.getInt("pos");
+		} else {
+			pos_wave = Integer.parseInt((String) savedInstanceState.getSerializable("pos"));
+		}
+		
 		ImageView img;
 		
 		moveAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listMove);
-		elv.setAdapter(moveAdapter);
 		img = (ImageView)findViewById(R.id.mini_map_builder);
 	}
 	
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		//ShipEditor s = WaveObject.ships.get(index);
-		//s.x = (int)event.getX();
-		//s.y = (int)event.getY();
+		ShipEditor s = WaveObject.ships.get(pos_wave);
+		s.x = (int)event.getX();
+		s.y = (int)event.getY();
+		Toast.makeText(getApplicationContext(), "Pos:"+s.x+":"+s.y, Toast.LENGTH_SHORT).show();
 		return true;
 	}
 }

@@ -84,6 +84,7 @@ public class EditorLevelActivity extends Activity {
 		case R.id.action_save:
 			try {
 				EditedLevelSaver.saveLevel(this,level_name.getText().toString());
+				Toast.makeText(this, "Level save", Toast.LENGTH_LONG).show();
 			} catch (IOException e) {
 				e.printStackTrace();
 				Toast.makeText(this, "Couln't Save on your SDCard", Toast.LENGTH_LONG).show();

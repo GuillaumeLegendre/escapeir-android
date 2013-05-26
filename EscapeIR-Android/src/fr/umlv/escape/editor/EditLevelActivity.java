@@ -74,6 +74,7 @@ public class EditLevelActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), ShipPlacerActivity.class);
+				intent.putExtra("pos", pos_wave);
 				startActivity(intent);
 			}
 		});

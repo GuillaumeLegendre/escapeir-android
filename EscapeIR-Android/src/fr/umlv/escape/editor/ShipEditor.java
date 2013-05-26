@@ -12,15 +12,3 @@ public class ShipEditor {
 		return name;
 	}
 }
-
-//LeftMove,
-//RightMove,
-//DownMove,
-//UpMove,
-//SquareRight,
-//SquareLeft,
-//StraightLine,
-//LeftDampedMove,
-//RightDampedMove,
-//KamikazeMove,
-//LeftRight
