@@ -67,10 +67,10 @@ public class EditWaveActivity extends Activity {
 			Wave w = new Wave(spinner_wave.getSelectedItem().toString());
 			
 			EditedLevel.level.getWaveList().set(pos_wave,w);
-			Long l = 0;
+			Long l = (long) 0;
 			if(edit_text_launch.getText() != null)
-				l = Long.valueOf(edit_text_launch.getText().toString()
-			EditedLevel.level.getDelayWaveList().set(pos_wave, l));
+				l = Long.valueOf(edit_text_launch.getText().toString());
+			EditedLevel.level.getDelayWaveList().set(pos_wave, l);
 			Intent intent = new Intent(getApplicationContext(), EditorLevelActivity.class);
 			startActivity(intent);
 			return true;
