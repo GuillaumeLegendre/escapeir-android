@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ships_array">
+        <item>default_ship</item>
+        <item>kamikaze_ship</item>
+        <item>bat_ship</item>
+        <item>first_boss</item>
+        <item>second_boss</item>
+        <item>third_boss</item>
+    </string-array>
+</resources>
