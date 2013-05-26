@@ -1,51 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_weight="50"
-	    android:orientation="horizontal" >
-	    <TextView
-	        android:id="@+id/waveName"
-	        android:layout_width="0dp"
-	        android:layout_weight="25"
-	    	android:layout_height="wrap_content"
-	    	android:textIsSelectable="false" />
-	    <EditText 
-	        android:layout_weight="25"
-	        android:layout_width="0dp"
-        	android:layout_height="wrap_content"
-        	android:hint="@string/hint_enter_the_name" />
-	</LinearLayout>
-	<LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-  	    android:layout_weight="50"
-	    android:orientation="horizontal" >
-	    
-	    <TextView
-	        android:id="@+id/waveDelay"
-	        android:layout_weight="25"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:textIsSelectable="false" />
-	    <EditText
-	        android:layout_width="0dp"
-	        android:layout_weight="25"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/hint_enter_the_value" />
-	</LinearLayout>
-	<Button 
-        android:id="@+id/build"
+    <EditText
+        android:id="@+id/life_ship"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="50"
-	    android:text="@string/build"
-	    android:onClick="onPushButton"
-	/>
-</LinearLayout>
+        android:fontFamily="@style/AppBaseTheme"
+        android:hint="@string/life_ship"
+        android:inputType="numberDecimal" />
+    
+    <Button
+        android:id="@+id/button_put_ship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onPushButton"
+        android:text="@string/button_put_ship"
+        android:layout_below="@id/life_ship" />
+    
+    <Button
+        android:id="@+id/moins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onPushButton"
+        android:text="@string/moins"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/life_ship" />
+
+</RelativeLayout>
